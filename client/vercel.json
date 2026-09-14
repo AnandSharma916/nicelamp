@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://YOUR_BACKEND_URL/api/:path*"
+      "destination": "https://nicelamp.onrender.com/api/:path*"
     },
     {
       "source": "/uploads/:path*",
-      "destination": "https://YOUR_BACKEND_URL/uploads/:path*"
+      "destination": "https://nicelamp.onrender.com/uploads/:path*"
     },
     {
       "source": "/(.*)",

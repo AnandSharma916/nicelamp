@@ -18,6 +18,7 @@ import homepageRoutes from './routes/homepageRoutes.js';
 import settingsRoutes from './routes/settingsRoutes.js';
 import inquiryRoutes from './routes/inquiryRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
+
 import Category from './models/Category.js';
 import { seedDatabase } from './scripts/seedData.js';
 
@@ -61,11 +62,17 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin or matching configured origins
-      if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app') || origin.includes('localhost')) {
+      // Allow requests with no origin (like mobile apps, curl, postman, server-to-server)
+      if (!origin) return callback(null, true);
+
+      // Check allowed list or Vercel domains or allow all in production/development
+      if (
+        allowedOrigins.includes(origin) ||
+        origin.endsWith('.vercel.app') ||
+        !process.env.CLIENT_URL
+      ) {
         return callback(null, true);
       }
-      // Allow any incoming origin for API inquiries and storefront in production
       return callback(null, true);
     },
     credentials: true, // Allow cookies
