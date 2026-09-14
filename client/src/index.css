@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg-primary: #090a0d;
+    --color-bg-secondary: #111318;
+    --color-bg-card: #181b22;
+    --color-gold: #c5a880;
+    --color-gold-hover: #b8986e;
+    --color-text-main: #f3f4f6;
+    --color-text-muted: #9ca3af;
+    --color-border: rgba(255, 255, 255, 0.08);
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-main);
+    overflow-x: hidden;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, .font-serif-luxury {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.04em;
+  }
+}
+
+/* Custom Luxury Lighting Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090a0d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232731;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c5a880;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(24, 27, 34, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-nav {
+  background: rgba(9, 10, 13, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #f3eedd 0%, #c5a880 50%, #9e825b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border-glow:hover {
+  border-color: rgba(197, 168, 128, 0.5);
+  box-shadow: 0 0 25px rgba(197, 168, 128, 0.15);
+}
+
+/* Luxury button styling */
+.btn-gold {
+  background: linear-gradient(135deg, #d4be9c 0%, #c5a880 50%, #af8f66 100%);
+  color: #090a0d;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #e2cfb3 0%, #d4be9c 50%, #bd9f78 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(197, 168, 128, 0.25);
+}
+
+.btn-outline-gold {
+  border: 1px solid rgba(197, 168, 128, 0.4);
+  color: #e5ccab;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-gold:hover {
+  border-color: #c5a880;
+  background: rgba(197, 168, 128, 0.1);
+  color: #ffffff;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
