@@ -15,10 +15,12 @@ import {
   Eye,
   EyeOff,
   Sparkles,
+  Loader2,
 } from 'lucide-react';
 import { productService, categoryService } from '../../services/api';
 import { useToast } from '../../context/ToastContext';
 import { ConfirmModal } from '../../components/admin/ConfirmModal';
+import { ProductPreviewModal } from '../../components/admin/ProductPreviewModal';
 
 export const ProductList = () => {
   const { addToast } = useToast();
@@ -36,10 +38,14 @@ export const ProductList = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
 
-  // Deletion Modal
+  // Deletion Modal & Action States
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState(null);
   const [actionLoading, setActionLoading] = useState(false);
+  const [togglingId, setTogglingId] = useState(null);
+  const [duplicatingId, setDuplicatingId] = useState(null);
+  const [previewModalOpen, setPreviewModalOpen] = useState(false);
+  const [previewProduct, setPreviewProduct] = useState(null);
 
   // Fetch Categories for Filter Dropdown
   useEffect(() => {
@@ -66,13 +72,14 @@ export const ProductList = () => {
         search: searchTerm || undefined,
         category: selectedCategory || undefined,
         published: publishFilter === 'all' ? undefined : publishFilter === 'published',
+        admin: 'true',
       };
 
       const res = await productService.getProducts(params);
       if (res.success) {
         setProducts(res.products || []);
-        setTotalPages(res.pagination?.pages || 1);
-        setTotalCount(res.pagination?.total || 0);
+        setTotalPages(res.totalPages || res.pagination?.pages || 1);
+        setTotalCount(res.total || res.pagination?.total || 0);
       }
     } catch (err) {
       addToast('Failed to load products list.', 'error');
@@ -94,35 +101,45 @@ export const ProductList = () => {
 
   // Toggle Publish Status
   const handleTogglePublish = async (prod) => {
+    if (togglingId) return;
     try {
+      setTogglingId(prod._id);
       const res = await productService.togglePublish(prod._id);
       if (res.success) {
+        const nextStatus = res.product?.isPublished !== undefined ? res.product.isPublished : res.isPublished;
+        const prodName = prod.name || prod.title || 'Luminaire';
         addToast(
-          `${prod.title} is now ${res.product.isPublished ? 'published' : 'saved as draft'}.`,
+          `"${prodName}" is now ${nextStatus ? 'Live on Storefront' : 'saved as Draft'}.`,
           'success'
         );
         setProducts((prev) =>
-          prev.map((p) => (p._id === prod._id ? { ...p, isPublished: res.product.isPublished } : p))
+          prev.map((p) => (p._id === prod._id ? { ...p, isPublished: nextStatus } : p))
         );
       }
     } catch (err) {
-      addToast('Failed to update product publish status.', 'error');
+      const msg = err.response?.data?.message || 'Failed to update product publish status.';
+      addToast(msg, 'error');
+    } finally {
+      setTogglingId(null);
     }
   };
 
   // Duplicate Product
-  const handleDuplicate = async (id) => {
+  const handleDuplicate = async (prod) => {
+    if (duplicatingId) return;
     try {
-      setActionLoading(true);
-      const res = await productService.duplicateProduct(id);
+      setDuplicatingId(prod._id);
+      const res = await productService.duplicateProduct(prod._id);
       if (res.success) {
-        addToast('Luminaire successfully duplicated.', 'success');
-        loadProducts();
+        const prodName = prod.name || prod.title || 'Luminaire';
+        addToast(`"${prodName}" successfully duplicated as draft.`, 'success');
+        await loadProducts();
       }
     } catch (err) {
-      addToast('Failed to duplicate product.', 'error');
+      const msg = err.response?.data?.message || 'Failed to duplicate product.';
+      addToast(msg, 'error');
     } finally {
-      setActionLoading(false);
+      setDuplicatingId(null);
     }
   };
 
@@ -256,22 +273,29 @@ export const ProductList = () => {
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 rounded-xl bg-[#090a0d] border border-white/10 overflow-hidden shrink-0 flex items-center justify-center">
-                          {prod.mainImage ? (
-                            <img
-                              src={prod.mainImage}
-                              alt={prod.title}
-                              className="w-full h-full object-cover"
-                            />
-                          ) : (
-                            <Package className="w-5 h-5 text-neutral-600" />
-                          )}
+                          {(() => {
+                            const coverImg =
+                              prod.mainImage ||
+                              prod.images?.find((img) => img.isCover)?.url ||
+                              prod.images?.[0]?.url ||
+                              (typeof prod.images?.[0] === 'string' ? prod.images[0] : '');
+                            return coverImg ? (
+                              <img
+                                src={coverImg}
+                                alt={prod.name || prod.title}
+                                className="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <Package className="w-5 h-5 text-neutral-600" />
+                            );
+                          })()}
                         </div>
                         <div className="max-w-[220px]">
                           <Link
                             to={`/admin/products/edit/${prod._id}`}
                             className="font-semibold text-white hover:text-[#c5a880] transition-colors truncate block text-xs"
                           >
-                            {prod.title}
+                            {prod.name || prod.title}
                           </Link>
                           <span className="text-[10px] text-neutral-500 font-mono block">
                             /{prod.slug}
@@ -320,45 +344,63 @@ export const ProductList = () => {
                     <td className="py-3 px-4 text-center">
                       <button
                         onClick={() => handleTogglePublish(prod)}
-                        className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider transition-colors ${
+                        disabled={togglingId === prod._id}
+                        title={
                           prod.isPublished
-                            ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20'
-                            : 'bg-neutral-800 text-neutral-400 border border-white/5 hover:bg-neutral-700'
+                            ? 'Currently Live — click to switch to Draft'
+                            : 'Currently Draft — click to publish Live'
+                        }
+                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${
+                          prod.isPublished
+                            ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 shadow-[0_0_12px_rgba(16,185,129,0.15)]'
+                            : 'bg-neutral-800/80 text-neutral-400 border border-white/10 hover:bg-neutral-700/80 hover:text-neutral-200'
                         }`}
                       >
-                        {prod.isPublished ? (
-                          <>
-                            <Eye className="w-3 h-3" />
-                            <span>Live</span>
-                          </>
+                        {togglingId === prod._id ? (
+                          <Loader2 className="w-3 h-3 animate-spin text-current" />
+                        ) : prod.isPublished ? (
+                          <Eye className="w-3 h-3 text-emerald-400" />
                         ) : (
-                          <>
-                            <EyeOff className="w-3 h-3" />
-                            <span>Draft</span>
-                          </>
+                          <EyeOff className="w-3 h-3 text-neutral-400" />
                         )}
+                        <span>{prod.isPublished ? 'Live' : 'Draft'}</span>
                       </button>
                     </td>
 
                     {/* Actions */}
                     <td className="py-3 px-4 text-right">
                       <div className="flex items-center justify-end gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setPreviewProduct(prod);
+                            setPreviewModalOpen(true);
+                          }}
+                          className="p-1.5 rounded-lg text-neutral-400 hover:text-[#c5a880] hover:bg-[#c5a880]/10 transition-colors"
+                          title="Quick in-app preview"
+                        >
+                          <Eye className="w-3.5 h-3.5" />
+                        </button>
                         <a
-                          href={`/product/${prod.slug}`}
+                          href={`/product/${prod.slug || prod._id}`}
                           target="_blank"
-                          rel="noreferrer"
+                          rel="noopener noreferrer"
                           className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-white/5 transition-colors"
-                          title="View on storefront"
+                          title="View on storefront (opens in new tab)"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
                         </a>
                         <button
-                          onClick={() => handleDuplicate(prod._id)}
-                          disabled={actionLoading}
-                          className="p-1.5 rounded-lg text-neutral-400 hover:text-[#c5a880] hover:bg-[#c5a880]/10 transition-colors"
-                          title="Duplicate luminaire"
+                          onClick={() => handleDuplicate(prod)}
+                          disabled={duplicatingId === prod._id}
+                          className="p-1.5 rounded-lg text-neutral-400 hover:text-[#c5a880] hover:bg-[#c5a880]/10 transition-colors disabled:opacity-50"
+                          title="Duplicate luminaire as draft"
                         >
-                          <Copy className="w-3.5 h-3.5" />
+                          {duplicatingId === prod._id ? (
+                            <Loader2 className="w-3.5 h-3.5 animate-spin text-[#c5a880]" />
+                          ) : (
+                            <Copy className="w-3.5 h-3.5" />
+                          )}
                         </button>
                         <Link
                           to={`/admin/products/edit/${prod._id}`}
@@ -418,7 +460,7 @@ export const ProductList = () => {
       <ConfirmModal
         isOpen={deleteModalOpen}
         title="Delete Luminaire?"
-        message={`Are you sure you want to remove "${productToDelete?.title}" from the catalog? This will delete all associated specifications and technical records.`}
+        message={`Are you sure you want to remove "${productToDelete?.name || productToDelete?.title || 'this fixture'}" from the catalog? This will delete all associated specifications and technical records.`}
         confirmText="Delete Luminaire"
         confirmVariant="danger"
         loading={actionLoading}
@@ -427,6 +469,14 @@ export const ProductList = () => {
           setDeleteModalOpen(false);
           setProductToDelete(null);
         }}
+      />
+
+      {/* In-App Live Preview Modal */}
+      <ProductPreviewModal
+        isOpen={previewModalOpen}
+        onClose={() => setPreviewModalOpen(false)}
+        product={previewProduct}
+        categoryName={previewProduct?.category?.name}
       />
     </div>
   );

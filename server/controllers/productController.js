@@ -129,15 +129,18 @@ export const getProductBySlug = async (req, res, next) => {
       });
     }
 
-    // Find related products in the same category
-    const relatedProducts = await Product.find({
-      category: product.category._id,
-      _id: { $ne: product._id },
-      isPublished: true,
-    })
-      .populate('category', 'name slug')
-      .limit(4)
-      .sort({ sortOrder: 1, createdAt: -1 });
+    // Find related products in the same category (safely guarded)
+    const categoryId = product.category?._id || product.category;
+    const relatedProducts = categoryId
+      ? await Product.find({
+          category: categoryId,
+          _id: { $ne: product._id },
+          isPublished: true,
+        })
+          .populate('category', 'name slug')
+          .limit(4)
+          .sort({ sortOrder: 1, createdAt: -1 })
+      : [];
 
     res.status(200).json({
       success: true,
@@ -172,6 +175,77 @@ export const getProductById = async (req, res, next) => {
   }
 };
 
+// Helper to normalize product images into valid schema objects
+const normalizeProductImages = (images = [], mainImage = '', defaultAlt = '') => {
+  const result = [];
+  const seenUrls = new Set();
+
+  // If primary image provided, ensure it comes first with isCover: true
+  if (mainImage && typeof mainImage === 'string' && mainImage.trim() !== '') {
+    const trimmedMain = mainImage.trim();
+    result.push({
+      url: trimmedMain,
+      alt: defaultAlt || 'Primary Luminaire',
+      isCover: true,
+      publicId: '',
+    });
+    seenUrls.add(trimmedMain);
+  }
+
+  if (Array.isArray(images)) {
+    images.forEach((img, idx) => {
+      if (!img) return;
+      let url = '';
+      let alt = defaultAlt;
+      let isCover = false;
+      let publicId = '';
+
+      if (typeof img === 'string') {
+        url = img.trim();
+      } else if (typeof img === 'object') {
+        url = img.url ? String(img.url).trim() : '';
+        alt = img.alt || defaultAlt;
+        isCover = Boolean(img.isCover);
+        publicId = img.publicId || '';
+      }
+
+      if (url && !seenUrls.has(url)) {
+        seenUrls.add(url);
+        result.push({
+          url,
+          alt,
+          isCover: result.length === 0 ? true : isCover,
+          publicId,
+        });
+      }
+    });
+  }
+
+  // Ensure at least one image has isCover: true if images exist
+  if (result.length > 0 && !result.some((img) => img.isCover)) {
+    result[0].isCover = true;
+  }
+
+  return result;
+};
+
+// Helper to normalize specifications
+const normalizeProductSpecs = (specs = {}) => {
+  return {
+    dimensions: specs.dimensions || '',
+    material: specs.material || '',
+    finish: specs.finish || '',
+    wattage: specs.wattage || '',
+    voltage: specs.voltage || '',
+    colorTemperature: specs.colorTemperature || '',
+    ipRating: specs.ipRating || '',
+    installationType: specs.installationType || '',
+    beamAngle: specs.beamAngle || '',
+    cri: specs.cri || '',
+    luminousFlux: specs.luminousFlux || specs.lumens || '',
+  };
+};
+
 // @desc    Create new product
 // @route   POST /api/products
 // @access  Private (Admin)
@@ -179,22 +253,30 @@ export const createProduct = async (req, res, next) => {
   try {
     const {
       name,
+      title,
       slug,
       sku,
       category,
       shortDescription,
       description,
+      price,
       images,
+      mainImage,
       specifications,
       pdfUrl,
+      tags,
       isFeatured,
+      isNewArrival,
       isPublished,
       sortOrder,
       seoTitle,
       seoDescription,
     } = req.body;
 
-    if (!name || !sku || !category) {
+    const productName = (name || title || '').trim();
+    const productSku = (sku || '').trim().toUpperCase();
+
+    if (!productName || !productSku || !category) {
       return res.status(400).json({
         success: false,
         message: 'Name, SKU, and Category are required.',
@@ -211,17 +293,16 @@ export const createProduct = async (req, res, next) => {
     }
 
     // Check SKU uniqueness
-    const normalizedSku = sku.trim().toUpperCase();
-    const skuExists = await Product.findOne({ sku: normalizedSku });
+    const skuExists = await Product.findOne({ sku: productSku });
     if (skuExists) {
       return res.status(400).json({
         success: false,
-        message: `Product with SKU '${normalizedSku}' already exists.`,
+        message: `Product with SKU '${productSku}' already exists.`,
       });
     }
 
     // Generate unique slug
-    let baseSlug = slug ? slugify(slug) : slugify(name);
+    let baseSlug = slug ? slugify(slug) : slugify(productName);
     let finalSlug = baseSlug;
     let counter = 1;
     while (await Product.findOne({ slug: finalSlug })) {
@@ -229,20 +310,32 @@ export const createProduct = async (req, res, next) => {
       counter++;
     }
 
+    const formattedImages = normalizeProductImages(images, mainImage, productName);
+    const formattedSpecs = normalizeProductSpecs(specifications);
+
+    const parsedTags = Array.isArray(tags)
+      ? tags
+      : typeof tags === 'string'
+      ? tags.split(',').map((t) => t.trim()).filter(Boolean)
+      : [];
+
     const product = await Product.create({
-      name: name.trim(),
+      name: productName,
       slug: finalSlug,
-      sku: normalizedSku,
+      sku: productSku,
       category,
       shortDescription: shortDescription || '',
       description: description || '',
-      images: Array.isArray(images) ? images : [],
-      specifications: specifications || {},
+      price: Math.max(0, Number(price) || 0),
+      images: formattedImages,
+      specifications: formattedSpecs,
       pdfUrl: pdfUrl || '',
+      tags: parsedTags,
       isFeatured: Boolean(isFeatured),
+      isNewArrival: Boolean(isNewArrival),
       isPublished: isPublished !== undefined ? Boolean(isPublished) : true,
       sortOrder: Number(sortOrder) || 0,
-      seoTitle: seoTitle || name.trim(),
+      seoTitle: seoTitle || productName,
       seoDescription: seoDescription || shortDescription || '',
     });
 
@@ -273,22 +366,30 @@ export const updateProduct = async (req, res, next) => {
 
     const {
       name,
+      title,
       slug,
       sku,
       category,
       shortDescription,
       description,
+      price,
       images,
+      mainImage,
       specifications,
       pdfUrl,
+      tags,
       isFeatured,
+      isNewArrival,
       isPublished,
       sortOrder,
       seoTitle,
       seoDescription,
     } = req.body;
 
-    if (name) product.name = name.trim();
+    const productName = name || title;
+    if (productName && productName.trim()) {
+      product.name = productName.trim();
+    }
 
     if (sku) {
       const normalizedSku = sku.trim().toUpperCase();
@@ -331,10 +432,31 @@ export const updateProduct = async (req, res, next) => {
 
     if (shortDescription !== undefined) product.shortDescription = shortDescription;
     if (description !== undefined) product.description = description;
-    if (images !== undefined) product.images = images;
-    if (specifications !== undefined) product.specifications = specifications;
+    if (price !== undefined) product.price = Math.max(0, Number(price) || 0);
+
+    if (images !== undefined || mainImage !== undefined) {
+      product.images = normalizeProductImages(
+        images !== undefined ? images : product.images,
+        mainImage,
+        product.name
+      );
+    }
+
+    if (specifications !== undefined) {
+      const currentSpecs = product.specifications ? product.specifications.toObject() : {};
+      product.specifications = normalizeProductSpecs({ ...currentSpecs, ...specifications });
+    }
+
     if (pdfUrl !== undefined) product.pdfUrl = pdfUrl;
+    if (tags !== undefined) {
+      product.tags = Array.isArray(tags)
+        ? tags
+        : typeof tags === 'string'
+        ? tags.split(',').map((t) => t.trim()).filter(Boolean)
+        : product.tags;
+    }
     if (isFeatured !== undefined) product.isFeatured = Boolean(isFeatured);
+    if (isNewArrival !== undefined) product.isNewArrival = Boolean(isNewArrival);
     if (isPublished !== undefined) product.isPublished = Boolean(isPublished);
     if (sortOrder !== undefined) product.sortOrder = Number(sortOrder);
     if (seoTitle !== undefined) product.seoTitle = seoTitle;
@@ -392,10 +514,13 @@ export const duplicateProduct = async (req, res, next) => {
       });
     }
 
-    // Generate new unique SKU and slug
-    const newSku = `${original.sku}-COPY-${Date.now().toString().slice(-4)}`;
+    // Generate clean unique SKU and slug
+    const baseSku = original.sku ? original.sku.replace(/-COPY-\d+$/i, '') : 'SKU';
+    const timestampSuffix = Date.now().toString().slice(-4);
+    const newSku = `${baseSku}-COPY-${timestampSuffix}`;
     const newName = `${original.name} (Copy)`;
-    const newSlug = slugify(`${original.slug}-copy-${Date.now().toString().slice(-4)}`);
+    const baseSlug = original.slug ? original.slug.replace(/-copy-\d+$/i, '') : 'product';
+    const newSlug = slugify(`${baseSlug}-copy-${timestampSuffix}`);
 
     const clonedProduct = await Product.create({
       name: newName,
@@ -407,7 +532,10 @@ export const duplicateProduct = async (req, res, next) => {
       images: original.images,
       specifications: original.specifications,
       pdfUrl: original.pdfUrl,
+      price: original.price || 0,
+      tags: original.tags || [],
       isFeatured: false,
+      isNewArrival: Boolean(original.isNewArrival),
       isPublished: false, // Start as draft/unpublished
       sortOrder: (original.sortOrder || 0) + 1,
       seoTitle: newName,
@@ -443,10 +571,13 @@ export const togglePublish = async (req, res, next) => {
     product.isPublished = !product.isPublished;
     await product.save();
 
+    const populatedProduct = await Product.findById(product._id).populate('category', 'name slug');
+
     res.status(200).json({
       success: true,
       message: `Product ${product.isPublished ? 'published' : 'unpublished'}.`,
       isPublished: product.isPublished,
+      product: populatedProduct || product,
     });
   } catch (error) {
     next(error);

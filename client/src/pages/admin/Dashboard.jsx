@@ -36,8 +36,8 @@ export const Dashboard = () => {
       try {
         setLoading(true);
         const [prodRes, catRes, inqRes] = await Promise.allSettled([
-          productService.getProducts({ limit: 6, sort: '-createdAt' }),
-          categoryService.getCategories(),
+          productService.getProducts({ limit: 6, sort: '-createdAt', admin: 'true' }),
+          categoryService.getCategories({ admin: 'true' }),
           inquiryService.getInquiries({ limit: 5 }),
         ]);
 
@@ -46,7 +46,7 @@ export const Dashboard = () => {
         if (prodRes.status === 'fulfilled' && prodRes.value.success) {
           const prods = prodRes.value.products || [];
           setRecentProducts(prods);
-          prodCount = prodRes.value.pagination?.total || prods.length;
+          prodCount = prodRes.value.total || prodRes.value.pagination?.total || prods.length;
           featured = prods.filter((p) => p.isFeatured).length;
         }
 
@@ -60,7 +60,7 @@ export const Dashboard = () => {
         if (inqRes.status === 'fulfilled' && inqRes.value.success) {
           const inqs = inqRes.value.inquiries || [];
           setRecentInquiries(inqs);
-          inqCount = inqRes.value.pagination?.total || inqs.length;
+          inqCount = inqRes.value.total || inqRes.value.pagination?.total || inqs.length;
           newCount = inqs.filter((i) => i.status === 'new').length;
         }
 
@@ -239,22 +239,29 @@ export const Dashboard = () => {
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       <div className="w-12 h-12 rounded-xl bg-[#0b0c10] border border-white/10 overflow-hidden shrink-0 flex items-center justify-center">
-                        {prod.mainImage ? (
-                          <img
-                            src={prod.mainImage}
-                            alt={prod.title}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <Package className="w-5 h-5 text-neutral-600" />
-                        )}
+                        {(() => {
+                          const coverImg =
+                            prod.mainImage ||
+                            prod.images?.find((img) => img.isCover)?.url ||
+                            prod.images?.[0]?.url ||
+                            (typeof prod.images?.[0] === 'string' ? prod.images[0] : '');
+                          return coverImg ? (
+                            <img
+                              src={coverImg}
+                              alt={prod.name || prod.title}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <Package className="w-5 h-5 text-neutral-600" />
+                          );
+                        })()}
                       </div>
                       <div className="min-w-0">
                         <Link
                           to={`/admin/products/edit/${prod._id}`}
                           className="text-sm font-semibold text-white hover:text-[#c5a880] transition-colors truncate block"
                         >
-                          {prod.title}
+                          {prod.name || prod.title}
                         </Link>
                         <div className="flex items-center gap-2 mt-0.5 text-[11px] text-neutral-400">
                           <span className="font-mono text-neutral-500">{prod.sku || 'NO-SKU'}</span>

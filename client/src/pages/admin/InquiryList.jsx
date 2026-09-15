@@ -262,8 +262,9 @@ export const InquiryList = () => {
             onClick={() => setSelectedInquiry(null)}
           />
 
-          <div className="relative w-full max-w-lg bg-[#14171d] border border-white/10 rounded-2xl shadow-2xl z-10 overflow-hidden p-6 sm:p-8 space-y-5">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+          <div className="relative w-full max-w-lg bg-[#14171d] border border-white/10 rounded-2xl shadow-2xl z-10 flex flex-col max-h-[90vh] overflow-hidden my-auto">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between border-b border-white/10 p-6 shrink-0 bg-[#14171d]">
               <div>
                 <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-semibold block">
                   Inquiry Details
@@ -273,14 +274,17 @@ export const InquiryList = () => {
                 </h3>
               </div>
               <button
+                type="button"
                 onClick={() => setSelectedInquiry(null)}
-                className="text-neutral-400 hover:text-white"
+                className="text-neutral-400 hover:text-white p-1.5 rounded-lg hover:bg-white/5 transition-colors"
+                title="Close"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="space-y-3 text-xs">
+            {/* Scrollable Body */}
+            <div className="p-6 space-y-4 text-xs overflow-y-auto flex-1 modal-scrollbar">
               <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-black/40 border border-white/5 font-mono">
                 <div>
                   <span className="text-[10px] text-neutral-500 uppercase tracking-luxury block mb-1">
@@ -327,7 +331,8 @@ export const InquiryList = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-white/10">
+            {/* Fixed Footer */}
+            <div className="flex items-center justify-between p-4 sm:px-6 border-t border-white/10 bg-[#0e1014] shrink-0">
               <div className="flex items-center gap-2">
                 <span className="text-xs text-neutral-400">Status:</span>
                 <select

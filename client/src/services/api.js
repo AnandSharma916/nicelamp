@@ -15,6 +15,10 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    // Allow browser to calculate correct multipart/form-data boundary for FormData
+    if (config.data instanceof FormData) {
+      delete config.headers['Content-Type'];
+    }
     return config;
   },
   (error) => Promise.reject(error)
@@ -179,15 +183,11 @@ export const inquiryService = {
 // Media / Upload Service
 export const uploadService = {
   uploadSingle: async (formData) => {
-    const res = await api.post('/upload', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    const res = await api.post('/upload', formData);
     return res.data;
   },
   uploadMultiple: async (formData) => {
-    const res = await api.post('/upload/multiple', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    const res = await api.post('/upload/multiple', formData);
     return res.data;
   },
   getMediaLibrary: async (params = {}) => {

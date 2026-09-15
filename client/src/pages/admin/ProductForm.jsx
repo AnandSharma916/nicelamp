@@ -12,10 +12,13 @@ import {
   Plus,
   Trash2,
   ExternalLink,
+  Eye,
+  AlertTriangle,
 } from 'lucide-react';
-import { productService, categoryService } from '../../services/api';
+import { productService, categoryService, uploadService } from '../../services/api';
 import { useToast } from '../../context/ToastContext';
 import { ImageUploader } from '../../components/admin/ImageUploader';
+import { ProductPreviewModal } from '../../components/admin/ProductPreviewModal';
 
 export const ProductForm = () => {
   const { id } = useParams();
@@ -27,9 +30,22 @@ export const ProductForm = () => {
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [activeTab, setActiveTab] = useState('general');
+  const [mainImgError, setMainImgError] = useState(false);
+
+  const isLocalPath = (str) => {
+    if (!str || typeof str !== 'string') return false;
+    const trimmed = str.trim();
+    return /^[a-zA-Z]:\\/i.test(trimmed) || trimmed.startsWith('file://') || (trimmed.includes('\\') && !trimmed.startsWith('http'));
+  };
+
+  // Preview Modal States
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewProduct, setPreviewProduct] = useState(null);
+  const [isJustUpdated, setIsJustUpdated] = useState(false);
 
   // Form State
   const [formData, setFormData] = useState({
+    name: '',
     title: '',
     slug: '',
     sku: '',
@@ -39,6 +55,7 @@ export const ProductForm = () => {
     price: 0,
     mainImage: '',
     images: [],
+    pdfUrl: '',
     // Specifications
     specifications: {
       wattage: '',
@@ -50,6 +67,8 @@ export const ProductForm = () => {
       material: 'Aluminum & Acrylic',
       finish: 'Brushed Brass',
       dimensions: '',
+      installationType: '',
+      cri: '',
       warranty: '2 Years Manufacturer',
     },
     tags: '',
@@ -62,7 +81,7 @@ export const ProductForm = () => {
   useEffect(() => {
     const loadCategories = async () => {
       try {
-        const res = await categoryService.getCategories();
+        const res = await categoryService.getCategories({ admin: 'true' });
         if (res.success) {
           setCategories(res.categories || []);
           // Default to first category if creating
@@ -86,29 +105,45 @@ export const ProductForm = () => {
         const res = await productService.getProductById(id);
         if (res.success && res.product) {
           const p = res.product;
+          const prodName = p.name || p.title || '';
+          const coverImg =
+            p.mainImage ||
+            p.images?.find((img) => img.isCover)?.url ||
+            p.images?.[0]?.url ||
+            '';
+          const galleryImgs = Array.isArray(p.images)
+            ? p.images
+                .map((img) => (typeof img === 'string' ? img : img.url))
+                .filter((url) => Boolean(url) && url !== coverImg)
+            : [];
+
           setFormData({
-            title: p.title || '',
+            name: prodName,
+            title: prodName,
             slug: p.slug || '',
             sku: p.sku || '',
             category: p.category?._id || p.category || '',
             shortDescription: p.shortDescription || '',
             description: p.description || '',
             price: p.price || 0,
-            mainImage: p.mainImage || '',
-            images: p.images || [],
+            mainImage: coverImg,
+            images: galleryImgs,
+            pdfUrl: p.pdfUrl || '',
             specifications: {
               wattage: p.specifications?.wattage || '',
               voltage: p.specifications?.voltage || '220-240V AC',
               colorTemperature: p.specifications?.colorTemperature || '3000K Warm White',
-              lumens: p.specifications?.lumens || '',
+              lumens: p.specifications?.luminousFlux || p.specifications?.lumens || '',
               beamAngle: p.specifications?.beamAngle || '120°',
               ipRating: p.specifications?.ipRating || 'IP20',
               material: p.specifications?.material || 'Aluminum & Acrylic',
               finish: p.specifications?.finish || 'Brushed Brass',
               dimensions: p.specifications?.dimensions || '',
+              installationType: p.specifications?.installationType || '',
+              cri: p.specifications?.cri || '',
               warranty: p.specifications?.warranty || '2 Years Manufacturer',
             },
-            tags: Array.isArray(p.tags) ? p.tags.join(', ') : '',
+            tags: Array.isArray(p.tags) ? p.tags.join(', ') : (p.tags || ''),
             isFeatured: Boolean(p.isFeatured),
             isNewArrival: Boolean(p.isNewArrival),
             isPublished: p.isPublished !== undefined ? p.isPublished : true,
@@ -155,6 +190,7 @@ export const ProductForm = () => {
       return {
         ...prev,
         title: val,
+        name: val,
         slug: generatedSlug,
       };
     });
@@ -180,32 +216,87 @@ export const ProductForm = () => {
   // Submit Handler
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.title || !formData.category) {
+    const productName = (formData.name || formData.title || '').trim();
+    if (!productName || !formData.category) {
       addToast('Please provide both product title and category.', 'error');
+      return;
+    }
+
+    if (!formData.sku || !formData.sku.trim()) {
+      addToast('Product SKU / Model Number is required.', 'error');
+      return;
+    }
+
+    if (isLocalPath(formData.mainImage) || isLocalPath(formData.pdfUrl)) {
+      addToast('Local file paths (C:\\...) cannot be saved directly. Please upload your file via the upload box.', 'error');
       return;
     }
 
     try {
       setSubmitting(true);
+      const formattedImages = [];
+      if (formData.mainImage) {
+        formattedImages.push({
+          url: formData.mainImage,
+          alt: productName,
+          isCover: true,
+        });
+      }
+      formData.images.forEach((img) => {
+        const url = typeof img === 'string' ? img : img.url;
+        if (url && url !== formData.mainImage) {
+          formattedImages.push({
+            url,
+            alt: productName,
+            isCover: false,
+          });
+        }
+      });
+
       const payload = {
-        ...formData,
-        tags: formData.tags
-          .split(',')
-          .map((t) => t.trim())
-          .filter(Boolean),
+        name: productName,
+        title: productName,
+        slug: formData.slug,
+        sku: formData.sku.trim().toUpperCase(),
+        category: formData.category,
+        shortDescription: formData.shortDescription,
+        description: formData.description,
+        price: Math.max(0, Number(formData.price) || 0),
+        mainImage: formData.mainImage,
+        images: formattedImages,
+        pdfUrl: formData.pdfUrl || '',
+        specifications: {
+          ...formData.specifications,
+          luminousFlux: formData.specifications.lumens || '',
+        },
+        tags: typeof formData.tags === 'string'
+          ? formData.tags.split(',').map((t) => t.trim()).filter(Boolean)
+          : formData.tags,
+        isFeatured: Boolean(formData.isFeatured),
+        isNewArrival: Boolean(formData.isNewArrival),
+        isPublished: Boolean(formData.isPublished),
       };
 
       if (isEditMode) {
         const res = await productService.updateProduct(id, payload);
         if (res.success) {
           addToast('Luminaire specifications successfully updated.', 'success');
-          navigate('/admin/products');
+          const savedProd = res.product || { ...payload, _id: id };
+          setPreviewProduct(savedProd);
+          setIsJustUpdated(true);
+          setPreviewOpen(true);
         }
       } else {
         const res = await productService.createProduct(payload);
         if (res.success) {
           addToast('New luminaire successfully registered in catalog.', 'success');
-          navigate('/admin/products');
+          const savedProd = res.product || payload;
+          setPreviewProduct(savedProd);
+          setIsJustUpdated(true);
+          setPreviewOpen(true);
+          if (res.product?._id) {
+            window.history.replaceState(null, '', `/admin/products/edit/${res.product._id}`);
+          }
         }
       }
     } catch (err) {
@@ -247,23 +338,59 @@ export const ProductForm = () => {
           </div>
         </div>
 
-        <button
-          onClick={handleSubmit}
-          disabled={submitting}
-          className="btn-gold px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 self-start sm:self-auto shadow-xl disabled:opacity-50"
-        >
-          {submitting ? (
-            <>
-              <Loader2 className="w-4 h-4 animate-spin" />
-              <span>Saving...</span>
-            </>
-          ) : (
-            <>
-              <Save className="w-4 h-4" />
-              <span>{isEditMode ? 'Update Luminaire' : 'Publish Luminaire'}</span>
-            </>
+        <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+          {/* Quick Preview Button */}
+          <button
+            type="button"
+            onClick={() => {
+              setPreviewProduct({
+                ...formData,
+                _id: id,
+                title: formData.title || formData.name,
+              });
+              setIsJustUpdated(false);
+              setPreviewOpen(true);
+            }}
+            className="px-4 py-2.5 rounded-xl border border-white/10 hover:border-[#c5a880]/50 bg-white/5 hover:bg-white/10 text-white text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 transition-all shadow-md"
+            title="Preview how this luminaire looks on the storefront"
+          >
+            <Eye className="w-4 h-4 text-[#c5a880]" />
+            <span>Quick Preview</span>
+          </button>
+
+          {/* Direct Storefront Link (if has slug) */}
+          {formData.slug && (
+            <a
+              href={`/product/${formData.slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3.5 py-2.5 rounded-xl border border-white/10 hover:border-[#c5a880]/50 bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-luxury flex items-center gap-1.5 transition-all shadow-md"
+              title="Open public product page in new tab"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-[#c5a880]" />
+              <span className="hidden md:inline">Open Live</span>
+            </a>
           )}
-        </button>
+
+          {/* Save / Update Button */}
+          <button
+            onClick={handleSubmit}
+            disabled={submitting}
+            className="btn-gold px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 shadow-xl disabled:opacity-50"
+          >
+            {submitting ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Saving...</span>
+              </>
+            ) : (
+              <>
+                <Save className="w-4 h-4" />
+                <span>{isEditMode ? 'Update Luminaire' : 'Publish Luminaire'}</span>
+              </>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Tabs Navigation */}
@@ -293,7 +420,7 @@ export const ProductForm = () => {
         })}
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form noValidate onSubmit={handleSubmit} className="space-y-6">
         {/* Tab 1: General Information */}
         {activeTab === 'general' && (
           <div className="bg-[#14171d] border border-white/10 rounded-2xl p-6 sm:p-8 space-y-5 shadow-xl">
@@ -427,27 +554,109 @@ export const ProductForm = () => {
                 <div>
                   <ImageUploader
                     label="Upload Primary Luminaire Photo"
-                    onUploadSuccess={(url) => setFormData((prev) => ({ ...prev, mainImage: url }))}
+                    onUploadSuccess={(url) => {
+                      setFormData((prev) => ({ ...prev, mainImage: url }));
+                      setMainImgError(false);
+                    }}
                   />
-                  <div className="mt-2">
+
+                  {/* Local Path Warning */}
+                  {isLocalPath(formData.mainImage) && (
+                    <div className="mt-2 p-3 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs space-y-1.5">
+                      <div className="flex items-center gap-1.5 font-semibold">
+                        <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
+                        <span>Local Computer Path Detected</span>
+                      </div>
+                      <p className="text-[11px] text-amber-200/90 leading-relaxed">
+                        Web browsers cannot load files directly from your computer drive (<code className="bg-black/40 px-1 py-0.5 rounded font-mono">{formData.mainImage}</code>).
+                      </p>
+                      <p className="text-[11px] text-white font-medium">
+                        👉 Click <strong>Browse File from PC</strong> in the box above to upload the file to the server.
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="mt-2 flex gap-2">
                     <input
-                      type="url"
+                      type="text"
                       name="mainImage"
                       value={formData.mainImage}
-                      onChange={handleChange}
-                      placeholder="Or paste direct image URL (Unsplash, CDN, etc.)..."
-                      className="w-full px-3 py-2 rounded-xl bg-[#090a0d] border border-white/10 text-xs text-white placeholder-neutral-600"
+                      onChange={(e) => {
+                        handleChange(e);
+                        setMainImgError(false);
+                      }}
+                      onDragOver={(e) => e.preventDefault()}
+                      onDrop={async (e) => {
+                        e.preventDefault();
+                        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                          try {
+                            const data = new FormData();
+                            data.append('file', e.dataTransfer.files[0]);
+                            const res = await uploadService.uploadSingle(data);
+                            if (res.success && res.file) {
+                              setFormData((p) => ({ ...p, mainImage: res.file.url }));
+                              setMainImgError(false);
+                              addToast('File uploaded successfully from drop.', 'success');
+                            }
+                          } catch (err) {
+                            addToast('Failed to upload dropped file.', 'error');
+                          }
+                        }
+                      }}
+                      placeholder="Or paste direct image URL (Unsplash, CDN, /uploads, etc.)..."
+                      className="flex-1 px-3 py-2 rounded-xl bg-[#090a0d] border border-white/10 text-xs text-white placeholder-neutral-600 font-mono"
                     />
+                    {formData.mainImage && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setFormData((prev) => ({ ...prev, mainImage: '' }));
+                          setMainImgError(false);
+                        }}
+                        className="px-3 py-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-semibold"
+                      >
+                        Clear
+                      </button>
+                    )}
                   </div>
                 </div>
 
                 <div className="h-44 rounded-xl bg-[#090a0d] border border-white/10 overflow-hidden flex items-center justify-center p-2 relative">
                   {formData.mainImage ? (
-                    <img
-                      src={formData.mainImage}
-                      alt="Primary Luminaire"
-                      className="w-full h-full object-contain"
-                    />
+                    isLocalPath(formData.mainImage) ? (
+                      <div className="text-center p-3 text-amber-400 text-xs">
+                        <AlertTriangle className="w-6 h-6 mx-auto mb-1 text-amber-400" />
+                        <span className="font-semibold block">Local PC path</span>
+                        <span className="text-[10px] text-neutral-400 mt-0.5 block">
+                          Please click the upload box above
+                        </span>
+                      </div>
+                    ) : mainImgError ? (
+                      <div className="text-center p-3 text-neutral-500 text-xs">
+                        <ImageIcon className="w-6 h-6 mx-auto mb-1 opacity-50" />
+                        <span>Unable to load image from URL</span>
+                      </div>
+                    ) : (
+                      <>
+                        <img
+                          src={formData.mainImage}
+                          alt="Primary Luminaire"
+                          onError={() => setMainImgError(true)}
+                          className="w-full h-full object-contain"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setFormData((prev) => ({ ...prev, mainImage: '' }));
+                            setMainImgError(false);
+                          }}
+                          className="absolute top-2 right-2 p-1.5 rounded-lg bg-red-600/90 hover:bg-red-600 text-white transition-colors"
+                          title="Remove primary image"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </>
+                    )
                   ) : (
                     <div className="text-center text-neutral-600">
                       <ImageIcon className="w-8 h-8 mx-auto mb-1 opacity-50" />
@@ -470,6 +679,37 @@ export const ProductForm = () => {
                 label="Add Gallery Photo"
                 onUploadSuccess={(url) => handleAddGalleryImage(url)}
               />
+
+              <div className="flex gap-2 items-center">
+                <input
+                  type="text"
+                  id="gallery-url-input"
+                  placeholder="Or paste direct image URL and press Enter or Add..."
+                  className="flex-1 px-3 py-2 rounded-xl bg-[#090a0d] border border-white/10 text-xs text-white placeholder-neutral-600 font-mono"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      if (e.target.value.trim()) {
+                        handleAddGalleryImage(e.target.value.trim());
+                        e.target.value = '';
+                      }
+                    }
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById('gallery-url-input');
+                    if (el && el.value.trim()) {
+                      handleAddGalleryImage(el.value.trim());
+                      el.value = '';
+                    }
+                  }}
+                  className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs text-white font-medium transition-colors shrink-0"
+                >
+                  Add URL
+                </button>
+              </div>
 
               {formData.images.length > 0 && (
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
@@ -632,6 +872,87 @@ export const ProductForm = () => {
                   className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono"
                 />
               </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                  Installation Mounting Type
+                </label>
+                <input
+                  type="text"
+                  name="installationType"
+                  value={formData.specifications.installationType}
+                  onChange={handleSpecChange}
+                  placeholder="e.g. Surface Wall Mount / Flush Recessed"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                  Color Rendering Index (CRI)
+                </label>
+                <input
+                  type="text"
+                  name="cri"
+                  value={formData.specifications.cri}
+                  onChange={handleSpecChange}
+                  placeholder="e.g. Ra > 92 / Ra > 95"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono"
+                />
+              </div>
+            </div>
+
+            {/* Spec Sheet PDF Document */}
+            <div className="pt-6 border-t border-white/10 space-y-3">
+              <label className="block text-xs uppercase tracking-luxury text-neutral-400 font-medium">
+                Architectural Technical Data Sheet (PDF Document)
+              </label>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                <div>
+                  <ImageUploader
+                    label="Upload Specification PDF Sheet"
+                    onUploadSuccess={(url) => setFormData((prev) => ({ ...prev, pdfUrl: url }))}
+                  />
+                  <div className="mt-2 flex gap-2">
+                    <input
+                      type="text"
+                      name="pdfUrl"
+                      value={formData.pdfUrl}
+                      onChange={handleChange}
+                      placeholder="Or paste direct PDF URL..."
+                      className="flex-1 px-3 py-2 rounded-xl bg-[#090a0d] border border-white/10 text-xs text-white placeholder-neutral-600 font-mono"
+                    />
+                    {formData.pdfUrl && (
+                      <button
+                        type="button"
+                        onClick={() => setFormData((prev) => ({ ...prev, pdfUrl: '' }))}
+                        className="px-3 py-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-semibold"
+                      >
+                        Clear
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-xl bg-[#090a0d] border border-white/10 flex flex-col justify-center">
+                  <span className="text-xs text-neutral-400 font-medium mb-1 block">Current Attached Spec Sheet:</span>
+                  {formData.pdfUrl ? (
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={formData.pdfUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-xs text-[#c5a880] hover:underline font-mono truncate max-w-[280px] flex items-center gap-1"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                        <span className="truncate">{formData.pdfUrl}</span>
+                      </a>
+                    </div>
+                  ) : (
+                    <span className="text-xs text-neutral-500">No PDF document attached</span>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -747,6 +1068,16 @@ export const ProductForm = () => {
           </button>
         </div>
       </form>
+
+      {/* Live Storefront Preview Modal */}
+      <ProductPreviewModal
+        isOpen={previewOpen}
+        onClose={() => setPreviewOpen(false)}
+        product={previewProduct || { ...formData, _id: id }}
+        categoryName={categories.find((c) => c._id === formData.category)?.name}
+        isJustUpdated={isJustUpdated}
+        onBackToList={() => navigate('/admin/products')}
+      />
     </div>
   );
 };

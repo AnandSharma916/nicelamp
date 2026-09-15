@@ -72,17 +72,17 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-xl bg-[#14171d] border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10 p-6 md:p-8"
+            className="relative w-full max-w-xl bg-[#14171d] border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10 flex flex-col max-h-[90vh] my-auto"
           >
             <button
               onClick={onClose}
-              className="absolute top-5 right-5 p-2 rounded-lg text-neutral-400 hover:text-white hover:bg-white/5 transition-colors"
+              className="absolute top-5 right-5 p-2 rounded-lg text-neutral-400 hover:text-white hover:bg-white/5 transition-colors z-20"
             >
               <X className="w-5 h-5" />
             </button>
 
             {submitted ? (
-              <div className="py-12 text-center">
+              <div className="p-6 md:p-8 py-12 text-center overflow-y-auto modal-scrollbar">
                 <div className="w-16 h-16 rounded-full bg-[#c5a880]/10 border border-[#c5a880]/30 flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-[#c5a880]" />
                 </div>
@@ -98,7 +98,7 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
                 </button>
               </div>
             ) : (
-              <div>
+              <div className="p-6 md:p-8 overflow-y-auto modal-scrollbar">
                 <div className="mb-6">
                   <span className="text-xs uppercase tracking-luxury text-[#c5a880] font-semibold">
                     Product & Technical Enquiry

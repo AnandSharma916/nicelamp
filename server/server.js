@@ -140,4 +140,5 @@ process.on('unhandledRejection', (err) => {
   console.error('[Server Error] Unhandled Rejection:', err);
 });
 
+// LightHut API Server - Live
 export default app;

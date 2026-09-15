@@ -80,6 +80,20 @@ const productSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
+    price: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+    isNewArrival: {
+      type: Boolean,
+      default: false,
+      index: true,
+    },
+    tags: {
+      type: [String],
+      default: [],
+    },
     isFeatured: {
       type: Boolean,
       default: false,
@@ -108,8 +122,19 @@ const productSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
 );
+
+// Virtual for primary/cover image URL
+productSchema.virtual('mainImage').get(function () {
+  if (this.images && this.images.length > 0) {
+    const cover = this.images.find((img) => img.isCover);
+    return cover ? cover.url : this.images[0].url;
+  }
+  return '';
+});
 
 // Full-text search index for fast searching across name, SKU, and descriptions
 productSchema.index({

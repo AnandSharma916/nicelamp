@@ -24,12 +24,27 @@ export const HomepageCms = () => {
   const [selectedSection, setSelectedSection] = useState(null);
   const [saving, setSaving] = useState(false);
 
+  const normalizeSection = (s) => ({
+    ...s,
+    badge: s.badge || s.metadata?.badge || '',
+    image: s.image || s.images?.[0] || '',
+    cta: {
+      text: s.cta?.text || s.buttonText || '',
+      link: s.cta?.link || s.buttonLink || '',
+    },
+    secondaryCta: {
+      text: s.secondaryCta?.text || s.secondaryButtonText || '',
+      link: s.secondaryCta?.link || s.secondaryButtonLink || '',
+    },
+    content: s.content || s.description || '',
+  });
+
   const loadSections = async () => {
     try {
       setLoading(true);
       const res = await homepageService.getAllSections();
       if (res.success) {
-        const secs = res.sections || [];
+        const secs = (res.sections || []).map(normalizeSection);
         setSections(secs);
         if (secs.length > 0 && !selectedSection) {
           setSelectedSection(secs[0]);
@@ -79,9 +94,15 @@ export const HomepageCms = () => {
         subtitle: selectedSection.subtitle,
         badge: selectedSection.badge,
         content: selectedSection.content,
+        description: selectedSection.content,
         cta: selectedSection.cta,
+        buttonText: selectedSection.cta?.text,
+        buttonLink: selectedSection.cta?.link,
         secondaryCta: selectedSection.secondaryCta,
+        secondaryButtonText: selectedSection.secondaryCta?.text,
+        secondaryButtonLink: selectedSection.secondaryCta?.link,
         image: selectedSection.image,
+        images: selectedSection.image ? [selectedSection.image] : [],
         isEnabled: selectedSection.isEnabled,
       });
 
@@ -251,7 +272,7 @@ export const HomepageCms = () => {
                   </span>
                 </div>
 
-                <form onSubmit={handleSaveContent} className="space-y-4">
+                <form noValidate onSubmit={handleSaveContent} className="space-y-4">
                   <div>
                     <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                       Display Title / Headline
@@ -348,13 +369,13 @@ export const HomepageCms = () => {
                     />
                     <div className="mt-2">
                       <input
-                        type="url"
+                        type="text"
                         value={selectedSection.image || ''}
                         onChange={(e) =>
                           setSelectedSection((p) => ({ ...p, image: e.target.value }))
                         }
-                        placeholder="Or direct image URL..."
-                        className="w-full px-3 py-2 rounded-xl bg-[#090a0d] border border-white/10 text-xs text-white placeholder-neutral-600"
+                        placeholder="Or direct image URL (/uploads, Unsplash, CDN)..."
+                        className="w-full px-3 py-2 rounded-xl bg-[#090a0d] border border-white/10 text-xs text-white placeholder-neutral-600 font-mono"
                       />
                     </div>
                     {selectedSection.image && (

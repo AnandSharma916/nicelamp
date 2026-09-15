@@ -52,9 +52,14 @@ export const updateSection = async (req, res, next) => {
       title,
       subtitle,
       description,
+      content,
+      badge,
+      image,
       images,
+      cta,
       buttonText,
       buttonLink,
+      secondaryCta,
       secondaryButtonText,
       secondaryButtonLink,
       metadata,
@@ -65,12 +70,32 @@ export const updateSection = async (req, res, next) => {
     if (title !== undefined) section.title = title;
     if (subtitle !== undefined) section.subtitle = subtitle;
     if (description !== undefined) section.description = description;
-    if (images !== undefined) section.images = images;
+    else if (content !== undefined) section.description = content;
+
+    if (images !== undefined) {
+      section.images = Array.isArray(images) ? images : [images].filter(Boolean);
+    } else if (image !== undefined) {
+      section.images = image ? [image] : [];
+    }
+
     if (buttonText !== undefined) section.buttonText = buttonText;
+    else if (cta?.text !== undefined) section.buttonText = cta.text;
+
     if (buttonLink !== undefined) section.buttonLink = buttonLink;
+    else if (cta?.link !== undefined) section.buttonLink = cta.link;
+
     if (secondaryButtonText !== undefined) section.secondaryButtonText = secondaryButtonText;
+    else if (secondaryCta?.text !== undefined) section.secondaryButtonText = secondaryCta.text;
+
     if (secondaryButtonLink !== undefined) section.secondaryButtonLink = secondaryButtonLink;
-    if (metadata !== undefined) section.metadata = metadata;
+    else if (secondaryCta?.link !== undefined) section.secondaryButtonLink = secondaryCta.link;
+
+    if (badge !== undefined) {
+      section.metadata = { ...(section.metadata || {}), badge };
+    }
+    if (metadata !== undefined) {
+      section.metadata = { ...(section.metadata || {}), ...metadata };
+    }
     if (isEnabled !== undefined) section.isEnabled = Boolean(isEnabled);
     if (order !== undefined) section.order = Number(order);
 

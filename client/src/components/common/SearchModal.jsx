@@ -104,7 +104,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
             </div>
 
             {/* Results Area */}
-            <div className="max-h-[60vh] overflow-y-auto p-4 space-y-2">
+            <div className="max-h-[60vh] overflow-y-auto p-4 space-y-2 modal-scrollbar">
               {results.length > 0 ? (
                 <div>
                   <div className="text-xs uppercase tracking-luxury text-[#c5a880] px-3 py-2 font-semibold">

@@ -144,7 +144,7 @@ export const SiteSettingsPage = () => {
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form noValidate onSubmit={handleSubmit} className="space-y-6">
         {/* 1. Brand Identity */}
         <div className="bg-[#14171d] border border-white/10 rounded-2xl p-6 sm:p-8 space-y-5 shadow-xl">
           <h2 className="text-base font-serif-luxury font-bold text-white flex items-center gap-2">
@@ -193,12 +193,12 @@ export const SiteSettingsPage = () => {
                   onUploadSuccess={(url) => setFormData((p) => ({ ...p, logo: url }))}
                 />
                 <input
-                  type="url"
+                  type="text"
                   name="logo"
                   value={formData.logo}
                   onChange={handleChange}
-                  placeholder="Or direct logo URL..."
-                  className="w-full px-3 py-2 mt-2 rounded-xl bg-[#090a0d] border border-white/10 text-xs text-white placeholder-neutral-600"
+                  placeholder="Or direct logo URL (/uploads, CDN, SVG)..."
+                  className="w-full px-3 py-2 mt-2 rounded-xl bg-[#090a0d] border border-white/10 text-xs text-white placeholder-neutral-600 font-mono"
                 />
               </div>
 
@@ -207,6 +207,36 @@ export const SiteSettingsPage = () => {
                   <img src={formData.logo} alt="Logo" className="max-h-16 w-auto object-contain" />
                 ) : (
                   <span className="text-xs text-neutral-600">Default SVG icon in use</span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-3 border-t border-white/10">
+            <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+              Browser Favicon Icon
+            </label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+              <div>
+                <ImageUploader
+                  label="Upload Favicon Icon (PNG, SVG, ICO)"
+                  onUploadSuccess={(url) => setFormData((p) => ({ ...p, favicon: url }))}
+                />
+                <input
+                  type="text"
+                  name="favicon"
+                  value={formData.favicon}
+                  onChange={handleChange}
+                  placeholder="Or direct favicon URL (/uploads, ICO, PNG)..."
+                  className="w-full px-3 py-2 mt-2 rounded-xl bg-[#090a0d] border border-white/10 text-xs text-white placeholder-neutral-600 font-mono"
+                />
+              </div>
+
+              <div className="h-28 rounded-xl bg-[#090a0d] border border-white/10 p-3 flex items-center justify-center">
+                {formData.favicon ? (
+                  <img src={formData.favicon} alt="Favicon" className="w-8 h-8 object-contain" />
+                ) : (
+                  <span className="text-xs text-neutral-600">Default favicon in use</span>
                 )}
               </div>
             </div>

@@ -47,6 +47,32 @@
   background: #c5a880;
 }
 
+/* Modal Custom Scrollbar */
+.modal-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(197, 168, 128, 0.45) #0e1117;
+}
+
+.modal-scrollbar::-webkit-scrollbar {
+  width: 7px;
+}
+
+.modal-scrollbar::-webkit-scrollbar-track {
+  background: #0e1117;
+  border-radius: 9999px;
+  margin: 4px 0;
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(197, 168, 128, 0.4);
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #c5a880;
+}
+
 /* Glassmorphism Classes */
 .glass-panel {
   background: rgba(24, 27, 34, 0.75);
