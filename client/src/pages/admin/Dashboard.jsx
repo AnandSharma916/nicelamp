@@ -88,9 +88,10 @@ export const Dashboard = () => {
       subtitle: `${stats.featuredCount} Featured in Showroom`,
       icon: Package,
       path: '/admin/products',
-      color: 'from-[#c5a880]/20 to-[#c5a880]/5',
-      borderColor: 'border-[#c5a880]/30',
-      iconColor: 'text-[#c5a880]',
+      color: 'from-amber-50/90 to-amber-100/40',
+      borderColor: 'border-amber-200/90',
+      iconColor: 'text-[#8a6534]',
+      iconBg: 'bg-amber-100/80 border-amber-300',
     },
     {
       title: 'Catalog Categories',
@@ -98,9 +99,10 @@ export const Dashboard = () => {
       subtitle: 'Design Collections & Systems',
       icon: Layers,
       path: '/admin/categories',
-      color: 'from-blue-500/20 to-blue-500/5',
-      borderColor: 'border-blue-500/30',
-      iconColor: 'text-blue-400',
+      color: 'from-blue-50/90 to-blue-100/40',
+      borderColor: 'border-blue-200/90',
+      iconColor: 'text-blue-700',
+      iconBg: 'bg-blue-100/80 border-blue-300',
     },
     {
       title: 'Client Inquiries',
@@ -108,9 +110,10 @@ export const Dashboard = () => {
       subtitle: `${stats.newInquiries} Awaiting Review`,
       icon: MessageSquare,
       path: '/admin/inquiries',
-      color: 'from-amber-500/20 to-amber-500/5',
-      borderColor: 'border-amber-500/30',
-      iconColor: 'text-amber-400',
+      color: 'from-orange-50/90 to-orange-100/40',
+      borderColor: 'border-orange-200/90',
+      iconColor: 'text-orange-700',
+      iconBg: 'bg-orange-100/80 border-orange-300',
     },
     {
       title: 'Live Experience',
@@ -119,24 +122,25 @@ export const Dashboard = () => {
       icon: Sparkles,
       path: '/',
       external: true,
-      color: 'from-emerald-500/20 to-emerald-500/5',
-      borderColor: 'border-emerald-500/30',
-      iconColor: 'text-emerald-400',
+      color: 'from-emerald-50/90 to-emerald-100/40',
+      borderColor: 'border-emerald-200/90',
+      iconColor: 'text-emerald-700',
+      iconBg: 'bg-emerald-100/80 border-emerald-300',
     },
   ];
 
   return (
     <div className="space-y-8">
       {/* Welcome & Top Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-[#14171d] to-[#181b22] p-6 lg:p-8 rounded-2xl border border-white/10 shadow-xl">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 lg:p-8 rounded-2xl border border-slate-200 shadow-sm">
         <div>
-          <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-semibold block mb-1">
+          <span className="text-[10px] uppercase tracking-luxury text-[#9a7442] font-semibold block mb-1">
             Executive Overview
           </span>
-          <h1 className="text-2xl lg:text-3xl font-serif-luxury font-bold text-white tracking-wide">
+          <h1 className="text-2xl lg:text-3xl font-serif-luxury font-bold text-slate-900 tracking-wide">
             {settings.companyName || 'LightHut'} Management
           </h1>
-          <p className="text-xs text-neutral-400 mt-1 max-w-xl">
+          <p className="text-xs text-slate-600 mt-1 max-w-xl">
             Control center for luxury luminaires, architectural collections, homepage displays, and client project inquiries.
           </p>
         </div>
@@ -144,7 +148,7 @@ export const Dashboard = () => {
         <div className="flex items-center gap-3 shrink-0">
           <Link
             to="/admin/products/new"
-            className="btn-gold px-4 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 shadow-lg"
+            className="btn-gold px-4 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 shadow-md"
           >
             <Plus className="w-4 h-4" />
             <span>New Luminaire</span>
@@ -170,22 +174,22 @@ export const Dashboard = () => {
               key={card.title}
               to={card.path}
               target={card.external ? '_blank' : undefined}
-              className={`p-5 rounded-2xl bg-gradient-to-br ${card.color} border ${card.borderColor} transition-all hover:-translate-y-1 hover:shadow-xl group flex flex-col justify-between`}
+              className={`p-5 rounded-2xl bg-gradient-to-br ${card.color} border ${card.borderColor} transition-all hover:-translate-y-0.5 hover:shadow-md group flex flex-col justify-between`}
             >
               <div className="flex items-center justify-between mb-4">
-                <div className={`p-2.5 rounded-xl bg-black/40 border border-white/5 ${card.iconColor}`}>
+                <div className={`p-2.5 rounded-xl border ${card.iconBg} ${card.iconColor} shadow-xs`}>
                   <Icon className="w-5 h-5" />
                 </div>
-                <ArrowRight className="w-4 h-4 text-neutral-500 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-slate-800 group-hover:translate-x-1 transition-all" />
               </div>
               <div>
-                <span className="text-xs font-medium text-neutral-400 block mb-1">
+                <span className="text-xs font-medium text-slate-600 block mb-1">
                   {card.title}
                 </span>
-                <div className="text-2xl font-serif-luxury font-bold text-white tracking-tight">
+                <div className="text-2xl font-serif-luxury font-bold text-slate-900 tracking-tight">
                   {loading ? '...' : card.value}
                 </div>
-                <span className="text-[11px] text-neutral-400 font-mono mt-1 block">
+                <span className="text-[11px] text-slate-500 font-mono mt-1 block">
                   {card.subtitle}
                 </span>
               </div>
@@ -200,45 +204,45 @@ export const Dashboard = () => {
         <div className="lg:col-span-2 space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-serif-luxury font-bold text-white tracking-wide">
+              <h2 className="text-lg font-serif-luxury font-bold text-slate-900 tracking-wide">
                 Recent Catalog Additions
               </h2>
-              <p className="text-xs text-neutral-400">
+              <p className="text-xs text-slate-500">
                 Latest luminaires added to the product repository
               </p>
             </div>
             <Link
               to="/admin/products"
-              className="text-xs text-[#c5a880] hover:underline font-semibold uppercase tracking-luxury flex items-center gap-1"
+              className="text-xs text-[#9a7442] hover:underline font-semibold uppercase tracking-luxury flex items-center gap-1"
             >
               <span>View All</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
-          <div className="bg-[#14171d] border border-white/10 rounded-2xl overflow-hidden shadow-xl">
+          <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
             {loading ? (
-              <div className="p-12 text-center text-xs text-neutral-500">
+              <div className="p-12 text-center text-xs text-slate-400">
                 Loading products...
               </div>
             ) : recentProducts.length === 0 ? (
               <div className="p-12 text-center">
-                <Package className="w-10 h-10 text-neutral-600 mx-auto mb-3" />
-                <p className="text-sm text-neutral-300 font-medium">No products registered yet.</p>
-                <p className="text-xs text-neutral-500 mt-1 mb-4">Add your first architectural luminaire.</p>
+                <Package className="w-10 h-10 text-slate-400 mx-auto mb-3" />
+                <p className="text-sm text-slate-800 font-medium">No products registered yet.</p>
+                <p className="text-xs text-slate-500 mt-1 mb-4">Add your first architectural luminaire.</p>
                 <Link to="/admin/products/new" className="btn-gold px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-luxury">
                   Add First Luminaire
                 </Link>
               </div>
             ) : (
-              <div className="divide-y divide-white/5">
+              <div className="divide-y divide-slate-100">
                 {recentProducts.map((prod) => (
                   <div
                     key={prod._id}
-                    className="p-4 flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors"
+                    className="p-4 flex items-center justify-between gap-4 hover:bg-slate-50/80 transition-colors"
                   >
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-12 h-12 rounded-xl bg-[#0b0c10] border border-white/10 overflow-hidden shrink-0 flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 overflow-hidden shrink-0 flex items-center justify-center">
                         {(() => {
                           const coverImg =
                             prod.mainImage ||
@@ -252,25 +256,25 @@ export const Dashboard = () => {
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <Package className="w-5 h-5 text-neutral-600" />
+                            <Package className="w-5 h-5 text-slate-400" />
                           );
                         })()}
                       </div>
                       <div className="min-w-0">
                         <Link
                           to={`/admin/products/edit/${prod._id}`}
-                          className="text-sm font-semibold text-white hover:text-[#c5a880] transition-colors truncate block"
+                          className="text-sm font-semibold text-slate-900 hover:text-[#b58d57] transition-colors truncate block"
                         >
                           {prod.name || prod.title}
                         </Link>
-                        <div className="flex items-center gap-2 mt-0.5 text-[11px] text-neutral-400">
-                          <span className="font-mono text-neutral-500">{prod.sku || 'NO-SKU'}</span>
+                        <div className="flex items-center gap-2 mt-0.5 text-[11px] text-slate-500">
+                          <span className="font-mono text-slate-500">{prod.sku || 'NO-SKU'}</span>
                           <span>•</span>
                           <span>{prod.category?.name || 'Uncategorized'}</span>
                           {prod.price > 0 && (
                             <>
                               <span>•</span>
-                              <span className="text-[#c5a880] font-mono">₹{prod.price.toLocaleString()}</span>
+                              <span className="text-[#9a7442] font-semibold font-mono">₹{prod.price.toLocaleString()}</span>
                             </>
                           )}
                         </div>
@@ -281,15 +285,15 @@ export const Dashboard = () => {
                       <span
                         className={`px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider ${
                           prod.isPublished
-                            ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-                            : 'bg-neutral-800 text-neutral-400 border border-white/5'
+                            ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                            : 'bg-slate-100 text-slate-600 border border-slate-200'
                         }`}
                       >
                         {prod.isPublished ? 'Published' : 'Draft'}
                       </span>
                       <Link
                         to={`/admin/products/edit/${prod._id}`}
-                        className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white transition-colors"
+                        className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition-colors"
                         title="Edit Luminaire"
                       >
                         <Sliders className="w-3.5 h-3.5" />
@@ -305,24 +309,24 @@ export const Dashboard = () => {
         {/* Right Column: Inquiries & Quick Links */}
         <div className="space-y-6">
           {/* Recent Inquiries Card */}
-          <div className="bg-[#14171d] border border-white/10 rounded-2xl p-5 shadow-xl">
+          <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-serif-luxury font-bold text-white tracking-wide flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 text-[#c5a880]" />
+              <h3 className="text-sm font-serif-luxury font-bold text-slate-900 tracking-wide flex items-center gap-2">
+                <MessageSquare className="w-4 h-4 text-[#b58d57]" />
                 <span>Client Inquiries</span>
               </h3>
               <Link
                 to="/admin/inquiries"
-                className="text-[11px] text-[#c5a880] hover:underline uppercase tracking-luxury font-semibold"
+                className="text-[11px] text-[#9a7442] hover:underline uppercase tracking-luxury font-semibold"
               >
                 All Inquiries
               </Link>
             </div>
 
             {loading ? (
-              <div className="py-8 text-center text-xs text-neutral-500">Loading inquiries...</div>
+              <div className="py-8 text-center text-xs text-slate-400">Loading inquiries...</div>
             ) : recentInquiries.length === 0 ? (
-              <div className="py-8 text-center text-xs text-neutral-500">
+              <div className="py-8 text-center text-xs text-slate-500">
                 No recent inquiries from storefront visitors.
               </div>
             ) : (
@@ -330,26 +334,26 @@ export const Dashboard = () => {
                 {recentInquiries.map((inq) => (
                   <div
                     key={inq._id}
-                    className="p-3 rounded-xl bg-black/30 border border-white/5 hover:border-white/10 transition-colors"
+                    className="p-3 rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-colors"
                   >
                     <div className="flex items-center justify-between text-xs mb-1">
-                      <span className="font-semibold text-white">{inq.name}</span>
+                      <span className="font-semibold text-slate-900">{inq.name}</span>
                       <span
                         className={`text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full font-bold ${
                           inq.status === 'new'
-                            ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+                            ? 'bg-amber-50 text-amber-700 border border-amber-200'
                             : inq.status === 'contacted'
-                            ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
-                            : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                            ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                            : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                         }`}
                       >
                         {inq.status}
                       </span>
                     </div>
-                    <p className="text-[11px] text-neutral-400 line-clamp-1 mb-1">
+                    <p className="text-[11px] text-slate-600 line-clamp-1 mb-1">
                       {inq.message || inq.subject || 'Specification Request'}
                     </p>
-                    <div className="flex items-center justify-between text-[10px] text-neutral-500 font-mono">
+                    <div className="flex items-center justify-between text-[10px] text-slate-500 font-mono">
                       <span>{inq.email}</span>
                       <span>{new Date(inq.createdAt).toLocaleDateString()}</span>
                     </div>
@@ -360,55 +364,55 @@ export const Dashboard = () => {
           </div>
 
           {/* Management Shortcuts Card */}
-          <div className="bg-gradient-to-br from-[#1c2028] to-[#111318] border border-white/10 rounded-2xl p-5 shadow-xl">
-            <h3 className="text-sm font-serif-luxury font-bold text-white tracking-wide mb-3 flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#c5a880]" />
+          <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+            <h3 className="text-sm font-serif-luxury font-bold text-slate-900 tracking-wide mb-3 flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-[#b58d57]" />
               <span>Catalog Operations</span>
             </h3>
 
             <div className="grid grid-cols-2 gap-2">
               <Link
                 to="/admin/homepage"
-                className="p-3 rounded-xl bg-white/5 hover:bg-[#c5a880]/10 border border-white/5 hover:border-[#c5a880]/30 transition-all text-left group"
+                className="p-3 rounded-xl bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-200 transition-all text-left group"
               >
-                <Sliders className="w-4 h-4 text-[#c5a880] mb-2" />
-                <span className="text-xs font-semibold text-white block group-hover:text-[#c5a880]">
+                <Sliders className="w-4 h-4 text-[#b58d57] mb-2" />
+                <span className="text-xs font-semibold text-slate-900 block group-hover:text-[#9a7442]">
                   Homepage CMS
                 </span>
-                <span className="text-[10px] text-neutral-400">Hero & Banners</span>
+                <span className="text-[10px] text-slate-500">Hero & Banners</span>
               </Link>
 
               <Link
                 to="/admin/categories"
-                className="p-3 rounded-xl bg-white/5 hover:bg-[#c5a880]/10 border border-white/5 hover:border-[#c5a880]/30 transition-all text-left group"
+                className="p-3 rounded-xl bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-200 transition-all text-left group"
               >
-                <Layers className="w-4 h-4 text-[#c5a880] mb-2" />
-                <span className="text-xs font-semibold text-white block group-hover:text-[#c5a880]">
+                <Layers className="w-4 h-4 text-[#b58d57] mb-2" />
+                <span className="text-xs font-semibold text-slate-900 block group-hover:text-[#9a7442]">
                   Categories
                 </span>
-                <span className="text-[10px] text-neutral-400">Organize Grid</span>
+                <span className="text-[10px] text-slate-500">Organize Grid</span>
               </Link>
 
               <Link
                 to="/admin/media"
-                className="p-3 rounded-xl bg-white/5 hover:bg-[#c5a880]/10 border border-white/5 hover:border-[#c5a880]/30 transition-all text-left group"
+                className="p-3 rounded-xl bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-200 transition-all text-left group"
               >
-                <Eye className="w-4 h-4 text-[#c5a880] mb-2" />
-                <span className="text-xs font-semibold text-white block group-hover:text-[#c5a880]">
+                <Eye className="w-4 h-4 text-[#b58d57] mb-2" />
+                <span className="text-xs font-semibold text-slate-900 block group-hover:text-[#9a7442]">
                   Media Assets
                 </span>
-                <span className="text-[10px] text-neutral-400">Upload Photos</span>
+                <span className="text-[10px] text-slate-500">Upload Photos</span>
               </Link>
 
               <Link
                 to="/admin/settings"
-                className="p-3 rounded-xl bg-white/5 hover:bg-[#c5a880]/10 border border-white/5 hover:border-[#c5a880]/30 transition-all text-left group"
+                className="p-3 rounded-xl bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-200 transition-all text-left group"
               >
-                <TrendingUp className="w-4 h-4 text-[#c5a880] mb-2" />
-                <span className="text-xs font-semibold text-white block group-hover:text-[#c5a880]">
+                <TrendingUp className="w-4 h-4 text-[#b58d57] mb-2" />
+                <span className="text-xs font-semibold text-slate-900 block group-hover:text-[#9a7442]">
                   Site Settings
                 </span>
-                <span className="text-[10px] text-neutral-400">Brand & Contact</span>
+                <span className="text-[10px] text-slate-500">Brand & Contact</span>
               </Link>
             </div>
           </div>

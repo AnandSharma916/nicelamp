@@ -28,8 +28,8 @@ export const AdminLayout = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0b0c10] text-neutral-200">
-        <div className="w-10 h-10 rounded-full border-2 border-[#c5a880] border-t-transparent animate-spin" />
+      <div className="min-h-screen flex items-center justify-center bg-[#f8fafc] text-slate-800">
+        <div className="w-10 h-10 rounded-full border-2 border-[#b58d57] border-t-transparent animate-spin" />
       </div>
     );
   }
@@ -38,18 +38,18 @@ export const AdminLayout = () => {
   if (!isAuthenticated) {
     // Redirect to login preserving intended URL
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#090a0d] p-4 text-center">
-        <div className="max-w-md bg-[#14171d] border border-white/10 p-8 rounded-2xl shadow-2xl">
-          <ShieldAlert className="w-12 h-12 text-[#c5a880] mx-auto mb-4" />
-          <h2 className="text-xl font-serif-luxury text-white font-bold mb-2">
+      <div className="min-h-screen flex items-center justify-center bg-[#f8fafc] p-4 text-center">
+        <div className="max-w-md bg-white border border-slate-200 p-8 rounded-2xl shadow-xl">
+          <ShieldAlert className="w-12 h-12 text-[#b58d57] mx-auto mb-4" />
+          <h2 className="text-xl font-serif-luxury text-slate-900 font-bold mb-2">
             Authentication Required
           </h2>
-          <p className="text-xs text-neutral-400 mb-6">
+          <p className="text-xs text-slate-600 mb-6">
             The administrative management console is restricted to authenticated managers.
           </p>
           <button
             onClick={() => navigate('/admin/login')}
-            className="btn-gold w-full py-2.5 rounded-lg text-xs font-semibold uppercase tracking-luxury"
+            className="btn-gold w-full py-2.5 rounded-lg text-xs font-semibold uppercase tracking-luxury shadow-md"
           >
             Go to Admin Login
           </button>
@@ -74,40 +74,40 @@ export const AdminLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0c10] text-neutral-200 flex">
+    <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex">
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-black/40 backdrop-blur-xs z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar Navigation */}
       <aside
-        className={`fixed lg:sticky top-0 bottom-0 left-0 z-50 w-64 bg-[#111318] border-r border-white/10 flex flex-col justify-between transition-transform duration-300 ${
+        className={`fixed lg:sticky top-0 bottom-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col justify-between transition-transform duration-300 shadow-sm ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
         <div>
           {/* Brand Header */}
-          <div className="p-6 border-b border-white/10 flex items-center justify-between">
+          <div className="p-6 border-b border-slate-200 flex items-center justify-between bg-white">
             <Link to="/admin/dashboard" className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#1c2028] to-[#0d0f12] border border-[#c5a880]/40 flex items-center justify-center">
-                <SunMedium className="w-5 h-5 text-[#c5a880]" />
+              <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-300/80 flex items-center justify-center shadow-xs">
+                <SunMedium className="w-5 h-5 text-[#b58d57]" />
               </div>
               <div>
-                <span className="font-serif-luxury text-sm font-bold text-white block tracking-wider">
+                <span className="font-serif-luxury text-sm font-bold text-slate-900 block tracking-wider">
                   {settings.companyName || 'LightHut'}
                 </span>
-                <span className="text-[9px] uppercase tracking-luxury text-[#c5a880] font-semibold block">
+                <span className="text-[9px] uppercase tracking-luxury text-[#9a7442] font-semibold block">
                   Admin CMS
                 </span>
               </div>
             </Link>
             <button
               onClick={() => setSidebarOpen(false)}
-              className="lg:hidden text-neutral-400 hover:text-white"
+              className="lg:hidden text-slate-400 hover:text-slate-800 p-1"
             >
               <X className="w-5 h-5" />
             </button>
@@ -125,8 +125,8 @@ export const AdminLayout = () => {
                   className={({ isActive }) =>
                     `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury transition-all ${
                       isActive
-                        ? 'bg-[#c5a880] text-black shadow-lg shadow-[#c5a880]/10 font-bold'
-                        : 'text-neutral-400 hover:text-white hover:bg-white/5'
+                        ? 'bg-[#b58d57] text-white shadow-md shadow-[#b58d57]/20 font-bold'
+                        : 'text-slate-600 hover:text-slate-950 hover:bg-slate-100'
                     }`
                   }
                 >
@@ -139,23 +139,23 @@ export const AdminLayout = () => {
         </div>
 
         {/* Sidebar Footer */}
-        <div className="p-4 border-t border-white/10 space-y-2">
+        <div className="p-4 border-t border-slate-200 space-y-2 bg-slate-50/60">
           <a
             href="/"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center justify-between px-3.5 py-2 rounded-lg text-xs text-neutral-400 hover:text-white hover:bg-white/5 transition-colors"
+            className="flex items-center justify-between px-3.5 py-2 rounded-lg text-xs text-slate-600 hover:text-slate-900 hover:bg-white hover:shadow-xs transition-all border border-transparent hover:border-slate-200"
           >
             <span className="flex items-center gap-2">
-              <ExternalLink className="w-3.5 h-3.5 text-[#c5a880]" />
-              <span>Live Website</span>
+              <ExternalLink className="w-3.5 h-3.5 text-[#b58d57]" />
+              <span className="font-medium">Live Website</span>
             </span>
-            <span className="text-[10px] text-neutral-500 font-mono">↗</span>
+            <span className="text-[10px] text-slate-400 font-mono">↗</span>
           </a>
 
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors"
+            className="w-full flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium text-red-600 hover:text-red-700 hover:bg-red-50 transition-colors"
           >
             <LogOut className="w-3.5 h-3.5" />
             <span>Sign Out</span>
@@ -166,15 +166,15 @@ export const AdminLayout = () => {
       {/* Main Content Stage */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top Navbar */}
-        <header className="sticky top-0 z-30 bg-[#111318]/90 backdrop-blur-md border-b border-white/10 px-6 py-4 flex items-center justify-between">
+        <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 px-6 py-4 flex items-center justify-between shadow-xs">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-2 text-neutral-400 hover:text-white"
+              className="lg:hidden p-2 text-slate-500 hover:text-slate-800"
             >
               <Menu className="w-5 h-5" />
             </button>
-            <span className="text-xs uppercase tracking-luxury text-[#c5a880] font-semibold hidden sm:inline-block">
+            <span className="text-xs uppercase tracking-luxury text-[#9a7442] font-semibold hidden sm:inline-block">
               Administrative Control Hub
             </span>
           </div>
@@ -188,15 +188,15 @@ export const AdminLayout = () => {
               <span>Add Product</span>
             </Link>
 
-            <div className="flex items-center gap-2.5 pl-4 border-l border-white/10">
-              <div className="w-8 h-8 rounded-full bg-[#c5a880]/20 border border-[#c5a880]/40 flex items-center justify-center text-xs font-bold text-[#c5a880]">
+            <div className="flex items-center gap-2.5 pl-4 border-l border-slate-200">
+              <div className="w-8 h-8 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-xs font-bold text-[#8a6534]">
                 {admin.name?.[0] || 'A'}
               </div>
               <div className="hidden sm:block text-left">
-                <span className="text-xs font-semibold text-white block leading-tight">
+                <span className="text-xs font-semibold text-slate-900 block leading-tight">
                   {admin.name}
                 </span>
-                <span className="text-[10px] text-neutral-400 block font-mono">
+                <span className="text-[10px] text-slate-500 block font-mono">
                   {admin.email}
                 </span>
               </div>

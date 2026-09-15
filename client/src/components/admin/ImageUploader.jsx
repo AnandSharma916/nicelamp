@@ -68,23 +68,23 @@ export const ImageUploader = ({ onUploadSuccess, label = 'Upload Image' }) => {
         onClick={() => !uploading && fileInputRef.current?.click()}
         className={`relative border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all ${
           dragActive
-            ? 'border-[#c5a880] bg-[#c5a880]/5'
-            : 'border-white/10 hover:border-[#c5a880]/50 bg-black/20'
+            ? 'border-[#b58d57] bg-[#b58d57]/5'
+            : 'border-slate-300 hover:border-[#b58d57] bg-slate-50/70 hover:bg-slate-50'
         } ${uploading ? 'opacity-60 pointer-events-none' : ''}`}
       >
         <div className="flex flex-col items-center justify-center space-y-2.5">
           {uploading ? (
-            <Loader2 className="w-8 h-8 text-[#c5a880] animate-spin mb-1" />
+            <Loader2 className="w-8 h-8 text-[#b58d57] animate-spin mb-1" />
           ) : (
-            <UploadCloud className="w-8 h-8 text-[#c5a880] mb-1 group-hover:scale-110 transition-transform" />
+            <UploadCloud className="w-8 h-8 text-[#b58d57] mb-1 group-hover:scale-110 transition-transform" />
           )}
-          <span className="text-xs font-semibold text-white uppercase tracking-luxury">
+          <span className="text-xs font-semibold text-slate-800 uppercase tracking-luxury">
             {uploading ? 'Uploading to Server...' : label}
           </span>
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#c5a880]/15 hover:bg-[#c5a880]/25 text-[#c5a880] border border-[#c5a880]/40 text-xs font-semibold shadow-sm transition-all">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-[#9a7442] border border-[#b58d57]/40 text-xs font-semibold shadow-sm transition-all">
             <span>📁 Browse File from PC</span>
           </div>
-          <p className="text-[11px] text-neutral-400">
+          <p className="text-[11px] text-slate-500">
             Click to choose or drag & drop image file directly here (Max 10MB)
           </p>
         </div>

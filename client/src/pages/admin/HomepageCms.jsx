@@ -143,13 +143,13 @@ export const HomepageCms = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-semibold block mb-1">
+          <span className="text-[10px] uppercase tracking-luxury text-[#9a7442] font-bold block mb-1">
             Storefront Layout & Presentation
           </span>
-          <h1 className="text-2xl font-serif-luxury font-bold text-white tracking-wide">
+          <h1 className="text-2xl font-serif-luxury font-bold text-slate-900 tracking-wide">
             Homepage Content Management
           </h1>
-          <p className="text-xs text-neutral-400 mt-0.5">
+          <p className="text-xs text-slate-500 mt-0.5">
             Configure headline banners, photography, call-to-actions, and reorder active visual blocks.
           </p>
         </div>
@@ -158,7 +158,7 @@ export const HomepageCms = () => {
           href="/"
           target="_blank"
           rel="noreferrer"
-          className="btn-outline-gold px-4 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 self-start sm:self-auto"
+          className="btn-outline-gold px-4 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 self-start sm:self-auto shadow-sm"
         >
           <span>Preview Storefront</span>
           <ExternalLink className="w-3.5 h-3.5" />
@@ -166,23 +166,23 @@ export const HomepageCms = () => {
       </div>
 
       {loading ? (
-        <div className="py-20 text-center text-xs text-neutral-500">
-          <Loader2 className="w-8 h-8 text-[#c5a880] animate-spin mx-auto mb-2" />
+        <div className="py-20 text-center text-xs text-slate-400">
+          <Loader2 className="w-8 h-8 text-[#b58d57] animate-spin mx-auto mb-2" />
           <span>Loading dynamic section tree...</span>
         </div>
       ) : sections.length === 0 ? (
-        <div className="bg-[#14171d] border border-white/10 rounded-2xl p-12 text-center text-neutral-400 text-xs">
+        <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center text-slate-500 text-xs shadow-sm">
           No dynamic sections discovered. Run backend database seeding to initialize homepage CMS components.
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Section List Left Panel */}
           <div className="space-y-4">
-            <h2 className="text-sm font-serif-luxury font-bold text-white uppercase tracking-luxury">
+            <h2 className="text-sm font-serif-luxury font-bold text-slate-900 uppercase tracking-luxury">
               Page Section Blocks
             </h2>
 
-            <div className="bg-[#14171d] border border-white/10 rounded-2xl overflow-hidden shadow-xl divide-y divide-white/5">
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm divide-y divide-slate-100">
               {sections.map((sec, idx) => {
                 const isSelected = selectedSection?._id === sec._id;
                 return (
@@ -190,8 +190,8 @@ export const HomepageCms = () => {
                     key={sec._id}
                     className={`p-4 flex items-center justify-between gap-3 transition-colors ${
                       isSelected
-                        ? 'bg-[#c5a880]/10 border-l-4 border-l-[#c5a880]'
-                        : 'hover:bg-white/[0.02]'
+                        ? 'bg-amber-50/70 border-l-4 border-l-[#b58d57]'
+                        : 'hover:bg-slate-50'
                     }`}
                   >
                     <button
@@ -200,11 +200,11 @@ export const HomepageCms = () => {
                       className="text-left flex-1 min-w-0"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-white text-xs truncate">
+                        <span className="font-semibold text-slate-900 text-xs truncate">
                           {sec.name || sec.sectionKey}
                         </span>
                       </div>
-                      <span className="text-[10px] text-neutral-500 font-mono block">
+                      <span className="text-[10px] text-slate-400 font-mono block">
                         key: {sec.sectionKey}
                       </span>
                     </button>
@@ -214,7 +214,7 @@ export const HomepageCms = () => {
                       <button
                         onClick={() => handleMove(idx, -1)}
                         disabled={idx === 0}
-                        className="p-1 rounded hover:bg-white/10 text-neutral-400 disabled:opacity-20"
+                        className="p-1 rounded hover:bg-slate-100 text-slate-400 hover:text-slate-700 disabled:opacity-20"
                         title="Move Up"
                       >
                         <MoveUp className="w-3.5 h-3.5" />
@@ -222,7 +222,7 @@ export const HomepageCms = () => {
                       <button
                         onClick={() => handleMove(idx, 1)}
                         disabled={idx === sections.length - 1}
-                        className="p-1 rounded hover:bg-white/10 text-neutral-400 disabled:opacity-20"
+                        className="p-1 rounded hover:bg-slate-100 text-slate-400 hover:text-slate-700 disabled:opacity-20"
                         title="Move Down"
                       >
                         <MoveDown className="w-3.5 h-3.5" />
@@ -233,8 +233,8 @@ export const HomepageCms = () => {
                         onClick={() => handleToggleSectionActive(sec)}
                         className={`p-1 rounded transition-colors ${
                           sec.isEnabled
-                            ? 'text-emerald-400 hover:bg-emerald-500/10'
-                            : 'text-neutral-600 hover:bg-white/5'
+                            ? 'text-emerald-600 hover:bg-emerald-50'
+                            : 'text-slate-300 hover:bg-slate-100'
                         }`}
                         title={sec.isEnabled ? 'Active (Click to hide)' : 'Hidden (Click to enable)'}
                       >
@@ -250,13 +250,13 @@ export const HomepageCms = () => {
           {/* Section Edit Form Right Panel */}
           <div className="lg:col-span-2">
             {selectedSection ? (
-              <div className="bg-[#14171d] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
-                <div className="flex items-center justify-between pb-4 border-b border-white/10">
+              <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+                <div className="flex items-center justify-between pb-4 border-b border-slate-200">
                   <div>
-                    <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-semibold block">
+                    <span className="text-[10px] uppercase tracking-luxury text-[#9a7442] font-bold block">
                       Section Content Editor
                     </span>
-                    <h2 className="text-lg font-serif-luxury font-bold text-white tracking-wide">
+                    <h2 className="text-lg font-serif-luxury font-bold text-slate-900 tracking-wide">
                       {selectedSection.name} ({selectedSection.sectionKey})
                     </h2>
                   </div>
@@ -264,8 +264,8 @@ export const HomepageCms = () => {
                   <span
                     className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
                       selectedSection.isEnabled
-                        ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/20'
-                        : 'bg-neutral-800 text-neutral-400 border border-white/5'
+                        ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                        : 'bg-slate-100 text-slate-600 border border-slate-200'
                     }`}
                   >
                     {selectedSection.isEnabled ? 'Live on Storefront' : 'Hidden from View'}
@@ -274,7 +274,7 @@ export const HomepageCms = () => {
 
                 <form noValidate onSubmit={handleSaveContent} className="space-y-4">
                   <div>
-                    <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                    <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
                       Display Title / Headline
                     </label>
                     <input
@@ -284,12 +284,12 @@ export const HomepageCms = () => {
                         setSelectedSection((p) => ({ ...p, title: e.target.value }))
                       }
                       placeholder="e.g. Architectural & Luxury Decorative Lighting"
-                      className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white text-sm focus:outline-none focus:border-[#c5a880]"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:outline-none focus:border-[#b58d57] focus:bg-white"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                    <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
                       Subtitle / Narrative Description
                     </label>
                     <textarea
@@ -299,12 +299,12 @@ export const HomepageCms = () => {
                         setSelectedSection((p) => ({ ...p, subtitle: e.target.value }))
                       }
                       placeholder="Atmospheric narrative and design philosophy..."
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#c5a880]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:outline-none focus:border-[#b58d57] focus:bg-white"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                    <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
                       Eyebrow Tag / Badge
                     </label>
                     <input
@@ -314,14 +314,14 @@ export const HomepageCms = () => {
                         setSelectedSection((p) => ({ ...p, badge: e.target.value }))
                       }
                       placeholder="e.g. 2026 LUXURY COLLECTION"
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-[#c5a880]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-mono focus:outline-none focus:border-[#b58d57] focus:bg-white"
                     />
                   </div>
 
                   {/* Primary CTA */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                     <div>
-                      <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                      <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
                         Primary CTA Button Label
                       </label>
                       <input
@@ -334,11 +334,11 @@ export const HomepageCms = () => {
                           }))
                         }
                         placeholder="Explore Catalog"
-                        className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs"
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:bg-white focus:border-[#b58d57]"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                      <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
                         Primary CTA Link Target
                       </label>
                       <input
@@ -351,14 +351,14 @@ export const HomepageCms = () => {
                           }))
                         }
                         placeholder="/catalog"
-                        className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono"
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-mono focus:bg-white focus:border-[#b58d57]"
                       />
                     </div>
                   </div>
 
                   {/* Background / Hero Imagery */}
                   <div className="pt-3">
-                    <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                    <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
                       Background Photography
                     </label>
                     <ImageUploader
@@ -375,11 +375,11 @@ export const HomepageCms = () => {
                           setSelectedSection((p) => ({ ...p, image: e.target.value }))
                         }
                         placeholder="Or direct image URL (/uploads, Unsplash, CDN)..."
-                        className="w-full px-3 py-2 rounded-xl bg-[#090a0d] border border-white/10 text-xs text-white placeholder-neutral-600 font-mono"
+                        className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-300 text-xs text-slate-900 placeholder:text-slate-400 font-mono focus:bg-white focus:border-[#b58d57]"
                       />
                     </div>
                     {selectedSection.image && (
-                      <div className="mt-3 h-36 rounded-xl overflow-hidden border border-white/10 bg-black/40">
+                      <div className="mt-3 h-36 rounded-xl overflow-hidden border border-slate-200 bg-slate-50 shadow-inner">
                         <img
                           src={selectedSection.image}
                           alt="Section preview"
@@ -394,7 +394,7 @@ export const HomepageCms = () => {
                     <button
                       type="submit"
                       disabled={saving}
-                      className="btn-gold px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 shadow-xl"
+                      className="btn-gold px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 shadow-md"
                     >
                       {saving ? (
                         <Loader2 className="w-4 h-4 animate-spin" />
@@ -407,7 +407,7 @@ export const HomepageCms = () => {
                 </form>
               </div>
             ) : (
-              <div className="bg-[#14171d] border border-white/10 rounded-2xl p-12 text-center text-neutral-500 text-xs">
+              <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center text-slate-400 text-xs shadow-sm">
                 Select a section from the left column to modify its settings.
               </div>
             )}
