@@ -12,7 +12,7 @@ export const PublicLayout = () => {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8fafc] text-slate-800">
+    <div className="min-h-screen flex flex-col bg-[#090a0d] text-neutral-200">
       <Navbar />
       <main className="flex-1">
         <Outlet />

@@ -80,21 +80,21 @@ export const MediaLibrary = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-[10px] uppercase tracking-luxury text-[#9a7442] font-bold block mb-1">
+          <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-semibold block mb-1">
             Digital Asset Management
           </span>
-          <h1 className="text-2xl font-serif-luxury font-bold text-slate-900 tracking-wide">
+          <h1 className="text-2xl font-serif-luxury font-bold text-white tracking-wide">
             Media & Photography Library
           </h1>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-neutral-400 mt-0.5">
             Storefront photographs, specification schematics, PDF spec sheets, and high-resolution CAD assets.
           </p>
         </div>
       </div>
 
       {/* Upload Dropzone */}
-      <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
-        <h2 className="text-sm font-serif-luxury font-bold text-slate-900 mb-3">
+      <div className="bg-[#14171d] border border-white/10 p-6 rounded-2xl shadow-xl">
+        <h2 className="text-sm font-serif-luxury font-bold text-white mb-3">
           Upload New Assets
         </h2>
         <ImageUploader
@@ -104,34 +104,34 @@ export const MediaLibrary = () => {
       </div>
 
       {/* Search & Counter Bar */}
-      <div className="bg-white border border-slate-200 p-4 rounded-2xl flex items-center justify-between gap-4 shadow-sm">
+      <div className="bg-[#14171d] border border-white/10 p-4 rounded-2xl flex items-center justify-between gap-4 shadow-lg">
         <div className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search media files by name..."
-            className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#b58d57] focus:bg-white text-xs transition-colors"
+            className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#c5a880] text-xs transition-colors"
           />
         </div>
 
-        <span className="text-xs text-slate-500 font-mono">
+        <span className="text-xs text-neutral-400 font-mono">
           {filteredMedia.length} Assets Registered
         </span>
       </div>
 
       {/* Media Grid */}
       {loading ? (
-        <div className="py-20 text-center text-xs text-slate-400">
-          <Loader2 className="w-8 h-8 text-[#b58d57] animate-spin mx-auto mb-2" />
+        <div className="py-20 text-center text-xs text-neutral-500">
+          <Loader2 className="w-8 h-8 text-[#c5a880] animate-spin mx-auto mb-2" />
           <span>Scanning storage repository...</span>
         </div>
       ) : filteredMedia.length === 0 ? (
-        <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center shadow-sm">
-          <ImageIcon className="w-10 h-10 text-slate-300 mx-auto mb-3" />
-          <p className="text-sm font-medium text-slate-700">No media assets in library</p>
-          <p className="text-xs text-slate-400 mt-1">
+        <div className="bg-[#14171d] border border-white/10 rounded-2xl p-12 text-center">
+          <ImageIcon className="w-10 h-10 text-neutral-600 mx-auto mb-3" />
+          <p className="text-sm font-medium text-neutral-300">No media assets in library</p>
+          <p className="text-xs text-neutral-500 mt-1">
             Drag and drop images into the upload zone above to begin building your luminaire gallery.
           </p>
         </div>
@@ -144,10 +144,10 @@ export const MediaLibrary = () => {
             return (
               <div
                 key={id}
-                className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm group hover:border-slate-300 transition-all flex flex-col justify-between"
+                className="bg-[#14171d] border border-white/10 rounded-2xl overflow-hidden shadow-lg group hover:border-white/20 transition-all flex flex-col justify-between"
               >
                 {/* Thumbnail Preview */}
-                <div className="h-36 bg-slate-50 relative overflow-hidden flex items-center justify-center p-2">
+                <div className="h-36 bg-[#090a0d] relative overflow-hidden flex items-center justify-center p-2">
                   <img
                     src={url}
                     alt={name}
@@ -157,19 +157,19 @@ export const MediaLibrary = () => {
                       e.target.src = '/favicon.svg';
                     }}
                   />
-                  <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px]">
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                     <a
                       href={url}
                       target="_blank"
                       rel="noreferrer"
-                      className="p-2 rounded-lg bg-white/90 hover:bg-white text-slate-800 transition-colors shadow-sm"
+                      className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
                       title="Open full size"
                     >
                       <ExternalLink className="w-4 h-4" />
                     </a>
                     <button
                       onClick={() => handleCopyUrl(url, id)}
-                      className="p-2 rounded-lg bg-[#b58d57] text-white hover:bg-[#9a7442] transition-colors shadow-sm"
+                      className="p-2 rounded-lg bg-[#c5a880] text-black hover:bg-[#c5a880]/90 transition-colors"
                       title="Copy URL to clipboard"
                     >
                       {copiedId === id ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
@@ -178,8 +178,8 @@ export const MediaLibrary = () => {
                 </div>
 
                 {/* Info & Footer */}
-                <div className="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs">
-                  <span className="truncate text-slate-700 font-mono text-[11px]" title={name}>
+                <div className="p-3 bg-[#0e1014] border-t border-white/5 flex items-center justify-between text-xs">
+                  <span className="truncate text-neutral-300 font-mono text-[11px]" title={name}>
                     {name}
                   </span>
                   <button
@@ -187,7 +187,7 @@ export const MediaLibrary = () => {
                       setItemToDelete(media);
                       setDeleteModalOpen(true);
                     }}
-                    className="p-1 rounded text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors shrink-0 ml-1"
+                    className="p-1 rounded text-neutral-500 hover:text-red-400 transition-colors shrink-0 ml-1"
                     title="Delete media"
                   >
                     <Trash2 className="w-3.5 h-3.5" />

@@ -66,7 +66,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/80 backdrop-blur-md"
           />
 
           {/* Modal Container */}
@@ -74,18 +74,18 @@ export const SearchModal = ({ isOpen, onClose }) => {
             initial={{ opacity: 0, scale: 0.95, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            className="relative w-full max-w-2xl bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden z-10"
+            className="relative w-full max-w-2xl bg-[#14171d] border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10"
           >
             {/* Search Input Bar */}
-            <div className="flex items-center px-6 py-4 border-b border-slate-200 bg-slate-50">
-              <Search className="w-5 h-5 text-[#b58d57] mr-3 shrink-0" />
+            <div className="flex items-center px-6 py-4 border-b border-white/10 bg-[#181b22]">
+              <Search className="w-5 h-5 text-[#c5a880] mr-3 shrink-0" />
               <input
                 ref={inputRef}
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search luminaires by name, SKU (e.g. LH-6031W), material..."
-                className="w-full bg-transparent text-slate-900 placeholder-slate-400 focus:outline-none text-base font-medium"
+                className="w-full bg-transparent text-white placeholder-neutral-500 focus:outline-none text-base"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && searchTerm.trim()) {
                     handleViewAll();
@@ -94,10 +94,10 @@ export const SearchModal = ({ isOpen, onClose }) => {
                   }
                 }}
               />
-              {loading && <Loader2 className="w-5 h-5 text-[#b58d57] animate-spin mr-3 shrink-0" />}
+              {loading && <Loader2 className="w-5 h-5 text-[#c5a880] animate-spin mr-3 shrink-0" />}
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors"
+                className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-white/5 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -107,17 +107,17 @@ export const SearchModal = ({ isOpen, onClose }) => {
             <div className="max-h-[60vh] overflow-y-auto p-4 space-y-2 modal-scrollbar">
               {results.length > 0 ? (
                 <div>
-                  <div className="text-xs uppercase tracking-luxury text-[#9a7442] px-3 py-2 font-bold">
+                  <div className="text-xs uppercase tracking-luxury text-[#c5a880] px-3 py-2 font-semibold">
                     Matching Luminaires ({results.length})
                   </div>
-                  <div className="divide-y divide-slate-100">
+                  <div className="divide-y divide-white/5">
                     {results.map((product) => (
                       <div
                         key={product._id}
                         onClick={() => handleSelectProduct(product.slug)}
-                        className="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 cursor-pointer transition-colors group"
+                        className="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 cursor-pointer transition-colors group"
                       >
-                        <div className="w-14 h-14 rounded-lg overflow-hidden bg-slate-100 border border-slate-200 shrink-0">
+                        <div className="w-14 h-14 rounded-lg overflow-hidden bg-black/40 border border-white/10 shrink-0">
                           <img
                             src={product.images?.[0]?.url || 'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=200&q=80'}
                             alt={product.name}
@@ -126,48 +126,48 @@ export const SearchModal = ({ isOpen, onClose }) => {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-mono font-semibold text-[#9a7442] bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
+                            <span className="text-xs font-mono font-medium text-[#c5a880] bg-[#c5a880]/10 px-2 py-0.5 rounded">
                               {product.sku}
                             </span>
                             {product.category?.name && (
-                              <span className="text-xs text-slate-500 truncate">
+                              <span className="text-xs text-neutral-400 truncate">
                                 {product.category.name}
                               </span>
                             )}
                           </div>
-                          <h4 className="text-sm font-semibold text-slate-900 truncate mt-1 group-hover:text-[#9a7442] transition-colors">
+                          <h4 className="text-sm font-medium text-white truncate mt-1 group-hover:text-[#c5a880] transition-colors">
                             {product.name}
                           </h4>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#9a7442] group-hover:translate-x-1 transition-all shrink-0" />
+                        <ArrowRight className="w-4 h-4 text-neutral-500 group-hover:text-white group-hover:translate-x-1 transition-all shrink-0" />
                       </div>
                     ))}
                   </div>
 
-                  <div className="pt-3 mt-2 border-t border-slate-200 px-2">
+                  <div className="pt-3 mt-2 border-t border-white/5 px-2">
                     <button
                       onClick={handleViewAll}
-                      className="w-full py-2.5 text-center text-xs font-semibold uppercase tracking-luxury text-[#9a7442] hover:bg-amber-50 rounded-xl transition-colors flex items-center justify-center gap-2"
+                      className="w-full py-2.5 text-center text-xs font-semibold uppercase tracking-luxury text-[#c5a880] hover:text-white transition-colors flex items-center justify-center gap-2"
                     >
                       View all results in catalog <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>
               ) : searchTerm.trim() ? (
-                <div className="py-12 text-center text-slate-600">
-                  <Lightbulb className="w-8 h-8 text-slate-400 mx-auto mb-3" />
-                  <p className="text-sm font-medium text-slate-800">No luminaires found matching "{searchTerm}"</p>
-                  <p className="text-xs text-slate-400 mt-1">Try searching by category, finish, or generic name</p>
+                <div className="py-12 text-center text-neutral-400">
+                  <Lightbulb className="w-8 h-8 text-neutral-600 mx-auto mb-3" />
+                  <p className="text-sm">No luminaires found matching "{searchTerm}"</p>
+                  <p className="text-xs text-neutral-500 mt-1">Try searching by category, finish, or generic name</p>
                 </div>
               ) : (
                 <div className="py-8 px-4 text-center">
-                  <p className="text-xs uppercase tracking-luxury text-slate-500 font-bold mb-3">Popular Searches</p>
+                  <p className="text-xs uppercase tracking-luxury text-neutral-500 font-semibold mb-3">Popular Searches</p>
                   <div className="flex flex-wrap justify-center gap-2">
                     {['Wall Light', 'Italian Lights', 'LH-6031W', 'Gold Wall Lamp', 'Pendant', 'IP65 Facade', 'Brass Table Lamp'].map((tag) => (
                       <button
                         key={tag}
                         onClick={() => setSearchTerm(tag)}
-                        className="px-3 py-1.5 rounded-full text-xs bg-slate-100 hover:bg-amber-50 text-slate-700 hover:text-[#9a7442] border border-slate-200 transition-all font-medium"
+                        className="px-3 py-1.5 rounded-full text-xs bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white border border-white/5 transition-all"
                       >
                         {tag}
                       </button>

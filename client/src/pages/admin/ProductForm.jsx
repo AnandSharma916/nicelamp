@@ -309,8 +309,8 @@ export const ProductForm = () => {
   if (loading) {
     return (
       <div className="py-20 flex flex-col items-center justify-center space-y-4 text-center">
-        <Loader2 className="w-8 h-8 text-[#b58d57] animate-spin" />
-        <span className="text-xs uppercase tracking-luxury text-[#9a7442] font-semibold">
+        <Loader2 className="w-8 h-8 text-[#c5a880] animate-spin" />
+        <span className="text-xs uppercase tracking-luxury text-[#c5a880] font-semibold">
           Loading Luminaire Architecture...
         </span>
       </div>
@@ -324,15 +324,15 @@ export const ProductForm = () => {
         <div className="flex items-center gap-3">
           <Link
             to="/admin/products"
-            className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 hover:text-slate-900 transition-colors shadow-sm"
+            className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
-            <span className="text-[10px] uppercase tracking-luxury text-[#9a7442] font-bold block">
+            <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-semibold block">
               {isEditMode ? 'Modify Specifications' : 'New Catalog Entry'}
             </span>
-            <h1 className="text-2xl font-serif-luxury font-bold text-slate-900 tracking-wide">
+            <h1 className="text-2xl font-serif-luxury font-bold text-white tracking-wide">
               {isEditMode ? formData.title || 'Edit Luminaire' : 'Add Architectural Luminaire'}
             </h1>
           </div>
@@ -351,10 +351,10 @@ export const ProductForm = () => {
               setIsJustUpdated(false);
               setPreviewOpen(true);
             }}
-            className="px-4 py-2.5 rounded-xl border border-slate-200 hover:border-[#b58d57]/50 bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 transition-all shadow-sm"
+            className="px-4 py-2.5 rounded-xl border border-white/10 hover:border-[#c5a880]/50 bg-white/5 hover:bg-white/10 text-white text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 transition-all shadow-md"
             title="Preview how this luminaire looks on the storefront"
           >
-            <Eye className="w-4 h-4 text-[#b58d57]" />
+            <Eye className="w-4 h-4 text-[#c5a880]" />
             <span>Quick Preview</span>
           </button>
 
@@ -364,10 +364,10 @@ export const ProductForm = () => {
               href={`/product/${formData.slug}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3.5 py-2.5 rounded-xl border border-slate-200 hover:border-[#b58d57]/50 bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 text-xs font-semibold uppercase tracking-luxury flex items-center gap-1.5 transition-all shadow-sm"
+              className="px-3.5 py-2.5 rounded-xl border border-white/10 hover:border-[#c5a880]/50 bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-luxury flex items-center gap-1.5 transition-all shadow-md"
               title="Open public product page in new tab"
             >
-              <ExternalLink className="w-3.5 h-3.5 text-[#b58d57]" />
+              <ExternalLink className="w-3.5 h-3.5 text-[#c5a880]" />
               <span className="hidden md:inline">Open Live</span>
             </a>
           )}
@@ -376,7 +376,7 @@ export const ProductForm = () => {
           <button
             onClick={handleSubmit}
             disabled={submitting}
-            className="btn-gold px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 shadow-md disabled:opacity-50"
+            className="btn-gold px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 shadow-xl disabled:opacity-50"
           >
             {submitting ? (
               <>
@@ -394,7 +394,7 @@ export const ProductForm = () => {
       </div>
 
       {/* Tabs Navigation */}
-      <div className="flex items-center gap-2 border-b border-slate-200 pb-2 overflow-x-auto">
+      <div className="flex items-center gap-2 border-b border-white/10 pb-2 overflow-x-auto">
         {[
           { id: 'general', label: '1. General Information', icon: Package },
           { id: 'media', label: '2. Media Gallery', icon: ImageIcon },
@@ -409,8 +409,8 @@ export const ProductForm = () => {
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury transition-all shrink-0 ${
                 activeTab === tab.id
-                  ? 'bg-[#b58d57] text-white font-bold shadow-md shadow-[#b58d57]/20'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  ? 'bg-[#c5a880] text-black font-bold shadow-lg shadow-[#c5a880]/10'
+                  : 'text-neutral-400 hover:text-white hover:bg-white/5'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -423,14 +423,14 @@ export const ProductForm = () => {
       <form noValidate onSubmit={handleSubmit} className="space-y-6">
         {/* Tab 1: General Information */}
         {activeTab === 'general' && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-sm">
-            <h2 className="text-base font-serif-luxury font-bold text-slate-900 mb-2">
+          <div className="bg-[#14171d] border border-white/10 rounded-2xl p-6 sm:p-8 space-y-5 shadow-xl">
+            <h2 className="text-base font-serif-luxury font-bold text-white mb-2">
               Luminaire Overview
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   Luminaire Title *
                 </label>
                 <input
@@ -439,12 +439,12 @@ export const ProductForm = () => {
                   value={formData.title}
                   onChange={handleTitleChange}
                   placeholder="e.g. Aurelia Brass Pendant Chandelier"
-                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#b58d57] focus:bg-white text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   URL Slug
                 </label>
                 <input
@@ -453,14 +453,14 @@ export const ProductForm = () => {
                   onChange={handleChange}
                   name="slug"
                   placeholder="aurelia-brass-pendant-chandelier"
-                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#b58d57] focus:bg-white text-sm font-mono"
+                  className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm font-mono"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   Category *
                 </label>
                 <select
@@ -468,7 +468,7 @@ export const ProductForm = () => {
                   required
                   value={formData.category}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:outline-none focus:border-[#b58d57] focus:bg-white"
+                  className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white text-sm focus:outline-none focus:border-[#c5a880]"
                 >
                   <option value="">Select Category</option>
                   {categories.map((c) => (
@@ -480,7 +480,7 @@ export const ProductForm = () => {
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   SKU / Model Number
                 </label>
                 <input
@@ -489,13 +489,13 @@ export const ProductForm = () => {
                   value={formData.sku}
                   onChange={handleChange}
                   placeholder="e.g. LH-WL-402-BR"
-                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#b58d57] focus:bg-white text-sm font-mono"
+                  className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm font-mono"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+              <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                 Short Tagline / Brief Description
               </label>
               <input
@@ -504,12 +504,12 @@ export const ProductForm = () => {
                 value={formData.shortDescription}
                 onChange={handleChange}
                 placeholder="Sculptural minimalist brass pendant with warm indirect ambient illumination."
-                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#b58d57] focus:bg-white text-sm"
+                className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm"
               />
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+              <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                 Complete Architectural Description
               </label>
               <textarea
@@ -518,12 +518,12 @@ export const ProductForm = () => {
                 value={formData.description}
                 onChange={handleChange}
                 placeholder="Detailed information regarding design pedigree, optical diffuser, installation methods, and finish characteristics..."
-                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#b58d57] focus:bg-white text-sm leading-relaxed"
+                className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm leading-relaxed"
               />
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+              <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                 Search Tags (comma-separated)
               </label>
               <input
@@ -532,7 +532,7 @@ export const ProductForm = () => {
                 value={formData.tags}
                 onChange={handleChange}
                 placeholder="modern, gold, brass, dining, chandelier, minimal"
-                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#b58d57] focus:bg-white text-sm"
+                className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm"
               />
             </div>
           </div>
@@ -540,14 +540,14 @@ export const ProductForm = () => {
 
         {/* Tab 2: Media Gallery */}
         {activeTab === 'media' && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
-            <h2 className="text-base font-serif-luxury font-bold text-slate-900 mb-2">
+          <div className="bg-[#14171d] border border-white/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl">
+            <h2 className="text-base font-serif-luxury font-bold text-white mb-2">
               Visual Presentation & Gallery
             </h2>
 
             {/* Main Primary Image */}
-            <div className="space-y-3 pb-6 border-b border-slate-200">
-              <label className="block text-xs uppercase tracking-luxury text-slate-700 font-medium">
+            <div className="space-y-3 pb-6 border-b border-white/10">
+              <label className="block text-xs uppercase tracking-luxury text-neutral-400 font-medium">
                 Main Hero Image
               </label>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
@@ -562,15 +562,15 @@ export const ProductForm = () => {
 
                   {/* Local Path Warning */}
                   {isLocalPath(formData.mainImage) && (
-                    <div className="mt-2 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs space-y-1.5">
+                    <div className="mt-2 p-3 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs space-y-1.5">
                       <div className="flex items-center gap-1.5 font-semibold">
-                        <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+                        <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
                         <span>Local Computer Path Detected</span>
                       </div>
-                      <p className="text-[11px] text-amber-700 leading-relaxed">
-                        Web browsers cannot load files directly from your computer drive (<code className="bg-white px-1 py-0.5 rounded font-mono border border-amber-200">{formData.mainImage}</code>).
+                      <p className="text-[11px] text-amber-200/90 leading-relaxed">
+                        Web browsers cannot load files directly from your computer drive (<code className="bg-black/40 px-1 py-0.5 rounded font-mono">{formData.mainImage}</code>).
                       </p>
-                      <p className="text-[11px] text-amber-900 font-medium">
+                      <p className="text-[11px] text-white font-medium">
                         👉 Click <strong>Browse File from PC</strong> in the box above to upload the file to the server.
                       </p>
                     </div>
@@ -604,7 +604,7 @@ export const ProductForm = () => {
                         }
                       }}
                       placeholder="Or paste direct image URL (Unsplash, CDN, /uploads, etc.)..."
-                      className="flex-1 px-3 py-2 rounded-xl bg-slate-50 border border-slate-300 text-xs text-slate-900 placeholder:text-slate-400 font-mono focus:bg-white focus:border-[#b58d57]"
+                      className="flex-1 px-3 py-2 rounded-xl bg-[#090a0d] border border-white/10 text-xs text-white placeholder-neutral-600 font-mono"
                     />
                     {formData.mainImage && (
                       <button
@@ -613,7 +613,7 @@ export const ProductForm = () => {
                           setFormData((prev) => ({ ...prev, mainImage: '' }));
                           setMainImgError(false);
                         }}
-                        className="px-3 py-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 text-xs font-semibold"
+                        className="px-3 py-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-semibold"
                       >
                         Clear
                       </button>
@@ -621,18 +621,18 @@ export const ProductForm = () => {
                   </div>
                 </div>
 
-                <div className="h-44 rounded-xl bg-slate-50 border border-slate-200 overflow-hidden flex items-center justify-center p-2 relative">
+                <div className="h-44 rounded-xl bg-[#090a0d] border border-white/10 overflow-hidden flex items-center justify-center p-2 relative">
                   {formData.mainImage ? (
                     isLocalPath(formData.mainImage) ? (
-                      <div className="text-center p-3 text-amber-600 text-xs">
-                        <AlertTriangle className="w-6 h-6 mx-auto mb-1 text-amber-600" />
+                      <div className="text-center p-3 text-amber-400 text-xs">
+                        <AlertTriangle className="w-6 h-6 mx-auto mb-1 text-amber-400" />
                         <span className="font-semibold block">Local PC path</span>
-                        <span className="text-[10px] text-slate-500 mt-0.5 block">
+                        <span className="text-[10px] text-neutral-400 mt-0.5 block">
                           Please click the upload box above
                         </span>
                       </div>
                     ) : mainImgError ? (
-                      <div className="text-center p-3 text-slate-400 text-xs">
+                      <div className="text-center p-3 text-neutral-500 text-xs">
                         <ImageIcon className="w-6 h-6 mx-auto mb-1 opacity-50" />
                         <span>Unable to load image from URL</span>
                       </div>
@@ -650,7 +650,7 @@ export const ProductForm = () => {
                             setFormData((prev) => ({ ...prev, mainImage: '' }));
                             setMainImgError(false);
                           }}
-                          className="absolute top-2 right-2 p-1.5 rounded-lg bg-red-600/90 hover:bg-red-600 text-white transition-colors shadow-sm"
+                          className="absolute top-2 right-2 p-1.5 rounded-lg bg-red-600/90 hover:bg-red-600 text-white transition-colors"
                           title="Remove primary image"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -658,7 +658,7 @@ export const ProductForm = () => {
                       </>
                     )
                   ) : (
-                    <div className="text-center text-slate-400">
+                    <div className="text-center text-neutral-600">
                       <ImageIcon className="w-8 h-8 mx-auto mb-1 opacity-50" />
                       <span className="text-[11px]">No primary image configured</span>
                     </div>
@@ -670,7 +670,7 @@ export const ProductForm = () => {
             {/* Gallery Images */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 font-medium">
                   Additional Angles & Detail Shots ({formData.images.length})
                 </label>
               </div>
@@ -685,7 +685,7 @@ export const ProductForm = () => {
                   type="text"
                   id="gallery-url-input"
                   placeholder="Or paste direct image URL and press Enter or Add..."
-                  className="flex-1 px-3 py-2 rounded-xl bg-slate-50 border border-slate-300 text-xs text-slate-900 placeholder:text-slate-400 font-mono focus:bg-white focus:border-[#b58d57]"
+                  className="flex-1 px-3 py-2 rounded-xl bg-[#090a0d] border border-white/10 text-xs text-white placeholder-neutral-600 font-mono"
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       e.preventDefault();
@@ -705,7 +705,7 @@ export const ProductForm = () => {
                       el.value = '';
                     }
                   }}
-                  className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-xs text-slate-700 font-semibold transition-colors shrink-0 shadow-sm"
+                  className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs text-white font-medium transition-colors shrink-0"
                 >
                   Add URL
                 </button>
@@ -716,7 +716,7 @@ export const ProductForm = () => {
                   {formData.images.map((imgUrl, idx) => (
                     <div
                       key={idx}
-                      className="relative h-28 rounded-xl bg-slate-50 border border-slate-200 overflow-hidden group p-1"
+                      className="relative h-28 rounded-xl bg-[#090a0d] border border-white/10 overflow-hidden group p-1"
                     >
                       <img
                         src={imgUrl}
@@ -726,7 +726,7 @@ export const ProductForm = () => {
                       <button
                         type="button"
                         onClick={() => handleRemoveGalleryImage(idx)}
-                        className="absolute top-2 right-2 p-1.5 rounded-lg bg-red-600 text-white opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"
+                        className="absolute top-2 right-2 p-1.5 rounded-lg bg-red-600/90 text-white opacity-0 group-hover:opacity-100 transition-opacity"
                         title="Remove photo"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -741,14 +741,14 @@ export const ProductForm = () => {
 
         {/* Tab 3: Technical Specifications */}
         {activeTab === 'specs' && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
-            <h2 className="text-base font-serif-luxury font-bold text-slate-900 mb-2">
+          <div className="bg-[#14171d] border border-white/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl">
+            <h2 className="text-base font-serif-luxury font-bold text-white mb-2">
               Engineering & Photometrics
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   Wattage / Power
                 </label>
                 <input
@@ -757,12 +757,12 @@ export const ProductForm = () => {
                   value={formData.specifications.wattage}
                   onChange={handleSpecChange}
                   placeholder="e.g. 18W LED"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-mono focus:bg-white focus:border-[#b58d57]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   Input Voltage
                 </label>
                 <input
@@ -771,12 +771,12 @@ export const ProductForm = () => {
                   value={formData.specifications.voltage}
                   onChange={handleSpecChange}
                   placeholder="e.g. 220-240V AC 50/60Hz"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-mono focus:bg-white focus:border-[#b58d57]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   Color Temperature (CCT)
                 </label>
                 <input
@@ -785,12 +785,12 @@ export const ProductForm = () => {
                   value={formData.specifications.colorTemperature}
                   onChange={handleSpecChange}
                   placeholder="e.g. 3000K / 4000K / Tunable"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:bg-white focus:border-[#b58d57]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   Luminous Flux (Lumens)
                 </label>
                 <input
@@ -799,12 +799,12 @@ export const ProductForm = () => {
                   value={formData.specifications.lumens}
                   onChange={handleSpecChange}
                   placeholder="e.g. 1,650 lm"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-mono focus:bg-white focus:border-[#b58d57]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   Beam Angle
                 </label>
                 <input
@@ -813,12 +813,12 @@ export const ProductForm = () => {
                   value={formData.specifications.beamAngle}
                   onChange={handleSpecChange}
                   placeholder="e.g. 24° Spot / 120° Diffuse"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-mono focus:bg-white focus:border-[#b58d57]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   IP Ingress Protection
                 </label>
                 <input
@@ -827,12 +827,12 @@ export const ProductForm = () => {
                   value={formData.specifications.ipRating}
                   onChange={handleSpecChange}
                   placeholder="e.g. IP20 (Indoor) / IP65 (Outdoor)"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-mono focus:bg-white focus:border-[#b58d57]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   Finish / Colorway
                 </label>
                 <input
@@ -841,12 +841,12 @@ export const ProductForm = () => {
                   value={formData.specifications.finish}
                   onChange={handleSpecChange}
                   placeholder="e.g. Brushed Brass / Matte Black"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:bg-white focus:border-[#b58d57]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   Structural Material
                 </label>
                 <input
@@ -855,12 +855,12 @@ export const ProductForm = () => {
                   value={formData.specifications.material}
                   onChange={handleSpecChange}
                   placeholder="e.g. Cast Brass & Frosted Acrylic"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:bg-white focus:border-[#b58d57]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   Dimensions (L x W x H)
                 </label>
                 <input
@@ -869,12 +869,12 @@ export const ProductForm = () => {
                   value={formData.specifications.dimensions}
                   onChange={handleSpecChange}
                   placeholder="e.g. Ø350mm x H450mm"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-mono focus:bg-white focus:border-[#b58d57]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   Installation Mounting Type
                 </label>
                 <input
@@ -883,12 +883,12 @@ export const ProductForm = () => {
                   value={formData.specifications.installationType}
                   onChange={handleSpecChange}
                   placeholder="e.g. Surface Wall Mount / Flush Recessed"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:bg-white focus:border-[#b58d57]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                   Color Rendering Index (CRI)
                 </label>
                 <input
@@ -897,14 +897,14 @@ export const ProductForm = () => {
                   value={formData.specifications.cri}
                   onChange={handleSpecChange}
                   placeholder="e.g. Ra > 92 / Ra > 95"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-mono focus:bg-white focus:border-[#b58d57]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono"
                 />
               </div>
             </div>
 
             {/* Spec Sheet PDF Document */}
-            <div className="pt-6 border-t border-slate-200 space-y-3">
-              <label className="block text-xs uppercase tracking-luxury text-slate-700 font-medium">
+            <div className="pt-6 border-t border-white/10 space-y-3">
+              <label className="block text-xs uppercase tracking-luxury text-neutral-400 font-medium">
                 Architectural Technical Data Sheet (PDF Document)
               </label>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
@@ -920,13 +920,13 @@ export const ProductForm = () => {
                       value={formData.pdfUrl}
                       onChange={handleChange}
                       placeholder="Or paste direct PDF URL..."
-                      className="flex-1 px-3 py-2 rounded-xl bg-slate-50 border border-slate-300 text-xs text-slate-900 placeholder:text-slate-400 font-mono focus:bg-white focus:border-[#b58d57]"
+                      className="flex-1 px-3 py-2 rounded-xl bg-[#090a0d] border border-white/10 text-xs text-white placeholder-neutral-600 font-mono"
                     />
                     {formData.pdfUrl && (
                       <button
                         type="button"
                         onClick={() => setFormData((prev) => ({ ...prev, pdfUrl: '' }))}
-                        className="px-3 py-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 text-xs font-semibold"
+                        className="px-3 py-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-semibold"
                       >
                         Clear
                       </button>
@@ -934,22 +934,22 @@ export const ProductForm = () => {
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col justify-center">
-                  <span className="text-xs text-slate-600 font-medium mb-1 block">Current Attached Spec Sheet:</span>
+                <div className="p-4 rounded-xl bg-[#090a0d] border border-white/10 flex flex-col justify-center">
+                  <span className="text-xs text-neutral-400 font-medium mb-1 block">Current Attached Spec Sheet:</span>
                   {formData.pdfUrl ? (
                     <div className="flex items-center gap-2">
                       <a
                         href={formData.pdfUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-xs text-[#9a7442] hover:underline font-mono truncate max-w-[280px] flex items-center gap-1 font-semibold"
+                        className="text-xs text-[#c5a880] hover:underline font-mono truncate max-w-[280px] flex items-center gap-1"
                       >
                         <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                         <span className="truncate">{formData.pdfUrl}</span>
                       </a>
                     </div>
                   ) : (
-                    <span className="text-xs text-slate-400">No PDF document attached</span>
+                    <span className="text-xs text-neutral-500">No PDF document attached</span>
                   )}
                 </div>
               </div>
@@ -959,13 +959,13 @@ export const ProductForm = () => {
 
         {/* Tab 4: Visibility & Pricing */}
         {activeTab === 'visibility' && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
-            <h2 className="text-base font-serif-luxury font-bold text-slate-900 mb-2">
+          <div className="bg-[#14171d] border border-white/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl">
+            <h2 className="text-base font-serif-luxury font-bold text-white mb-2">
               Commercial Pricing & Placement
             </h2>
 
             <div className="max-w-xs">
-              <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+              <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                 Catalog List Price (₹ INR)
               </label>
               <input
@@ -975,27 +975,27 @@ export const ProductForm = () => {
                 value={formData.price}
                 onChange={handleChange}
                 placeholder="0 for custom quote"
-                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 font-mono text-sm focus:outline-none focus:border-[#b58d57] focus:bg-white"
+                className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white font-mono text-sm focus:outline-none focus:border-[#c5a880]"
               />
-              <span className="text-[11px] text-slate-500 mt-1 block">
+              <span className="text-[11px] text-neutral-500 mt-1 block">
                 Leave at 0 if prices are available only via custom trade quote.
               </span>
             </div>
 
-            <div className="pt-4 border-t border-slate-200 space-y-4">
+            <div className="pt-4 border-t border-white/10 space-y-4">
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
                   type="checkbox"
                   name="isPublished"
                   checked={formData.isPublished}
                   onChange={handleChange}
-                  className="w-4 h-4 rounded text-[#b58d57] focus:ring-[#b58d57] bg-slate-100 border-slate-300"
+                  className="w-4 h-4 rounded text-[#c5a880] focus:ring-[#c5a880] bg-[#090a0d] border-white/20"
                 />
                 <div>
-                  <span className="text-xs font-semibold text-slate-900 uppercase tracking-luxury block">
+                  <span className="text-xs font-semibold text-white uppercase tracking-luxury block">
                     Published on Live Storefront
                   </span>
-                  <span className="text-[11px] text-slate-500">
+                  <span className="text-[11px] text-neutral-400">
                     When enabled, this luminaire will appear on catalog and search pages.
                   </span>
                 </div>
@@ -1007,13 +1007,13 @@ export const ProductForm = () => {
                   name="isFeatured"
                   checked={formData.isFeatured}
                   onChange={handleChange}
-                  className="w-4 h-4 rounded text-[#b58d57] focus:ring-[#b58d57] bg-slate-100 border-slate-300"
+                  className="w-4 h-4 rounded text-[#c5a880] focus:ring-[#c5a880] bg-[#090a0d] border-white/20"
                 />
                 <div>
-                  <span className="text-xs font-semibold text-slate-900 uppercase tracking-luxury block">
+                  <span className="text-xs font-semibold text-white uppercase tracking-luxury block">
                     Featured in Homepage Showcase
                   </span>
-                  <span className="text-[11px] text-slate-500">
+                  <span className="text-[11px] text-neutral-400">
                     Highlights this fixture on the landing page featured carousel.
                   </span>
                 </div>
@@ -1025,13 +1025,13 @@ export const ProductForm = () => {
                   name="isNewArrival"
                   checked={formData.isNewArrival}
                   onChange={handleChange}
-                  className="w-4 h-4 rounded text-[#b58d57] focus:ring-[#b58d57] bg-slate-100 border-slate-300"
+                  className="w-4 h-4 rounded text-[#c5a880] focus:ring-[#c5a880] bg-[#090a0d] border-white/20"
                 />
                 <div>
-                  <span className="text-xs font-semibold text-slate-900 uppercase tracking-luxury block">
+                  <span className="text-xs font-semibold text-white uppercase tracking-luxury block">
                     New Arrival Tag
                   </span>
-                  <span className="text-[11px] text-slate-500">
+                  <span className="text-[11px] text-neutral-400">
                     Displays a distinctive "New" badge on catalog cards.
                   </span>
                 </div>
@@ -1044,7 +1044,7 @@ export const ProductForm = () => {
         <div className="flex items-center justify-between pt-4">
           <Link
             to="/admin/products"
-            className="px-5 py-2.5 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-xs text-slate-700 font-semibold uppercase tracking-luxury transition-colors shadow-sm"
+            className="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs text-neutral-300 font-semibold uppercase tracking-luxury transition-colors"
           >
             Cancel
           </Link>
@@ -1052,7 +1052,7 @@ export const ProductForm = () => {
           <button
             type="submit"
             disabled={submitting}
-            className="btn-gold px-8 py-3 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 shadow-md disabled:opacity-50"
+            className="btn-gold px-8 py-3 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 shadow-2xl disabled:opacity-50"
           >
             {submitting ? (
               <>

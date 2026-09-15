@@ -4,14 +4,14 @@
 
 @layer base {
   :root {
-    --color-bg-primary: #f8fafc;
-    --color-bg-secondary: #ffffff;
-    --color-bg-card: #ffffff;
-    --color-gold: #b58d57;
-    --color-gold-hover: #9e7641;
-    --color-text-main: #0f172a;
-    --color-text-muted: #64748b;
-    --color-border: #e2e8f0;
+    --color-bg-primary: #090a0d;
+    --color-bg-secondary: #111318;
+    --color-bg-card: #181b22;
+    --color-gold: #c5a880;
+    --color-gold-hover: #b8986e;
+    --color-text-main: #f3f4f6;
+    --color-text-muted: #9ca3af;
+    --color-border: rgba(255, 255, 255, 0.08);
   }
 
   body {
@@ -34,23 +34,23 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #090a0d;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #232731;
   border-radius: 4px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b58d57;
+  background: #c5a880;
 }
 
 /* Modal Custom Scrollbar */
 .modal-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #b58d57 #f8fafc;
+  scrollbar-color: rgba(197, 168, 128, 0.45) #0e1117;
 }
 
 .modal-scrollbar::-webkit-scrollbar {
@@ -58,73 +58,73 @@
 }
 
 .modal-scrollbar::-webkit-scrollbar-track {
-  background: #f8fafc;
+  background: #0e1117;
   border-radius: 9999px;
   margin: 4px 0;
 }
 
 .modal-scrollbar::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: rgba(197, 168, 128, 0.4);
   border-radius: 9999px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .modal-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #b58d57;
+  background: #c5a880;
 }
 
 /* Glassmorphism Classes */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(24, 27, 34, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-nav {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(9, 10, 13, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .gold-gradient-text {
-  background: linear-gradient(135deg, #8a6534 0%, #b58d57 50%, #6f4c1e 100%);
+  background: linear-gradient(135deg, #f3eedd 0%, #c5a880 50%, #9e825b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gold-border-glow:hover {
-  border-color: rgba(181, 141, 87, 0.6);
-  box-shadow: 0 0 20px rgba(181, 141, 87, 0.2);
+  border-color: rgba(197, 168, 128, 0.5);
+  box-shadow: 0 0 25px rgba(197, 168, 128, 0.15);
 }
 
 /* Luxury button styling */
 .btn-gold {
-  background: linear-gradient(135deg, #c5a880 0%, #b58d57 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, #d4be9c 0%, #c5a880 50%, #af8f66 100%);
+  color: #090a0d;
   font-weight: 600;
   letter-spacing: 0.05em;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-gold:hover {
-  background: linear-gradient(135deg, #d2b792 0%, #c5a880 100%);
+  background: linear-gradient(135deg, #e2cfb3 0%, #d4be9c 50%, #bd9f78 100%);
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(181, 141, 87, 0.3);
+  box-shadow: 0 8px 20px rgba(197, 168, 128, 0.25);
 }
 
 .btn-outline-gold {
-  border: 1px solid #b58d57;
-  color: #8a6534;
+  border: 1px solid rgba(197, 168, 128, 0.4);
+  color: #e5ccab;
   background: transparent;
   transition: all 0.3s ease;
 }
 
 .btn-outline-gold:hover {
-  border-color: #8a6534;
-  background: rgba(181, 141, 87, 0.1);
-  color: #6f4c1e;
+  border-color: #c5a880;
+  background: rgba(197, 168, 128, 0.1);
+  color: #ffffff;
 }
 
 /* Reduced motion preference */

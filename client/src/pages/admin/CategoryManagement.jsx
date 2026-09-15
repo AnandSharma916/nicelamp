@@ -165,20 +165,20 @@ export const CategoryManagement = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-[10px] uppercase tracking-luxury text-[#9a7442] font-semibold block mb-1">
+          <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-semibold block mb-1">
             Taxonomy & Navigation
           </span>
-          <h1 className="text-2xl font-serif-luxury font-bold text-slate-900 tracking-wide">
+          <h1 className="text-2xl font-serif-luxury font-bold text-white tracking-wide">
             Lighting Collections & Categories
           </h1>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-neutral-400 mt-0.5">
             Organize luminaires by architectural typology: Wall lights, Hanging chandeliers, Desk lamps, and Magnetic tracks.
           </p>
         </div>
 
         <button
           onClick={openCreateModal}
-          className="btn-gold px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 self-start sm:self-auto shadow-md"
+          className="btn-gold px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 self-start sm:self-auto shadow-lg"
         >
           <Plus className="w-4 h-4" />
           <span>New Category</span>
@@ -187,15 +187,15 @@ export const CategoryManagement = () => {
 
       {/* Category Grid Cards */}
       {loading ? (
-        <div className="py-20 text-center text-xs text-slate-500">
-          <Loader2 className="w-8 h-8 text-[#b58d57] animate-spin mx-auto mb-2" />
+        <div className="py-20 text-center text-xs text-neutral-500">
+          <Loader2 className="w-8 h-8 text-[#c5a880] animate-spin mx-auto mb-2" />
           <span>Loading Category Taxonomy...</span>
         </div>
       ) : categories.length === 0 ? (
-        <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center shadow-sm">
-          <Layers className="w-10 h-10 text-slate-400 mx-auto mb-3" />
-          <p className="text-sm font-medium text-slate-800">No categories established</p>
-          <p className="text-xs text-slate-500 mt-1 mb-4">
+        <div className="bg-[#14171d] border border-white/10 rounded-2xl p-12 text-center">
+          <Layers className="w-10 h-10 text-neutral-600 mx-auto mb-3" />
+          <p className="text-sm font-medium text-neutral-300">No categories established</p>
+          <p className="text-xs text-neutral-500 mt-1 mb-4">
             Create your first category to group your lighting catalog.
           </p>
           <button onClick={openCreateModal} className="btn-gold px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-luxury">
@@ -207,11 +207,11 @@ export const CategoryManagement = () => {
           {categories.map((cat) => (
             <div
               key={cat._id}
-              className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between group"
+              className="bg-[#14171d] border border-white/10 rounded-2xl overflow-hidden shadow-xl hover:border-white/20 transition-all flex flex-col justify-between group"
             >
               <div>
                 {/* Category Cover Image */}
-                <div className="h-44 bg-slate-100 relative overflow-hidden">
+                <div className="h-44 bg-[#090a0d] relative overflow-hidden">
                   {cat.image ? (
                     <img
                       src={cat.image}
@@ -219,17 +219,17 @@ export const CategoryManagement = () => {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-slate-400">
+                    <div className="w-full h-full flex items-center justify-center text-neutral-600">
                       <ImageIcon className="w-8 h-8 opacity-40" />
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#14171d] via-transparent to-transparent opacity-80" />
 
                   <span
                     className={`absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-md ${
                       cat.isActive
-                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                        : 'bg-slate-100/90 text-slate-600 border border-slate-200'
+                        ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                        : 'bg-neutral-900/80 text-neutral-400 border border-white/10'
                     }`}
                   >
                     {cat.isActive ? 'Active' : 'Hidden'}
@@ -239,36 +239,36 @@ export const CategoryManagement = () => {
                 {/* Category Body */}
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-1">
-                    <h3 className="text-base font-serif-luxury font-bold text-slate-900 tracking-wide">
+                    <h3 className="text-base font-serif-luxury font-bold text-white tracking-wide">
                       {cat.name}
                     </h3>
-                    <span className="text-[10px] text-slate-400 font-mono">
+                    <span className="text-[10px] text-neutral-500 font-mono">
                       /{cat.slug}
                     </span>
                   </div>
 
-                  <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed mt-2">
+                  <p className="text-xs text-neutral-400 line-clamp-2 leading-relaxed mt-2">
                     {cat.description || 'No detailed architectural description assigned.'}
                   </p>
                 </div>
               </div>
 
               {/* Bottom Actions */}
-              <div className="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+              <div className="p-4 bg-[#0e1014] border-t border-white/5 flex items-center justify-between">
                 <a
                   href={`/category/${cat.slug}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[11px] text-slate-600 hover:text-slate-900 flex items-center gap-1 transition-colors font-medium"
+                  className="text-[11px] text-neutral-400 hover:text-white flex items-center gap-1 transition-colors"
                 >
-                  <ExternalLink className="w-3 h-3 text-[#b58d57]" />
+                  <ExternalLink className="w-3 h-3 text-[#c5a880]" />
                   <span>View Public Page</span>
                 </a>
 
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => openEditModal(cat)}
-                    className="p-1.5 rounded-lg text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                    className="p-1.5 rounded-lg text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"
                     title="Edit category"
                   >
                     <Edit className="w-4 h-4" />
@@ -278,7 +278,7 @@ export const CategoryManagement = () => {
                       setCategoryToDelete(cat);
                       setDeleteModalOpen(true);
                     }}
-                    className="p-1.5 rounded-lg text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors"
+                    className="p-1.5 rounded-lg text-neutral-400 hover:text-red-400 hover:bg-red-500/10 transition-colors"
                     title="Delete category"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -294,25 +294,25 @@ export const CategoryManagement = () => {
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-xs"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm"
             onClick={() => setModalOpen(false)}
           />
 
-          <div className="relative w-full max-w-lg bg-white border border-slate-200 rounded-2xl shadow-2xl z-10 flex flex-col max-h-[90vh] overflow-hidden my-auto">
+          <div className="relative w-full max-w-lg bg-[#14171d] border border-white/10 rounded-2xl shadow-2xl z-10 flex flex-col max-h-[90vh] overflow-hidden my-auto">
             {/* Modal Header */}
-            <div className="p-5 sm:p-6 border-b border-slate-200 flex items-center justify-between shrink-0 bg-white">
+            <div className="p-5 sm:p-6 border-b border-white/10 flex items-center justify-between shrink-0 bg-[#14171d]">
               <div>
-                <span className="text-[10px] uppercase tracking-luxury text-[#9a7442] font-semibold block">
+                <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-semibold block">
                   {editingCategory ? 'Update Collection' : 'Create Collection'}
                 </span>
-                <h3 className="text-lg font-serif-luxury font-bold text-slate-900">
+                <h3 className="text-lg font-serif-luxury font-bold text-white">
                   {editingCategory ? editingCategory.name : 'New Category'}
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={() => setModalOpen(false)}
-                className="text-slate-400 hover:text-slate-800 p-1.5 rounded-lg hover:bg-slate-100 transition-colors"
+                className="text-neutral-400 hover:text-white p-1.5 rounded-lg hover:bg-white/5 transition-colors"
                 title="Close modal"
               >
                 <X className="w-5 h-5" />
@@ -324,7 +324,7 @@ export const CategoryManagement = () => {
               {/* Scrollable Form Body */}
               <div className="p-5 sm:p-6 space-y-4 overflow-y-auto flex-1 modal-scrollbar">
                 <div>
-                  <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                  <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                     Category Name *
                   </label>
                   <input
@@ -333,12 +333,12 @@ export const CategoryManagement = () => {
                     value={formData.name}
                     onChange={handleNameChange}
                     placeholder="e.g. Wall Light, Italian Lights"
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs placeholder-slate-400 focus:bg-white focus:outline-none focus:border-[#b58d57] focus:ring-1 focus:ring-[#b58d57] transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#c5a880]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                  <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                     URL Slug
                   </label>
                   <input
@@ -346,12 +346,12 @@ export const CategoryManagement = () => {
                     value={formData.slug}
                     onChange={(e) => setFormData((p) => ({ ...p, slug: e.target.value }))}
                     placeholder="wall-light"
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-mono placeholder-slate-400 focus:bg-white focus:outline-none focus:border-[#b58d57] focus:ring-1 focus:ring-[#b58d57] transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-[#c5a880]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                  <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                     Description
                   </label>
                   <textarea
@@ -359,12 +359,12 @@ export const CategoryManagement = () => {
                     value={formData.description}
                     onChange={(e) => setFormData((p) => ({ ...p, description: e.target.value }))}
                     placeholder="Summary of luminaires and design aesthetic in this category..."
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs placeholder-slate-400 focus:bg-white focus:outline-none focus:border-[#b58d57] focus:ring-1 focus:ring-[#b58d57] transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#c5a880]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-luxury text-slate-700 mb-1.5 font-medium">
+                  <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                     Cover Image
                   </label>
                   <ImageUploader
@@ -377,15 +377,15 @@ export const CategoryManagement = () => {
 
                   {/* Local PC Path Warning */}
                   {isLocalPath(formData.image) && (
-                    <div className="mt-2.5 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs space-y-2">
+                    <div className="mt-2.5 p-3 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs space-y-2">
                       <div className="flex items-center gap-1.5 font-semibold">
-                        <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+                        <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
                         <span>Local Computer Path Detected</span>
                       </div>
-                      <p className="text-[11px] text-amber-900 leading-relaxed">
-                        You entered a private local file path from your computer (<code className="bg-amber-100 px-1 py-0.5 rounded font-mono">{formData.image}</code>). Web browsers cannot access files directly from local drives.
+                      <p className="text-[11px] text-amber-200/90 leading-relaxed">
+                        You entered a private local file path from your computer (<code className="bg-black/40 px-1 py-0.5 rounded font-mono">{formData.image}</code>). Web browsers cannot access files directly from local drives.
                       </p>
-                      <p className="text-[11px] text-slate-800 font-medium">
+                      <p className="text-[11px] text-white font-medium">
                         👉 <strong>How to fix:</strong> Click the <strong>Upload Category Banner Photo</strong> box above, or drag your image file into it so the image is uploaded to the server!
                       </p>
                     </div>
@@ -421,7 +421,7 @@ export const CategoryManagement = () => {
                         }
                       }}
                       placeholder="Or paste direct image URL (/uploads, Unsplash, CDN)..."
-                      className="flex-1 px-3 py-2 rounded-xl bg-slate-50 border border-slate-300 text-xs text-slate-900 placeholder-slate-400 font-mono focus:bg-white focus:outline-none focus:border-[#b58d57]"
+                      className="flex-1 px-3 py-2 rounded-xl bg-[#090a0d] border border-white/10 text-xs text-white placeholder-neutral-600 font-mono"
                     />
                     {formData.image && (
                       <button
@@ -430,7 +430,7 @@ export const CategoryManagement = () => {
                           setFormData((p) => ({ ...p, image: '' }));
                           setImgError(false);
                         }}
-                        className="px-3 py-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 text-xs font-semibold transition-colors"
+                        className="px-3 py-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-semibold transition-colors"
                       >
                         Clear
                       </button>
@@ -439,17 +439,17 @@ export const CategoryManagement = () => {
 
                   {/* Live Preview Box */}
                   {formData.image && (
-                    <div className="mt-2 h-36 rounded-xl bg-slate-100 border border-slate-200 overflow-hidden relative p-1 flex items-center justify-center">
+                    <div className="mt-2 h-36 rounded-xl bg-[#090a0d] border border-white/10 overflow-hidden relative p-1 flex items-center justify-center">
                       {isLocalPath(formData.image) ? (
-                        <div className="text-center p-3 text-amber-700 text-xs">
-                          <AlertTriangle className="w-6 h-6 mx-auto mb-1 text-amber-600" />
+                        <div className="text-center p-3 text-amber-400/90 text-xs">
+                          <AlertTriangle className="w-6 h-6 mx-auto mb-1 text-amber-400" />
                           <span className="font-semibold block">Local PC path cannot be loaded</span>
-                          <span className="text-[10px] text-slate-500 mt-0.5 block">
+                          <span className="text-[10px] text-neutral-400 mt-0.5 block">
                             Please click the upload box above to upload the file to storage
                           </span>
                         </div>
                       ) : imgError ? (
-                        <div className="text-center p-3 text-slate-400 text-xs">
+                        <div className="text-center p-3 text-neutral-500 text-xs">
                           <ImageIcon className="w-6 h-6 mx-auto mb-1 opacity-50" />
                           <span>Unable to load image from URL</span>
                         </div>
@@ -471,9 +471,9 @@ export const CategoryManagement = () => {
                       type="checkbox"
                       checked={formData.isActive}
                       onChange={(e) => setFormData((p) => ({ ...p, isActive: e.target.checked }))}
-                      className="w-4 h-4 rounded text-[#b58d57] focus:ring-[#b58d57] bg-white border-slate-300 cursor-pointer"
+                      className="w-4 h-4 rounded text-[#c5a880] focus:ring-[#c5a880] bg-[#090a0d] border-white/20 cursor-pointer"
                     />
-                    <span className="text-xs text-slate-700 select-none font-medium">
+                    <span className="text-xs text-neutral-300 select-none">
                       Display category in navigation menu & public directory
                     </span>
                   </label>
@@ -481,18 +481,18 @@ export const CategoryManagement = () => {
               </div>
 
               {/* Fixed Footer Buttons */}
-              <div className="flex items-center justify-end gap-3 p-4 sm:px-6 border-t border-slate-200 bg-slate-50 shrink-0">
+              <div className="flex items-center justify-end gap-3 p-4 sm:px-6 border-t border-white/10 bg-[#0e1014] shrink-0">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-luxury text-slate-600 hover:text-slate-900 transition-colors"
+                  className="px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-luxury text-neutral-400 hover:text-white transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="btn-gold px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 shadow-md transition-all"
+                  className="btn-gold px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 shadow-lg transition-all"
                 >
                   {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                   <span>{editingCategory ? 'Update Category' : 'Save Category'}</span>
