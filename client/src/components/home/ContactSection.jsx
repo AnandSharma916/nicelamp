@@ -46,7 +46,7 @@ export const ContactSection = ({ section }) => {
     <section className="py-24 bg-[#090a0d] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-luxury text-[#c5a880] font-semibold block mb-2">
+          <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-2">
             {subtitle}
           </span>
           <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-white tracking-tight">
@@ -67,7 +67,7 @@ export const ContactSection = ({ section }) => {
 
               {settings.address && (
                 <div className="flex items-start gap-3 text-xs text-neutral-300">
-                  <MapPin className="w-4 h-4 text-[#c5a880] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#CC1F1F] shrink-0 mt-0.5" />
                   <div>
                     <span className="text-white font-medium block mb-0.5">Showroom & Works</span>
                     <span>{settings.address}</span>
@@ -77,7 +77,7 @@ export const ContactSection = ({ section }) => {
 
               {settings.phone && (
                 <div className="flex items-start gap-3 text-xs text-neutral-300">
-                  <Phone className="w-4 h-4 text-[#c5a880] shrink-0 mt-0.5" />
+                  <Phone className="w-4 h-4 text-[#CC1F1F] shrink-0 mt-0.5" />
                   <div>
                     <span className="text-white font-medium block mb-0.5">Telephone</span>
                     <a href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`} className="hover:text-white transition-colors">
@@ -89,7 +89,7 @@ export const ContactSection = ({ section }) => {
 
               {settings.email && (
                 <div className="flex items-start gap-3 text-xs text-neutral-300">
-                  <Mail className="w-4 h-4 text-[#c5a880] shrink-0 mt-0.5" />
+                  <Mail className="w-4 h-4 text-[#CC1F1F] shrink-0 mt-0.5" />
                   <div>
                     <span className="text-white font-medium block mb-0.5">Technical Inquiries</span>
                     <a href={`mailto:${settings.email}`} className="hover:text-white transition-colors">
@@ -100,7 +100,7 @@ export const ContactSection = ({ section }) => {
               )}
 
               <div className="flex items-start gap-3 text-xs text-neutral-300">
-                <Clock className="w-4 h-4 text-[#c5a880] shrink-0 mt-0.5" />
+                <Clock className="w-4 h-4 text-[#CC1F1F] shrink-0 mt-0.5" />
                 <div>
                   <span className="text-white font-medium block mb-0.5">Showroom Hours</span>
                   <span>Monday – Saturday: 10:00 AM – 7:30 PM (IST)</span>
@@ -145,7 +145,7 @@ export const ContactSection = ({ section }) => {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Rajiv Kapoor"
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
                     />
                   </div>
                   <div>
@@ -158,7 +158,7 @@ export const ContactSection = ({ section }) => {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="e.g. rajiv@studio.com"
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
                     />
                   </div>
                 </div>
@@ -173,7 +173,7 @@ export const ContactSection = ({ section }) => {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+91 98000 00000"
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
                     />
                   </div>
                   <div>
@@ -185,7 +185,7 @@ export const ContactSection = ({ section }) => {
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                       placeholder="Architectural Studio"
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
                     />
                   </div>
                 </div>
@@ -200,7 +200,7 @@ export const ContactSection = ({ section }) => {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Describe your architectural project, schedule, quantities, or specific luminaire models..."
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm resize-none"
+                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm resize-none"
                   />
                 </div>
 

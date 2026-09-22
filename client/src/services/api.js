@@ -1,4 +1,10 @@
 import axios from 'axios';
+import {
+  getFallbackCategories,
+  getFallbackCategoryBySlug,
+  getFallbackProducts,
+  getFallbackProductBySlug,
+} from '../data/catalogData';
 
 const api = axios.create({
   baseURL: '/api',
@@ -67,16 +73,37 @@ export const authService = {
 // Product Service
 export const productService = {
   getProducts: async (params = {}) => {
-    const res = await api.get('/products', { params });
-    return res.data;
+    try {
+      const res = await api.get('/products', { params });
+      if (res.data && res.data.success && Array.isArray(res.data.products) && res.data.products.length > 0) {
+        return res.data;
+      }
+    } catch (err) {
+      console.warn('[Catalog] Backend offline or returned empty, using catalog data:', err.message);
+    }
+    return getFallbackProducts(params);
   },
   getProductBySlug: async (slug) => {
-    const res = await api.get(`/products/${slug}`);
-    return res.data;
+    try {
+      const res = await api.get(`/products/${slug}`);
+      if (res.data && res.data.success && res.data.product) {
+        return res.data;
+      }
+    } catch (err) {
+      console.warn('[Catalog] Product API offline, using fallback:', err.message);
+    }
+    return getFallbackProductBySlug(slug);
   },
   getProductById: async (id) => {
-    const res = await api.get(`/products/id/${id}`);
-    return res.data;
+    try {
+      const res = await api.get(`/products/id/${id}`);
+      if (res.data && res.data.success && res.data.product) {
+        return res.data;
+      }
+    } catch (err) {
+      // ignore
+    }
+    return getFallbackProductBySlug(id);
   },
   createProduct: async (productData) => {
     const res = await api.post('/products', productData);
@@ -103,12 +130,26 @@ export const productService = {
 // Category Service
 export const categoryService = {
   getCategories: async (params = {}) => {
-    const res = await api.get('/categories', { params });
-    return res.data;
+    try {
+      const res = await api.get('/categories', { params });
+      if (res.data && res.data.success && Array.isArray(res.data.categories) && res.data.categories.length > 0) {
+        return res.data;
+      }
+    } catch (err) {
+      console.warn('[Categories] Backend offline or empty, using catalog data:', err.message);
+    }
+    return getFallbackCategories();
   },
   getCategoryBySlug: async (slug) => {
-    const res = await api.get(`/categories/${slug}`);
-    return res.data;
+    try {
+      const res = await api.get(`/categories/${slug}`);
+      if (res.data && res.data.success && res.data.category) {
+        return res.data;
+      }
+    } catch (err) {
+      console.warn('[Categories] Category API offline, using fallback:', err.message);
+    }
+    return getFallbackCategoryBySlug(slug);
   },
   createCategory: async (categoryData) => {
     const res = await api.post('/categories', categoryData);

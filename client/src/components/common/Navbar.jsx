@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -6,320 +6,585 @@ import {
   Menu,
   X,
   ChevronDown,
+  ChevronRight,
   Phone,
   ArrowRight,
-  ShieldCheck,
   Send,
+  Zap,
 } from 'lucide-react';
 import { useSettings } from '../../context/SettingsContext';
-import { categoryService } from '../../services/api';
 import { SearchModal } from './SearchModal';
 import { InquiryModal } from './InquiryModal';
+import { LHLogo } from './LHLogo';
+import { CascadingCategoryDropdown } from './CascadingCategoryDropdown';
 
+/* ─────────────────────────────────────────────────────────────
+   Static product category tree
+───────────────────────────────────────────────────────────── */
+const PRODUCT_CATEGORIES = [
+  {
+    name: 'Wall Lamp',
+    slug: 'wall-lamp',
+    icon: '💡',
+    sub: [
+      { name: 'LED Wall Lamp',  slug: 'led-wall-lamp' },
+      { name: 'E27 Wall Lamp',  slug: 'e27-wall-lamp' },
+    ],
+  },
+  {
+    name: 'Pendant Lamp',
+    slug: 'pendant-lamp',
+    icon: '🔆',
+    sub: [
+      { name: 'LED Hanging Lamp', slug: 'led-hanging-lamp' },
+      { name: 'E27 Hanging Lamp', slug: 'e27-hanging-lamp' },
+    ],
+  },
+  {
+    name: 'Chandelier',
+    slug: 'chandelier',
+    icon: '✨',
+    sub: [
+      { name: 'LED Chandelier',      slug: 'led-chandelier' },
+      { name: 'E14 Chandelier',      slug: 'e14-chandelier' },
+      { name: 'Profile Chandelier',  slug: 'profile-chandelier' },
+      { name: 'Glass Chandelier',    slug: 'glass-chandelier' },
+      { name: 'Italian Chandelier',  slug: 'italian-chandelier' },
+      { name: 'Modern Chandelier',   slug: 'modern-chandelier' },
+      { name: 'Antic Chandelier',    slug: 'antic-chandelier' },
+      { name: 'Fan Chandelier',      slug: 'fan-chandelier' },
+      { name: 'Ceiling Chandelier',  slug: 'ceiling-chandelier' },
+    ],
+  },
+  {
+    name: 'Double Height',
+    slug: 'double-height',
+    icon: '🏛️',
+    sub: [
+      { name: 'Crystal Chandelier', slug: 'crystal-chandelier' },
+      { name: 'Modern Chandelier',  slug: 'modern-chandelier-dh' },
+    ],
+  },
+  {
+    name: 'Dining Table Lamp',
+    slug: 'dining-table-lamp',
+    icon: '🍽️',
+    sub: [],
+  },
+  {
+    name: 'Outdoor Light',
+    slug: 'outdoor-light',
+    icon: '🌿',
+    sub: [
+      { name: 'Gate Lamp', slug: 'gate-lamp' },
+      { name: 'Wall Lamp', slug: 'outdoor-wall-lamp' },
+    ],
+  },
+  {
+    name: 'Table Lamp',
+    slug: 'table-lamp',
+    icon: '🪔',
+    sub: [],
+  },
+  {
+    name: 'Floor Lamp',
+    slug: 'floor-lamp',
+    icon: '🕯️',
+    sub: [],
+  },
+  {
+    name: 'LED Filament Bulb',
+    slug: 'led-filament-bulb',
+    icon: '💫',
+    sub: [],
+  },
+  {
+    name: 'Spare Part',
+    slug: 'spare-part',
+    icon: '🔧',
+    sub: [
+      { name: 'Hanging Base',  slug: 'hanging-base' },
+      { name: 'Spare Driver',  slug: 'spare-driver' },
+    ],
+  },
+];
+
+/* ─────────────────────────────────────────────────────────────
+   Mega Menu (desktop)
+───────────────────────────────────────────────────────────── */
+const MegaMenu = ({ onClose }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: 10 }}
+    transition={{ duration: 0.18 }}
+    className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[820px] max-w-[95vw]
+               bg-[#0f1117]/98 backdrop-blur-2xl border border-white/10
+               rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] p-6 z-50"
+    onMouseLeave={onClose}
+  >
+    {/* Header row */}
+    <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/8">
+      <span className="text-[10px] uppercase tracking-[0.25em] text-[#CC1F1F] font-bold">
+        Product Categories
+      </span>
+      <Link
+        to="/catalog"
+        onClick={onClose}
+        className="flex items-center gap-1 text-[10px] uppercase tracking-wider text-neutral-400 hover:text-[#CC1F1F] transition-colors font-semibold"
+      >
+        View Full Catalog <ArrowRight className="w-3 h-3" />
+      </Link>
+    </div>
+
+    {/* Grid of categories */}
+    <div className="grid grid-cols-4 gap-x-6 gap-y-1">
+      {PRODUCT_CATEGORIES.map((cat) => (
+        <div key={cat.slug} className="space-y-1">
+          {/* Parent category */}
+          <Link
+            to={`/category/${cat.slug}`}
+            onClick={onClose}
+            className="flex items-center gap-1.5 text-white font-bold text-[11px] uppercase tracking-wider
+                       hover:text-[#CC1F1F] transition-colors group"
+          >
+            <span className="text-sm leading-none">{cat.icon}</span>
+            <span>{cat.name}</span>
+            {cat.sub.length > 0 && (
+              <ChevronRight className="w-2.5 h-2.5 text-neutral-500 group-hover:text-[#CC1F1F] transition-colors ml-auto" />
+            )}
+          </Link>
+
+          {/* Sub-categories */}
+          {cat.sub.length > 0 && (
+            <ul className="space-y-0.5 pl-5 border-l border-[#CC1F1F]/20">
+              {cat.sub.map((sub) => (
+                <li key={sub.slug}>
+                  <Link
+                    to={`/category/${cat.slug}/${sub.slug}`}
+                    onClick={onClose}
+                    className="block text-[11px] text-neutral-400 hover:text-[#CC1F1F]
+                               hover:translate-x-0.5 transition-all duration-150 py-0.5 leading-snug"
+                  >
+                    {sub.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+
+    {/* Footer CTA strip */}
+    <div className="mt-4 pt-3 border-t border-white/8 flex items-center justify-between">
+      <span className="text-[10px] text-neutral-500">
+        {PRODUCT_CATEGORIES.length} Categories · {PRODUCT_CATEGORIES.reduce((a, c) => a + c.sub.length, 0)} Sub-types
+      </span>
+      <Link
+        to="/catalog"
+        onClick={onClose}
+        className="btn-gold px-4 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5"
+      >
+        <Zap className="w-3 h-3" /> Browse All Products
+      </Link>
+    </div>
+  </motion.div>
+);
+
+/* ─────────────────────────────────────────────────────────────
+   Mobile accordion category item
+───────────────────────────────────────────────────────────── */
+const MobileCatItem = ({ cat, onClose }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <div className="flex items-center justify-between">
+        <Link
+          to={`/category/${cat.slug}`}
+          onClick={onClose}
+          className="flex items-center gap-2 flex-1 px-4 py-2.5 text-sm font-semibold text-neutral-200
+                     hover:text-[#CC1F1F] transition-colors"
+        >
+          <span className="text-base">{cat.icon}</span>
+          {cat.name}
+        </Link>
+        {cat.sub.length > 0 && (
+          <button
+            onClick={() => setOpen(!open)}
+            className="p-2 text-neutral-400 hover:text-[#CC1F1F] transition-colors"
+            aria-label={`Expand ${cat.name}`}
+          >
+            <ChevronDown
+              className={`w-4 h-4 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+            />
+          </button>
+        )}
+      </div>
+
+      <AnimatePresence>
+        {open && cat.sub.length > 0 && (
+          <motion.ul
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden pl-10 pr-4 space-y-0.5 border-l border-[#CC1F1F]/30 ml-7"
+          >
+            {cat.sub.map((sub) => (
+              <li key={sub.slug}>
+                <Link
+                  to={`/category/${cat.slug}/${sub.slug}`}
+                  onClick={onClose}
+                  className="block py-1.5 text-xs text-neutral-400 hover:text-[#CC1F1F] transition-colors"
+                >
+                  {sub.name}
+                </Link>
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+/* ─────────────────────────────────────────────────────────────
+   Main Navbar
+───────────────────────────────────────────────────────────── */
 export const Navbar = () => {
   const { settings } = useSettings();
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled]       = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [categoriesOpen, setCategoriesOpen] = useState(false);
-  const [categories, setCategories] = useState([]);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [inquiryOpen, setInquiryOpen] = useState(false);
+  const [megaOpen, setMegaOpen]            = useState(false);
+  const [searchOpen, setSearchOpen]        = useState(false);
+  const [inquiryOpen, setInquiryOpen]      = useState(false);
+  const megaRef = useRef(null);
   const location = useLocation();
 
   // Scroll detection
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Fetch categories for dropdown
-  useEffect(() => {
-    const loadCategories = async () => {
-      try {
-        const data = await categoryService.getCategories();
-        if (data.success) {
-          setCategories(data.categories || []);
-        }
-      } catch (err) {
-        console.warn('Navbar category fetch error:', err);
-      }
-    };
-    loadCategories();
-  }, []);
-
-  // Close mobile menu on route change
+  // Close everything on route change
   useEffect(() => {
     setMobileMenuOpen(false);
-    setCategoriesOpen(false);
+    setMegaOpen(false);
   }, [location.pathname]);
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Catalog', path: '/catalog' },
-    { name: 'Categories', path: '/categories', hasDropdown: true },
-    { name: 'Projects', path: '/projects' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
-  ];
+  const closeMobile = () => setMobileMenuOpen(false);
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#090a0d]/90 backdrop-blur-xl border-b border-white/10 py-3.5 shadow-2xl'
-            : 'bg-gradient-to-b from-[#090a0d]/90 to-transparent py-5'
+            ? 'bg-[#090a0d]/96 backdrop-blur-2xl border-b border-white/10 shadow-2xl py-2'
+            : 'bg-gradient-to-b from-[#090a0d]/85 to-transparent py-3'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Logo & Brand */}
-          <Link to="/" className="flex items-center gap-3 group">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between gap-4">
+
+          {/* ── Logo ── */}
+          <Link to="/" className="flex items-center gap-3 group shrink-0">
             {settings.logo ? (
-              <img src={settings.logo} alt={settings.companyName} className="h-9 w-auto object-contain" />
+              <img src={settings.logo} alt={settings.companyName || 'LightHut'} className="h-12 w-auto object-contain" />
             ) : (
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1c2028] to-[#111318] border border-[#c5a880]/30 flex items-center justify-center group-hover:border-[#c5a880] transition-colors shadow-lg">
-                <svg className="w-6 h-6 text-[#c5a880]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
-                  <circle cx="12" cy="12" r="4" />
-                </svg>
-              </div>
+              <LHLogo className="h-12 w-auto" />
             )}
-            <div>
-              <span className="font-serif-luxury text-lg tracking-wider text-white font-semibold block leading-tight group-hover:text-[#c5a880] transition-colors">
+            <div className="leading-none hidden sm:block">
+              <span className="font-serif-luxury text-[15px] tracking-wider text-white font-bold block group-hover:text-[#CC1F1F] transition-colors">
                 {settings.companyName || 'LightHut'}
               </span>
-              <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-medium block">
+              <span className="text-[8.5px] uppercase tracking-[0.22em] text-[#CC1F1F] font-semibold block mt-0.5">
                 Decorative Solutions
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => {
-              if (link.hasDropdown) {
-                return (
-                  <div
-                    key={link.name}
-                    className="relative group py-2"
-                    onMouseEnter={() => setCategoriesOpen(true)}
-                    onMouseLeave={() => setCategoriesOpen(false)}
-                  >
-                    <NavLink
-                      to={link.path}
-                      className={({ isActive }) =>
-                        `flex items-center gap-1 px-4 py-2 text-xs font-semibold uppercase tracking-luxury transition-all rounded-lg ${
-                          isActive
-                            ? 'text-[#c5a880] bg-white/5'
-                            : 'text-neutral-300 hover:text-white hover:bg-white/5'
-                        }`
-                      }
-                    >
-                      {link.name}
-                      <ChevronDown className="w-3.5 h-3.5 text-neutral-400 group-hover:text-[#c5a880] transition-transform group-hover:rotate-180" />
-                    </NavLink>
-
-                    {/* Dropdown Menu */}
-                    <AnimatePresence>
-                      {categoriesOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 10 }}
-                          transition={{ duration: 0.2 }}
-                          className="absolute top-full left-0 w-64 bg-[#14171d]/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-2 z-50 divide-y divide-white/5"
-                        >
-                          <div className="py-1">
-                            {categories.map((cat) => (
-                              <Link
-                                key={cat._id}
-                                to={`/category/${cat.slug}`}
-                                className="flex items-center justify-between px-3 py-2 text-xs text-neutral-300 hover:text-[#c5a880] hover:bg-white/5 rounded-lg transition-colors"
-                              >
-                                <span>{cat.name}</span>
-                                {cat.productsCount !== undefined && (
-                                  <span className="text-[10px] font-mono text-neutral-500 bg-black/40 px-1.5 py-0.5 rounded">
-                                    {cat.productsCount}
-                                  </span>
-                                )}
-                              </Link>
-                            ))}
-                          </div>
-                          <div className="pt-1">
-                            <Link
-                              to="/catalog"
-                              className="flex items-center justify-between px-3 py-2 text-[11px] uppercase tracking-luxury text-[#c5a880] font-semibold hover:bg-[#c5a880]/10 rounded-lg transition-colors"
-                            >
-                              <span>View Entire Catalog</span>
-                              <ArrowRight className="w-3.5 h-3.5" />
-                            </Link>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
+          {/* ── Desktop Nav (Official Serial Order) ── */}
+          <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center" ref={megaRef}>
+            {/* 1. Home */}
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
+                  isActive
+                    ? 'text-[#CC1F1F] bg-white/5 font-bold'
+                    : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                }`
               }
+            >
+              Home
+            </NavLink>
 
-              return (
-                <NavLink
-                  key={link.name}
-                  to={link.path}
-                  end={link.path === '/'}
-                  className={({ isActive }) =>
-                    `px-4 py-2 text-xs font-semibold uppercase tracking-luxury transition-all rounded-lg ${
-                      isActive
-                        ? 'text-[#c5a880] bg-white/5 font-bold'
-                        : 'text-neutral-300 hover:text-white hover:bg-white/5'
-                    }`
-                  }
-                >
-                  {link.name}
-                </NavLink>
-              );
-            })}
+            {/* 2. Categories Trigger — 3-tier luxury cascading dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setMegaOpen(true)}
+              onMouseLeave={() => setMegaOpen(false)}
+            >
+              <button
+                id="categories-mega-btn"
+                onClick={() => setMegaOpen(!megaOpen)}
+                className={`flex items-center gap-1 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
+                  megaOpen || location.pathname.startsWith('/category') || location.pathname === '/categories'
+                    ? 'text-[#CC1F1F] bg-white/5 font-bold'
+                    : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                <span>Categories</span>
+                <ChevronDown
+                  className={`w-3 h-3 transition-transform duration-200 ${
+                    megaOpen ? 'rotate-180 text-[#CC1F1F]' : 'text-neutral-400'
+                  }`}
+                />
+              </button>
+
+              <AnimatePresence>
+                {megaOpen && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 z-50">
+                    <CascadingCategoryDropdown onClose={() => setMegaOpen(false)} />
+                  </div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* 3. Catalog */}
+            <NavLink
+              to="/catalog"
+              className={({ isActive }) =>
+                `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
+                  isActive
+                    ? 'text-[#CC1F1F] bg-white/5 font-bold'
+                    : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                }`
+              }
+            >
+              Catalog
+            </NavLink>
+
+            {/* 4. Projects */}
+            <NavLink
+              to="/projects"
+              className={({ isActive }) =>
+                `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
+                  isActive
+                    ? 'text-[#CC1F1F] bg-white/5 font-bold'
+                    : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                }`
+              }
+            >
+              Projects
+            </NavLink>
+
+            {/* 5. About */}
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
+                  isActive
+                    ? 'text-[#CC1F1F] bg-white/5 font-bold'
+                    : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                }`
+              }
+            >
+              About
+            </NavLink>
+
+            {/* 6. Contact */}
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
+                  isActive
+                    ? 'text-[#CC1F1F] bg-white/5 font-bold'
+                    : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                }`
+              }
+            >
+              Contact
+            </NavLink>
           </nav>
 
-          {/* Desktop Right Actions */}
-          <div className="hidden lg:flex items-center gap-3">
-            {/* Search Button */}
+          {/* ── Desktop Right Actions ── */}
+          <div className="hidden lg:flex items-center gap-2 shrink-0">
             <button
+              id="navbar-search-btn"
               onClick={() => setSearchOpen(true)}
-              className="p-2.5 rounded-lg text-neutral-300 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-2 text-xs uppercase tracking-luxury"
-              aria-label="Search luminaires"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-neutral-300 hover:text-white
+                         hover:bg-white/5 border border-transparent hover:border-white/10
+                         transition-all text-[11px] uppercase tracking-wider font-semibold"
+              aria-label="Search"
             >
-              <Search className="w-4 h-4 text-[#c5a880]" />
+              <Search className="w-3.5 h-3.5 text-[#CC1F1F]" />
               <span>Search</span>
             </button>
 
-            {/* Quick Inquiry Button */}
             <button
+              id="navbar-inquiry-btn"
               onClick={() => setInquiryOpen(true)}
-              className="btn-gold px-5 py-2 rounded-lg text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 shadow-lg"
+              className="btn-gold flex items-center gap-1.5 px-4 py-2 rounded-lg text-[11px] font-bold
+                         uppercase tracking-wider shadow-lg shadow-[#CC1F1F]/20"
             >
               <Send className="w-3.5 h-3.5" />
               <span>Send Inquiry</span>
             </button>
           </div>
 
-          {/* Mobile Actions & Toggle */}
-          <div className="flex lg:hidden items-center gap-2">
+          {/* ── Mobile: Search + Hamburger ── */}
+          <div className="flex lg:hidden items-center gap-1 shrink-0">
             <button
+              id="mobile-search-btn"
               onClick={() => setSearchOpen(true)}
-              className="p-2 text-neutral-300 hover:text-white"
+              className="p-2 rounded-lg text-neutral-300 hover:text-white hover:bg-white/5 transition-colors"
               aria-label="Search"
             >
-              <Search className="w-5 h-5 text-[#c5a880]" />
+              <Search className="w-5 h-5 text-[#CC1F1F]" />
             </button>
             <button
+              id="mobile-menu-btn"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-neutral-300 hover:text-white focus:outline-none"
-              aria-label="Toggle navigation menu"
+              className="p-2 rounded-lg text-neutral-300 hover:text-white hover:bg-white/5 transition-colors focus:outline-none"
+              aria-label="Toggle navigation"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
+
         </div>
       </header>
 
-      {/* Mobile Drawer */}
+      {/* ── Mobile Full-Screen Drawer ── */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <div className="fixed inset-0 z-40 lg:hidden">
+          <div className="fixed inset-0 z-50 lg:hidden">
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={closeMobile}
               className="fixed inset-0 bg-black/80 backdrop-blur-md"
             />
 
+            {/* Panel */}
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-80 bg-[#111318] border-l border-white/10 p-6 flex flex-col justify-between overflow-y-auto shadow-2xl"
+              transition={{ type: 'spring', damping: 28, stiffness: 220 }}
+              className="fixed top-0 right-0 bottom-0 w-80 max-w-[90vw] bg-[#0f1117]
+                         border-l border-white/10 flex flex-col shadow-2xl"
             >
-              <div>
-                <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
-                  <div className="flex items-center gap-2">
-                    <span className="font-serif-luxury text-lg text-white font-semibold">
-                      {settings.companyName}
+              {/* Drawer header */}
+              <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
+                <Link to="/" onClick={closeMobile} className="flex items-center gap-2.5">
+                  <LHLogo className="h-9 w-auto" />
+                  <div className="leading-none">
+                    <span className="font-serif-luxury text-sm font-bold text-white block">
+                      {settings.companyName || 'LightHut'}
+                    </span>
+                    <span className="text-[8px] uppercase tracking-[0.2em] text-[#CC1F1F] font-semibold block mt-0.5">
+                      Decorative Solutions
                     </span>
                   </div>
-                  <button
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="p-1.5 rounded-lg text-neutral-400 hover:text-white"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
-
-                <div className="space-y-1">
-                  {navLinks.map((link) => (
-                    <div key={link.name}>
-                      <NavLink
-                        to={link.path}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className={({ isActive }) =>
-                          `block px-4 py-3 text-sm font-semibold uppercase tracking-luxury rounded-lg transition-colors ${
-                            isActive
-                              ? 'text-[#c5a880] bg-white/5 font-bold'
-                              : 'text-neutral-300 hover:text-white hover:bg-white/5'
-                          }`
-                        }
-                      >
-                        {link.name}
-                      </NavLink>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Mobile Categories Quick Links */}
-                {categories.length > 0 && (
-                  <div className="mt-6 pt-6 border-t border-white/10">
-                    <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-bold block mb-3 px-4">
-                      Lighting Categories
-                    </span>
-                    <div className="space-y-1 px-2">
-                      {categories.map((cat) => (
-                        <Link
-                          key={cat._id}
-                          to={`/category/${cat.slug}`}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="block px-3 py-1.5 text-xs text-neutral-400 hover:text-white rounded transition-colors"
-                        >
-                          {cat.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                </Link>
+                <button
+                  onClick={closeMobile}
+                  className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-white/5 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
               </div>
 
-              {/* Mobile Drawer Bottom Info */}
-              <div className="pt-6 border-t border-white/10 mt-6 space-y-4">
+              {/* Scrollable content (Official Serial Order) ── */}
+              <div className="flex-1 overflow-y-auto">
+
+                {/* 1. Home Link */}
+                <div className="px-4 pt-4 pb-1">
+                  <NavLink
+                    to="/"
+                    end
+                    onClick={closeMobile}
+                    className={({ isActive }) =>
+                      `block px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.15em] rounded-xl transition-colors ${
+                        isActive
+                          ? 'text-[#CC1F1F] bg-[#CC1F1F]/10 font-bold'
+                          : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                      }`
+                    }
+                  >
+                    Home
+                  </NavLink>
+                </div>
+
+                {/* 2. Product Categories Accordion */}
+                <div className="px-4 py-2">
+                  <div className="flex items-center justify-between px-1 mb-2">
+                    <p className="text-[9px] uppercase tracking-[0.25em] text-[#CC1F1F] font-bold">
+                      Categories
+                    </p>
+                    <Link
+                      to="/categories"
+                      onClick={closeMobile}
+                      className="text-[10px] uppercase tracking-wider text-neutral-400 hover:text-[#CC1F1F] transition-colors"
+                    >
+                      All Categories →
+                    </Link>
+                  </div>
+                  <div className="space-y-0.5 rounded-xl overflow-hidden border border-white/8 bg-white/2">
+                    {PRODUCT_CATEGORIES.map((cat) => (
+                      <MobileCatItem key={cat.slug} cat={cat} onClose={closeMobile} />
+                    ))}
+                  </div>
+                </div>
+
+                {/* 3-6. Catalog, Projects, About, Contact Links */}
+                <div className="px-4 pt-1 pb-4 space-y-1">
+                  {[
+                    { name: 'Catalog',  path: '/catalog' },
+                    { name: 'Projects', path: '/projects' },
+                    { name: 'About',    path: '/about' },
+                    { name: 'Contact',  path: '/contact' },
+                  ].map((link) => (
+                    <NavLink
+                      key={link.name}
+                      to={link.path}
+                      onClick={closeMobile}
+                      className={({ isActive }) =>
+                        `block px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.15em] rounded-xl transition-colors ${
+                          isActive
+                            ? 'text-[#CC1F1F] bg-[#CC1F1F]/10 font-bold'
+                            : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                        }`
+                      }
+                    >
+                      {link.name}
+                    </NavLink>
+                  ))}
+                </div>
+              </div>
+
+              {/* Drawer footer */}
+              <div className="px-4 pb-6 pt-3 border-t border-white/10 space-y-3 shrink-0">
                 <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    setInquiryOpen(true);
-                  }}
-                  className="w-full btn-gold py-3 rounded-lg text-xs font-semibold uppercase tracking-luxury flex items-center justify-center gap-2"
+                  onClick={() => { closeMobile(); setInquiryOpen(true); }}
+                  className="w-full btn-gold py-3 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
                 >
                   <Send className="w-3.5 h-3.5" />
-                  <span>Send Direct Inquiry</span>
+                  Send Inquiry
                 </button>
-
                 {settings.phone && (
                   <a
                     href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`}
-                    className="flex items-center gap-2 text-xs text-neutral-400 hover:text-white transition-colors"
+                    className="flex items-center gap-2 text-xs text-neutral-400 hover:text-white transition-colors px-1"
                   >
-                    <Phone className="w-3.5 h-3.5 text-[#c5a880]" />
+                    <Phone className="w-3.5 h-3.5 text-[#CC1F1F]" />
                     <span>Call: {settings.phone}</span>
                   </a>
                 )}

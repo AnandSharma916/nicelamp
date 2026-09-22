@@ -6,10 +6,10 @@ export const NotFound = () => {
   return (
     <div className="min-h-screen pt-28 pb-20 flex items-center justify-center bg-[#090a0d] px-4 text-center">
       <div className="max-w-lg">
-        <div className="w-16 h-16 rounded-2xl bg-[#14171d] border border-[#c5a880]/30 flex items-center justify-center mx-auto mb-6 shadow-2xl">
-          <Compass className="w-8 h-8 text-[#c5a880]" />
+        <div className="w-16 h-16 rounded-2xl bg-[#14171d] border border-[#CC1F1F]/30 flex items-center justify-center mx-auto mb-6 shadow-2xl">
+          <Compass className="w-8 h-8 text-[#CC1F1F]" />
         </div>
-        <span className="text-xs font-mono text-[#c5a880] uppercase tracking-luxury block mb-2 font-semibold">
+        <span className="text-xs font-mono text-[#CC1F1F] uppercase tracking-luxury block mb-2 font-semibold">
           Error 404 — Elevation Not Found
         </span>
         <h1 className="text-3xl sm:text-5xl font-serif-luxury font-bold text-white tracking-tight mb-4">

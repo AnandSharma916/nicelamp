@@ -2,80 +2,120 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Building, Sparkles, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useSettings } from '../../context/SettingsContext';
 
 export const Projects = () => {
+  const { settings } = useSettings();
   const [activeFilter, setActiveFilter] = useState('all');
 
   useEffect(() => {
-    document.title = 'Architectural Lighting Projects & Installations | LightHut';
-  }, []);
+    document.title = `Architectural Lighting Projects & Installations | ${settings.companyName || 'LightHut'}`;
+  }, [settings.companyName]);
 
   const projects = [
     {
       id: 1,
-      title: 'The Amanora Residence',
-      location: 'New Delhi, India',
-      category: 'residential',
-      categoryLabel: 'Luxury Villa',
-      year: '2025',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-      description: 'A 14,000 sq ft private estate illuminated by recessed 48V magnetic tracks, brushed gold acrylic wall sconces (LH-6031W), and seamless perimeter coves creating tranquil warmth.',
-      fixtures: ['LH-6031W', 'LH-TR48', 'LH-3303-1W'],
-    },
-    {
-      id: 2,
       title: 'Meridian Grand Hotel & Atrium',
       location: 'Mumbai, India',
       category: 'hospitality',
       categoryLabel: 'Hospitality',
-      year: '2024',
-      image: 'https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=1200&q=80',
+      lampType: 'Chandelier',
+      lampIcon: '✨',
+      year: '2025',
+      image: '/categories/chandelier.jpg',
       description: 'Theatrical 7-meter cascading Murano-inspired art glass pendants commanding the central atrium with dim-to-warm lighting controls across five levels.',
-      fixtures: ['LH-2036', 'LH-6036', 'LH-G062-1L'],
+      fixtures: ['LH-CH880', 'LH-2036', 'LH-6036'],
+    },
+    {
+      id: 2,
+      title: 'The Oberoi Presidential Suites',
+      location: 'New Delhi, India',
+      category: 'residential',
+      categoryLabel: 'Ultra-Luxury Villa',
+      lampType: 'Wall Lamp',
+      lampIcon: '💡',
+      year: '2025',
+      image: '/categories/wall-lamp.jpg',
+      description: 'Bi-directional wall grazers & fluted opal glass bedside sconces delivering soft glare-free indirect warmth throughout master suites and corridors.',
+      fixtures: ['LH-6031W', 'LH-3303-1W'],
     },
     {
       id: 3,
-      title: 'Horizon Business Pavilion',
-      location: 'Bengaluru, India',
-      category: 'commercial',
-      categoryLabel: 'Corporate Headquarters',
-      year: '2025',
-      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
-      description: 'IP65 dark-sky compliant bi-directional facade grazers (LH-OD501) grazing concrete geometric louvers with zero upward light pollution.',
-      fixtures: ['LH-OD501', 'LH-TR48'],
-    },
-    {
-      id: 4,
-      title: 'Solitaire Penthouse Suite',
-      location: 'Gurugram, India',
-      category: 'residential',
-      categoryLabel: 'Penthouse',
-      year: '2024',
-      image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1200&q=80',
-      description: 'Sculptural solid walnut task lamps and fluted satin brass bedside luminaires installed throughout master dressing suites and private libraries.',
-      fixtures: ['LH-T2309', 'LH-B6002W'],
-    },
-    {
-      id: 5,
-      title: 'Viceroy Waterfront Resort',
-      location: 'Goa, India',
-      category: 'hospitality',
-      categoryLabel: 'Luxury Resort',
-      year: '2023',
-      image: 'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=1200&q=80',
-      description: 'Marine-grade anti-corrosion luminaires illuminating coastal pool decks, private beachfront pavilions, and open-air dining cabanas.',
-      fixtures: ['LH-OD501', 'LH-3303-1W'],
-    },
-    {
-      id: 6,
       title: 'Artisan Culinary Pavilion',
       location: 'Jaipur, India',
       category: 'commercial',
       categoryLabel: 'Fine Dining Restaurant',
+      lampType: 'Pendant Lamp',
+      lampIcon: '🔆',
       year: '2024',
-      image: 'https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?auto=format&fit=crop&w=1200&q=80',
-      description: 'Intimate dining illumination utilizing smoked glass pendant clusters (LH-G074A) providing glare-free warmth on artisanal dining tables.',
-      fixtures: ['LH-G074A', 'LH-SD102W'],
+      image: '/categories/pendant-lamp.jpg',
+      description: 'Intimate dining illumination utilizing smoked glass pendant clusters providing glare-free warmth on artisanal solid walnut tables.',
+      fixtures: ['LH-P124', 'LH-G074A', 'LH-SD102W'],
+    },
+    {
+      id: 4,
+      title: 'Horizon Business Pavilion & Facade',
+      location: 'Bengaluru, India',
+      category: 'commercial',
+      categoryLabel: 'Corporate Headquarters',
+      lampType: 'Outdoor & Facade',
+      lampIcon: '🌿',
+      year: '2025',
+      image: '/categories/outdoor-light.jpg',
+      description: 'IP65 dark-sky compliant bi-directional facade grazers grazing concrete geometric louvers with zero upward light pollution.',
+      fixtures: ['LH-OD501', 'LH-TR48'],
+    },
+    {
+      id: 5,
+      title: 'Solitaire Sky-Villa Grand Atrium',
+      location: 'Gurugram, India',
+      category: 'residential',
+      categoryLabel: 'Duplex Penthouse',
+      lampType: 'Double Height',
+      lampIcon: '🏛️',
+      year: '2025',
+      image: '/categories/double-height.jpg',
+      description: 'Monumental multi-tier cascading drop installation engineered specifically for a 24ft double-height living foyer and floating spiral staircase.',
+      fixtures: ['LH-DH901', 'LH-2036'],
+    },
+    {
+      id: 6,
+      title: 'The Amanora Architectural Residence',
+      location: 'New Delhi, India',
+      category: 'residential',
+      categoryLabel: 'Private Estate',
+      lampType: 'Magnetic Track',
+      lampIcon: '⚡',
+      year: '2025',
+      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+      description: 'A 14,000 sq ft private estate illuminated by recessed 48V magnetic tracks, brushed gold acrylic wall sconces, and seamless perimeter coves.',
+      fixtures: ['LH-TR48', 'LH-6031W'],
+    },
+    {
+      id: 7,
+      title: 'Solitaire Private Library & Salon',
+      location: 'Kolkata, India',
+      category: 'residential',
+      categoryLabel: 'Executive Residence',
+      lampType: 'Table & Floor',
+      lampIcon: '🪔',
+      year: '2024',
+      image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1200&q=80',
+      description: 'Sculptural solid Italian marble base task lamps and arched brass floor luminaires installed throughout master dressing suites and private study.',
+      fixtures: ['LH-T2309', 'LH-B6002W'],
+    },
+    {
+      id: 8,
+      title: 'Viceroy Waterfront Executive Lounge',
+      location: 'Goa, India',
+      category: 'hospitality',
+      categoryLabel: 'Luxury Resort',
+      lampType: 'Dining Luminaire',
+      lampIcon: '🍽️',
+      year: '2024',
+      image: 'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=1200&q=80',
+      description: 'Minimalist brushed bronze linear dining fixture with precision optical louvers and touch-dimmable warm CCT overlooking coastal waters.',
+      fixtures: ['LH-DL204', 'LH-OD501'],
     },
   ];
 
@@ -89,7 +129,7 @@ export const Projects = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-white/10 mb-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <span className="text-xs uppercase tracking-luxury text-[#c5a880] font-semibold block mb-2">
+            <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-2">
               Installed Excellence
             </span>
             <h1 className="text-3xl sm:text-5xl font-serif-luxury font-bold text-white tracking-tight">
@@ -112,7 +152,7 @@ export const Projects = () => {
                 onClick={() => setActiveFilter(tab.id)}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-luxury transition-all ${
                   activeFilter === tab.id
-                    ? 'bg-[#c5a880] text-black shadow'
+                    ? 'bg-[#CC1F1F] text-black shadow'
                     : 'text-neutral-400 hover:text-white'
                 }`}
               >
@@ -134,7 +174,7 @@ export const Projects = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4 }}
-                className="group rounded-2xl overflow-hidden bg-[#14171d] border border-white/10 hover:border-[#c5a880]/50 transition-all duration-500 shadow-xl flex flex-col justify-between"
+                className="group rounded-2xl overflow-hidden bg-[#14171d] border border-white/10 hover:border-[#CC1F1F]/50 transition-all duration-500 shadow-xl flex flex-col justify-between"
               >
                 <div>
                   <div className="relative aspect-[16/10] overflow-hidden">
@@ -145,22 +185,25 @@ export const Projects = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#14171d] via-[#14171d]/20 to-transparent" />
                     <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-                      <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10 font-semibold">
+                      <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10 font-semibold">
                         {project.categoryLabel}
                       </span>
-                      <span className="text-[10px] font-mono text-neutral-300 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
-                        {project.year}
-                      </span>
+                      {project.lampType && (
+                        <span className="text-[10.5px] text-white bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15 font-medium flex items-center gap-1 shadow-md">
+                          <span>{project.lampIcon}</span>
+                          <span>{project.lampType}</span>
+                        </span>
+                      )}
                     </div>
                   </div>
 
                   <div className="p-6 space-y-3">
                     <div className="flex items-center gap-1.5 text-xs text-neutral-400">
-                      <MapPin className="w-3.5 h-3.5 text-[#c5a880]" />
+                      <MapPin className="w-3.5 h-3.5 text-[#CC1F1F]" />
                       <span>{project.location}</span>
                     </div>
 
-                    <h3 className="font-serif-luxury text-xl text-white font-bold group-hover:text-[#c5a880] transition-colors">
+                    <h3 className="font-serif-luxury text-xl text-white font-bold group-hover:text-[#CC1F1F] transition-colors">
                       {project.title}
                     </h3>
 
@@ -178,7 +221,7 @@ export const Projects = () => {
                     {project.fixtures.map((sku) => (
                       <span
                         key={sku}
-                        className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-white/5 text-[#c5a880] border border-white/5"
+                        className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-white/5 text-[#CC1F1F] border border-white/5"
                       >
                         {sku}
                       </span>
@@ -187,7 +230,7 @@ export const Projects = () => {
 
                   <Link
                     to="/catalog"
-                    className="text-xs font-semibold uppercase tracking-luxury text-[#c5a880] hover:text-white flex items-center gap-1 transition-colors"
+                    className="text-xs font-semibold uppercase tracking-luxury text-[#CC1F1F] hover:text-white flex items-center gap-1 transition-colors"
                   >
                     <span>View Fixtures</span>
                     <ArrowRight className="w-3 h-3" />

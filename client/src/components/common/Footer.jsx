@@ -31,7 +31,7 @@ export const Footer = () => {
               <span className="font-serif-luxury text-xl text-white font-semibold block tracking-wider">
                 {settings.companyName}
               </span>
-              <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-medium block">
+              <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] font-medium block">
                 {settings.tagline || 'Decorative Solutions'}
               </span>
             </Link>
@@ -55,31 +55,31 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <Link to="/catalog" className="hover:text-[#c5a880] transition-colors flex items-center gap-1 group">
+                <Link to="/catalog" className="hover:text-[#CC1F1F] transition-colors flex items-center gap-1 group">
                   <span>Product Catalog</span>
                   <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link to="/categories" className="hover:text-[#c5a880] transition-colors flex items-center gap-1 group">
+                <Link to="/categories" className="hover:text-[#CC1F1F] transition-colors flex items-center gap-1 group">
                   <span>Categories Overview</span>
                   <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link to="/projects" className="hover:text-[#c5a880] transition-colors flex items-center gap-1 group">
+                <Link to="/projects" className="hover:text-[#CC1F1F] transition-colors flex items-center gap-1 group">
                   <span>Architectural Projects</span>
                   <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-[#c5a880] transition-colors flex items-center gap-1 group">
+                <Link to="/about" className="hover:text-[#CC1F1F] transition-colors flex items-center gap-1 group">
                   <span>Company Profile</span>
                   <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:text-[#c5a880] transition-colors flex items-center gap-1 group">
+                <Link to="/contact" className="hover:text-[#CC1F1F] transition-colors flex items-center gap-1 group">
                   <span>Contact & Showroom</span>
                   <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
@@ -103,33 +103,38 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <Link to="/category/wall-light" className="hover:text-[#c5a880] transition-colors">
-                  Architectural Wall Lamps
+                <Link to="/category/wall-lamp" className="hover:text-[#CC1F1F] transition-colors">
+                  Wall Lamp (LED & E27)
                 </Link>
               </li>
               <li>
-                <Link to="/category/hanging-lights" className="hover:text-[#c5a880] transition-colors">
-                  Pendant & Cluster Chandeliers
+                <Link to="/category/pendant-lamp" className="hover:text-[#CC1F1F] transition-colors">
+                  Pendant Lamp (Hanging Lights)
                 </Link>
               </li>
               <li>
-                <Link to="/category/table-lamp" className="hover:text-[#c5a880] transition-colors">
-                  Sculptural Table Luminaires
+                <Link to="/category/chandelier" className="hover:text-[#CC1F1F] transition-colors">
+                  Chandelier Collection
                 </Link>
               </li>
               <li>
-                <Link to="/category/italian-lights" className="hover:text-[#c5a880] transition-colors">
-                  Artisanal Italian Glass
+                <Link to="/category/double-height" className="hover:text-[#CC1F1F] transition-colors">
+                  Double Height Chandeliers
                 </Link>
               </li>
               <li>
-                <Link to="/category/track-lights" className="hover:text-[#c5a880] transition-colors">
-                  48V Magnetic Track Systems
+                <Link to="/category/dining-table-lamp" className="hover:text-[#CC1F1F] transition-colors">
+                  Dining Table Lamps
                 </Link>
               </li>
               <li>
-                <Link to="/category/outdoor-lighting" className="hover:text-[#c5a880] transition-colors">
-                  IP65 Facade Grazers
+                <Link to="/category/outdoor-light" className="hover:text-[#CC1F1F] transition-colors">
+                  Outdoor Lights & Gate Lamps
+                </Link>
+              </li>
+              <li>
+                <Link to="/category/spare-part" className="hover:text-[#CC1F1F] transition-colors">
+                  Spare Parts & Filament Bulbs
                 </Link>
               </li>
             </ul>
@@ -143,13 +148,13 @@ export const Footer = () => {
             <div className="space-y-3 text-xs">
               {settings.address && (
                 <div className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-[#c5a880] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#CC1F1F] shrink-0 mt-0.5" />
                   <span>{settings.address}</span>
                 </div>
               )}
               {settings.phone && (
                 <div className="flex items-center gap-2.5">
-                  <Phone className="w-4 h-4 text-[#c5a880] shrink-0" />
+                  <Phone className="w-4 h-4 text-[#CC1F1F] shrink-0" />
                   <a href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`} className="hover:text-white transition-colors">
                     {settings.phone}
                   </a>
@@ -157,7 +162,7 @@ export const Footer = () => {
               )}
               {settings.email && (
                 <div className="flex items-center gap-2.5">
-                  <Mail className="w-4 h-4 text-[#c5a880] shrink-0" />
+                  <Mail className="w-4 h-4 text-[#CC1F1F] shrink-0" />
                   <a href={`mailto:${settings.email}`} className="hover:text-white transition-colors">
                     {settings.email}
                   </a>
@@ -185,7 +190,7 @@ export const Footer = () => {
                   href={settings.socialLinks.instagram}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#c5a880]/20 hover:text-[#c5a880] border border-white/10 flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#CC1F1F]/20 hover:text-[#CC1F1F] border border-white/10 flex items-center justify-center transition-colors"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-4 h-4" />
@@ -196,7 +201,7 @@ export const Footer = () => {
                   href={settings.socialLinks.facebook}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#c5a880]/20 hover:text-[#c5a880] border border-white/10 flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#CC1F1F]/20 hover:text-[#CC1F1F] border border-white/10 flex items-center justify-center transition-colors"
                   aria-label="Facebook"
                 >
                   <Facebook className="w-4 h-4" />
@@ -207,7 +212,7 @@ export const Footer = () => {
                   href={settings.socialLinks.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#c5a880]/20 hover:text-[#c5a880] border border-white/10 flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#CC1F1F]/20 hover:text-[#CC1F1F] border border-white/10 flex items-center justify-center transition-colors"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-4 h-4" />
@@ -226,7 +231,7 @@ export const Footer = () => {
             <span className="text-[11px] text-neutral-600">Architectural Luminaire Manufacturer</span>
             <button
               onClick={scrollToTop}
-              className="text-[#c5a880] hover:text-white transition-colors text-xs uppercase tracking-luxury flex items-center gap-1"
+              className="text-[#CC1F1F] hover:text-white transition-colors text-xs uppercase tracking-luxury flex items-center gap-1"
             >
               Back to top ↑
             </button>

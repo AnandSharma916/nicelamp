@@ -16,8 +16,10 @@ import { productService } from '../../services/api';
 import { ProductCard } from '../../components/catalog/ProductCard';
 import { InquiryModal } from '../../components/common/InquiryModal';
 import { useToast } from '../../context/ToastContext';
+import { useSettings } from '../../context/SettingsContext';
 
 export const ProductDetail = () => {
+  const { settings } = useSettings();
   const { slug } = useParams();
   const { addToast } = useToast();
 
@@ -36,7 +38,7 @@ export const ProductDetail = () => {
           setProduct(data.product);
           setRelatedProducts(data.relatedProducts || []);
           setSelectedImageIndex(0);
-          document.title = `${data.product.name} (${data.product.sku}) | LightHut`;
+          document.title = `${data.product.name} (${data.product.sku}) | ${settings.companyName || 'LightHut'}`;
         }
       } catch (err) {
         console.error('Failed to fetch product details:', err);
@@ -58,7 +60,7 @@ export const ProductDetail = () => {
   if (loading) {
     return (
       <div className="min-h-screen pt-32 pb-20 flex items-center justify-center bg-[#090a0d]">
-        <div className="w-10 h-10 rounded-full border-2 border-[#c5a880] border-t-transparent animate-spin" />
+        <div className="w-10 h-10 rounded-full border-2 border-[#CC1F1F] border-t-transparent animate-spin" />
       </div>
     );
   }
@@ -129,7 +131,7 @@ export const ProductDetail = () => {
             </>
           )}
           <ChevronRight className="w-3.5 h-3.5 text-neutral-600" />
-          <span className="text-[#c5a880] truncate font-medium">{product.name}</span>
+          <span className="text-[#CC1F1F] truncate font-medium">{product.name}</span>
         </nav>
       </div>
 
@@ -145,11 +147,11 @@ export const ProductDetail = () => {
                 className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
-                <span className="text-xs font-mono font-semibold px-3 py-1 rounded-lg bg-black/80 backdrop-blur-md text-[#c5a880] border border-white/10 shadow-lg">
+                <span className="text-xs font-mono font-semibold px-3 py-1 rounded-lg bg-black/80 backdrop-blur-md text-[#CC1F1F] border border-white/10 shadow-lg">
                   {product.sku}
                 </span>
                 {product.isFeatured && (
-                  <span className="text-xs font-semibold uppercase tracking-luxury px-2.5 py-1 rounded-lg bg-[#c5a880] text-black shadow flex items-center gap-1">
+                  <span className="text-xs font-semibold uppercase tracking-luxury px-2.5 py-1 rounded-lg bg-[#CC1F1F] text-black shadow flex items-center gap-1">
                     <Sparkles className="w-3 h-3" /> Featured
                   </span>
                 )}
@@ -158,7 +160,7 @@ export const ProductDetail = () => {
               <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2">
                 <button
                   onClick={handleShare}
-                  className="p-2.5 rounded-xl bg-black/70 backdrop-blur-md text-white hover:text-[#c5a880] border border-white/10 transition-colors shadow-lg"
+                  className="p-2.5 rounded-xl bg-black/70 backdrop-blur-md text-white hover:text-[#CC1F1F] border border-white/10 transition-colors shadow-lg"
                   title="Copy share link"
                 >
                   <Share2 className="w-4 h-4" />
@@ -175,7 +177,7 @@ export const ProductDetail = () => {
                     onClick={() => setSelectedImageIndex(index)}
                     className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 shrink-0 transition-all ${
                       selectedImageIndex === index
-                        ? 'border-[#c5a880] shadow-lg scale-105'
+                        ? 'border-[#CC1F1F] shadow-lg scale-105'
                         : 'border-white/10 hover:border-white/30 opacity-70 hover:opacity-100'
                     }`}
                   >
@@ -190,7 +192,7 @@ export const ProductDetail = () => {
           <div className="lg:col-span-5 space-y-6">
             <div>
               {product.category?.name && (
-                <span className="text-xs uppercase tracking-luxury text-[#c5a880] font-semibold block mb-2">
+                <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-2">
                   {product.category.name}
                 </span>
               )}
@@ -270,7 +272,7 @@ export const ProductDetail = () => {
           <div className="mt-24 pt-12 border-t border-white/10">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <span className="text-xs uppercase tracking-luxury text-[#c5a880] font-semibold block mb-1">
+                <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-1">
                   Coordinated Fixtures
                 </span>
                 <h2 className="text-2xl font-serif-luxury text-white font-bold">
@@ -279,7 +281,7 @@ export const ProductDetail = () => {
               </div>
               <Link
                 to={`/category/${product.category?.slug}`}
-                className="text-xs uppercase tracking-luxury text-[#c5a880] hover:text-white font-semibold transition-colors hidden sm:block"
+                className="text-xs uppercase tracking-luxury text-[#CC1F1F] hover:text-white font-semibold transition-colors hidden sm:block"
               >
                 View Category →
               </Link>

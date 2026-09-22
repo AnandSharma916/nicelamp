@@ -103,7 +103,7 @@ export const InquiryList = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-semibold block mb-1">
+          <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-1">
             CRM & Client Inquiries
           </span>
           <h1 className="text-2xl font-serif-luxury font-bold text-white tracking-wide">
@@ -124,7 +124,7 @@ export const InquiryList = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search inquiries by client name, email, or message..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#c5a880] text-xs transition-colors"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#CC1F1F] text-xs transition-colors"
           />
         </div>
 
@@ -135,7 +135,7 @@ export const InquiryList = () => {
               onClick={() => setStatusFilter(st)}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-luxury transition-all ${
                 statusFilter === st
-                  ? 'bg-[#c5a880] text-black font-bold shadow-md shadow-[#c5a880]/10'
+                  ? 'bg-[#CC1F1F] text-black font-bold shadow-md shadow-[#CC1F1F]/10'
                   : 'bg-white/5 text-neutral-400 hover:text-white hover:bg-white/10'
               }`}
             >
@@ -192,7 +192,7 @@ export const InquiryList = () => {
 
                     <td className="py-3.5 px-4 font-mono text-[11px]">
                       <div className="flex items-center gap-1 text-neutral-300">
-                        <Mail className="w-3 h-3 text-[#c5a880]" />
+                        <Mail className="w-3 h-3 text-[#CC1F1F]" />
                         <span>{inq.email}</span>
                       </div>
                       {inq.phone && (
@@ -204,7 +204,7 @@ export const InquiryList = () => {
                     </td>
 
                     <td className="py-3.5 px-4 max-w-xs">
-                      <span className="text-xs font-medium text-[#c5a880] block">
+                      <span className="text-xs font-medium text-[#CC1F1F] block">
                         {inq.productTitle || inq.projectType || 'General Consultation'}
                       </span>
                       <p className="text-[11px] text-neutral-400 truncate mt-0.5">
@@ -266,7 +266,7 @@ export const InquiryList = () => {
             {/* Modal Header */}
             <div className="flex items-center justify-between border-b border-white/10 p-6 shrink-0 bg-[#14171d]">
               <div>
-                <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-semibold block">
+                <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] font-semibold block">
                   Inquiry Details
                 </span>
                 <h3 className="text-xl font-serif-luxury font-bold text-white">
@@ -292,7 +292,7 @@ export const InquiryList = () => {
                   </span>
                   <a
                     href={`mailto:${selectedInquiry.email}`}
-                    className="text-[#c5a880] hover:underline"
+                    className="text-[#CC1F1F] hover:underline"
                   >
                     {selectedInquiry.email}
                   </a>
@@ -303,7 +303,7 @@ export const InquiryList = () => {
                   </span>
                   <a
                     href={`tel:${selectedInquiry.phone}`}
-                    className="text-white hover:text-[#c5a880]"
+                    className="text-white hover:text-[#CC1F1F]"
                   >
                     {selectedInquiry.phone || 'Not provided'}
                   </a>

@@ -165,7 +165,7 @@ export const CategoryManagement = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-semibold block mb-1">
+          <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-1">
             Taxonomy & Navigation
           </span>
           <h1 className="text-2xl font-serif-luxury font-bold text-white tracking-wide">
@@ -188,7 +188,7 @@ export const CategoryManagement = () => {
       {/* Category Grid Cards */}
       {loading ? (
         <div className="py-20 text-center text-xs text-neutral-500">
-          <Loader2 className="w-8 h-8 text-[#c5a880] animate-spin mx-auto mb-2" />
+          <Loader2 className="w-8 h-8 text-[#CC1F1F] animate-spin mx-auto mb-2" />
           <span>Loading Category Taxonomy...</span>
         </div>
       ) : categories.length === 0 ? (
@@ -261,7 +261,7 @@ export const CategoryManagement = () => {
                   rel="noreferrer"
                   className="text-[11px] text-neutral-400 hover:text-white flex items-center gap-1 transition-colors"
                 >
-                  <ExternalLink className="w-3 h-3 text-[#c5a880]" />
+                  <ExternalLink className="w-3 h-3 text-[#CC1F1F]" />
                   <span>View Public Page</span>
                 </a>
 
@@ -302,7 +302,7 @@ export const CategoryManagement = () => {
             {/* Modal Header */}
             <div className="p-5 sm:p-6 border-b border-white/10 flex items-center justify-between shrink-0 bg-[#14171d]">
               <div>
-                <span className="text-[10px] uppercase tracking-luxury text-[#c5a880] font-semibold block">
+                <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] font-semibold block">
                   {editingCategory ? 'Update Collection' : 'Create Collection'}
                 </span>
                 <h3 className="text-lg font-serif-luxury font-bold text-white">
@@ -333,7 +333,7 @@ export const CategoryManagement = () => {
                     value={formData.name}
                     onChange={handleNameChange}
                     placeholder="e.g. Wall Light, Italian Lights"
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#c5a880]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#CC1F1F]"
                   />
                 </div>
 
@@ -346,7 +346,7 @@ export const CategoryManagement = () => {
                     value={formData.slug}
                     onChange={(e) => setFormData((p) => ({ ...p, slug: e.target.value }))}
                     placeholder="wall-light"
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-[#c5a880]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-[#CC1F1F]"
                   />
                 </div>
 
@@ -359,7 +359,7 @@ export const CategoryManagement = () => {
                     value={formData.description}
                     onChange={(e) => setFormData((p) => ({ ...p, description: e.target.value }))}
                     placeholder="Summary of luminaires and design aesthetic in this category..."
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#c5a880]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#CC1F1F]"
                   />
                 </div>
 
@@ -471,7 +471,7 @@ export const CategoryManagement = () => {
                       type="checkbox"
                       checked={formData.isActive}
                       onChange={(e) => setFormData((p) => ({ ...p, isActive: e.target.checked }))}
-                      className="w-4 h-4 rounded text-[#c5a880] focus:ring-[#c5a880] bg-[#090a0d] border-white/20 cursor-pointer"
+                      className="w-4 h-4 rounded text-[#CC1F1F] focus:ring-[#CC1F1F] bg-[#090a0d] border-white/20 cursor-pointer"
                     />
                     <span className="text-xs text-neutral-300 select-none">
                       Display category in navigation menu & public directory

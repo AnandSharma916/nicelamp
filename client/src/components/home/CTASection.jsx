@@ -20,7 +20,7 @@ export const CTASection = ({ section }) => {
     <>
       <section className="py-24 bg-[#0d0f14] relative overflow-hidden">
         {/* Ambient Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#c5a880]/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#CC1F1F]/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -28,11 +28,11 @@ export const CTASection = ({ section }) => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-3xl bg-gradient-to-br from-[#181b22] to-[#111318] border border-[#c5a880]/30 p-8 sm:p-14 shadow-2xl text-center"
+            className="rounded-3xl bg-gradient-to-br from-[#181b22] to-[#111318] border border-[#CC1F1F]/30 p-8 sm:p-14 shadow-2xl text-center"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#c5a880]/10 border border-[#c5a880]/20 mb-6">
-              <Sparkles className="w-3.5 h-3.5 text-[#c5a880]" />
-              <span className="text-xs uppercase tracking-luxury text-[#c5a880] font-semibold">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#CC1F1F]/10 border border-[#CC1F1F]/20 mb-6">
+              <Sparkles className="w-3.5 h-3.5 text-[#CC1F1F]" />
+              <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold">
                 {subtitle}
               </span>
             </div>
@@ -66,13 +66,13 @@ export const CTASection = ({ section }) => {
             {/* Specifier Assurance Points */}
             <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs text-neutral-400">
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#c5a880]" /> 48-Hour Technical Quotes
+                <CheckCircle2 className="w-4 h-4 text-[#CC1F1F]" /> 48-Hour Technical Quotes
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#c5a880]" /> Photometric & IES Data
+                <CheckCircle2 className="w-4 h-4 text-[#CC1F1F]" /> Photometric & IES Data
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#c5a880]" /> Bespoke Custom Finishes
+                <CheckCircle2 className="w-4 h-4 text-[#CC1F1F]" /> Bespoke Custom Finishes
               </span>
             </div>
           </motion.div>

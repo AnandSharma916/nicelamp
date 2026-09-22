@@ -4,7 +4,7 @@ const siteSettingsSchema = new mongoose.Schema(
   {
     companyName: {
       type: String,
-      default: 'LightHut Decorative Solutions',
+      default: 'LightHut',
     },
     tagline: {
       type: String,

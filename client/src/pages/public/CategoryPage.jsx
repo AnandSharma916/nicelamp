@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Layers, Lightbulb } from 'lucide-react';
 import { categoryService, productService } from '../../services/api';
 import { ProductCard } from '../../components/catalog/ProductCard';
+import { useSettings } from '../../context/SettingsContext';
 
 export const CategoryPage = () => {
+  const { settings } = useSettings();
   const { slug } = useParams();
   const [category, setCategory] = useState(null);
   const [products, setProducts] = useState([]);
@@ -22,7 +24,7 @@ export const CategoryPage = () => {
 
         if (catData.success && catData.category) {
           setCategory(catData.category);
-          document.title = `${catData.category.name} | LightHut Catalog`;
+          document.title = `${catData.category.name} | ${settings.companyName || 'LightHut'}`;
         }
         if (prodData.success) {
           setProducts(prodData.products || []);
@@ -40,7 +42,7 @@ export const CategoryPage = () => {
   if (loading) {
     return (
       <div className="min-h-screen pt-32 pb-20 flex items-center justify-center bg-[#090a0d]">
-        <div className="w-10 h-10 rounded-full border-2 border-[#c5a880] border-t-transparent animate-spin" />
+        <div className="w-10 h-10 rounded-full border-2 border-[#CC1F1F] border-t-transparent animate-spin" />
       </div>
     );
   }
@@ -49,7 +51,7 @@ export const CategoryPage = () => {
     return (
       <div className="min-h-screen pt-32 pb-20 bg-[#090a0d] flex items-center justify-center text-center px-4">
         <div className="max-w-md">
-          <Layers className="w-12 h-12 text-[#c5a880] mx-auto mb-4" />
+          <Layers className="w-12 h-12 text-[#CC1F1F] mx-auto mb-4" />
           <h2 className="text-2xl font-serif-luxury text-white font-bold mb-2">Category Not Found</h2>
           <p className="text-sm text-neutral-400 mb-6">
             The lighting category you requested does not exist or has been modified.
@@ -83,12 +85,12 @@ export const CategoryPage = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <Link
             to="/catalog"
-            className="inline-flex items-center gap-1.5 text-xs uppercase tracking-luxury text-[#c5a880] hover:text-white transition-colors mb-6"
+            className="inline-flex items-center gap-1.5 text-xs uppercase tracking-luxury text-[#CC1F1F] hover:text-white transition-colors mb-6"
           >
             <ArrowLeft className="w-3.5 h-3.5" /> Back to All Categories
           </Link>
 
-          <span className="text-xs uppercase tracking-luxury text-[#c5a880] font-semibold block mb-2">
+          <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-2">
             Collection Overview
           </span>
           <h1 className="text-3xl sm:text-5xl font-serif-luxury font-bold text-white tracking-tight">
@@ -101,7 +103,7 @@ export const CategoryPage = () => {
           )}
 
           <div className="mt-6 flex items-center gap-3">
-            <span className="text-xs font-mono text-[#c5a880] bg-[#c5a880]/10 border border-[#c5a880]/20 px-3 py-1 rounded-md">
+            <span className="text-xs font-mono text-[#CC1F1F] bg-[#CC1F1F]/10 border border-[#CC1F1F]/20 px-3 py-1 rounded-md">
               {products.length} {products.length === 1 ? 'Design' : 'Designs Available'}
             </span>
           </div>

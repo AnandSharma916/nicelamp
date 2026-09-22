@@ -20,20 +20,20 @@ export default {
           300: '#cbd5e1',
           200: '#e2e8f0',
           100: '#f1f5f9',
-          50: '#f8fafc',
-          gold: {
-            DEFAULT: '#c5a880',
-            light: '#d6be9f',
-            dark: '#a88960',
-            hover: '#b8986e',
-            subtle: 'rgba(197, 168, 128, 0.12)'
+          50:  '#f8fafc',
+          red: {
+            DEFAULT: '#CC1F1F',
+            light:   '#E53E3E',
+            dark:    '#9B1515',
+            hover:   '#B91C1C',
+            subtle:  'rgba(204, 31, 31, 0.12)'
           }
         }
       },
       fontFamily: {
         serif: ['"Cinzel"', '"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace']
+        sans:  ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+        mono:  ['"JetBrains Mono"', 'monospace']
       },
       letterSpacing: {
         'luxury': '0.2em',

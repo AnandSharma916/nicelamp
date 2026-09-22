@@ -39,13 +39,13 @@ export const ToastProvider = ({ children }) => {
                   ? 'bg-red-950/90 border-red-800/60 text-red-100'
                   : toast.type === 'info'
                   ? 'bg-sky-950/90 border-sky-800/60 text-sky-100'
-                  : 'bg-[#181b22]/95 border-[#c5a880]/40 text-neutral-100'
+                  : 'bg-[#181b22]/95 border-[#CC1F1F]/40 text-neutral-100'
               }`}
             >
               <div className="shrink-0 mt-0.5">
                 {toast.type === 'error' && <AlertCircle className="w-5 h-5 text-red-400" />}
                 {toast.type === 'info' && <Info className="w-5 h-5 text-sky-400" />}
-                {toast.type === 'success' && <CheckCircle2 className="w-5 h-5 text-[#c5a880]" />}
+                {toast.type === 'success' && <CheckCircle2 className="w-5 h-5 text-[#CC1F1F]" />}
               </div>
               <p className="text-sm font-medium flex-1 leading-snug">{toast.message}</p>
               <button

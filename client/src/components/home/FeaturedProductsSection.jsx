@@ -39,7 +39,7 @@ export const FeaturedProductsSection = ({ section }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="max-w-2xl">
-            <span className="text-xs uppercase tracking-luxury text-[#c5a880] font-semibold block mb-2">
+            <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-2">
               {subtitle}
             </span>
             <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-white tracking-tight">
@@ -51,7 +51,7 @@ export const FeaturedProductsSection = ({ section }) => {
           </div>
           <Link
             to={btnLink}
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury text-[#c5a880] hover:text-white font-semibold group shrink-0 transition-colors"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury text-[#CC1F1F] hover:text-white font-semibold group shrink-0 transition-colors"
           >
             <span>{btnText}</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

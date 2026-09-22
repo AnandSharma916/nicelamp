@@ -83,8 +83,8 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
 
             {submitted ? (
               <div className="p-6 md:p-8 py-12 text-center overflow-y-auto modal-scrollbar">
-                <div className="w-16 h-16 rounded-full bg-[#c5a880]/10 border border-[#c5a880]/30 flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-8 h-8 text-[#c5a880]" />
+                <div className="w-16 h-16 rounded-full bg-[#CC1F1F]/10 border border-[#CC1F1F]/30 flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-[#CC1F1F]" />
                 </div>
                 <h3 className="text-2xl font-serif-luxury text-white mb-2">Inquiry Received</h3>
                 <p className="text-sm text-neutral-400 max-w-md mx-auto mb-6">
@@ -100,7 +100,7 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
             ) : (
               <div className="p-6 md:p-8 overflow-y-auto modal-scrollbar">
                 <div className="mb-6">
-                  <span className="text-xs uppercase tracking-luxury text-[#c5a880] font-semibold">
+                  <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold">
                     Product & Technical Enquiry
                   </span>
                   <h3 className="text-2xl font-serif-luxury text-white mt-1">
@@ -108,7 +108,7 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
                   </h3>
                   {product && (
                     <div className="flex items-center gap-2 mt-2">
-                      <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-[#c5a880]/10 text-[#c5a880] border border-[#c5a880]/20">
+                      <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-[#CC1F1F]/10 text-[#CC1F1F] border border-[#CC1F1F]/20">
                         SKU: {product.sku}
                       </span>
                       {product.category?.name && (
@@ -130,7 +130,7 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="John Doe"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
                       />
                     </div>
                     <div>
@@ -143,7 +143,7 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="john@example.com"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
                       />
                     </div>
                   </div>
@@ -158,7 +158,7 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+91 98000 00000"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
                       />
                     </div>
                     <div>
@@ -170,7 +170,7 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                         placeholder="Studio Design Ltd."
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
                       />
                     </div>
                   </div>
@@ -184,7 +184,7 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#c5a880] text-sm resize-none"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm resize-none"
                     />
                   </div>
 

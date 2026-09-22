@@ -23,7 +23,11 @@ export const connectDB = async () => {
     if (process.env.NODE_ENV !== 'production') {
       console.log('[DB] Launching embedded MongoDB instance for development & testing...');
       const { MongoMemoryServer } = await import('mongodb-memory-server');
-      memoryServer = await MongoMemoryServer.create();
+      memoryServer = await MongoMemoryServer.create({
+        instance: {
+          launchTimeout: 120000,
+        },
+      });
       const memUri = memoryServer.getUri();
       const conn = await mongoose.connect(memUri);
       console.log(`[DB] Embedded MongoDB connected successfully at ${memUri}`);

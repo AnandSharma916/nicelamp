@@ -78,7 +78,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
           >
             {/* Search Input Bar */}
             <div className="flex items-center px-6 py-4 border-b border-white/10 bg-[#181b22]">
-              <Search className="w-5 h-5 text-[#c5a880] mr-3 shrink-0" />
+              <Search className="w-5 h-5 text-[#CC1F1F] mr-3 shrink-0" />
               <input
                 ref={inputRef}
                 type="text"
@@ -94,7 +94,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                   }
                 }}
               />
-              {loading && <Loader2 className="w-5 h-5 text-[#c5a880] animate-spin mr-3 shrink-0" />}
+              {loading && <Loader2 className="w-5 h-5 text-[#CC1F1F] animate-spin mr-3 shrink-0" />}
               <button
                 onClick={onClose}
                 className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-white/5 transition-colors"
@@ -107,7 +107,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
             <div className="max-h-[60vh] overflow-y-auto p-4 space-y-2 modal-scrollbar">
               {results.length > 0 ? (
                 <div>
-                  <div className="text-xs uppercase tracking-luxury text-[#c5a880] px-3 py-2 font-semibold">
+                  <div className="text-xs uppercase tracking-luxury text-[#CC1F1F] px-3 py-2 font-semibold">
                     Matching Luminaires ({results.length})
                   </div>
                   <div className="divide-y divide-white/5">
@@ -126,7 +126,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-mono font-medium text-[#c5a880] bg-[#c5a880]/10 px-2 py-0.5 rounded">
+                            <span className="text-xs font-mono font-medium text-[#CC1F1F] bg-[#CC1F1F]/10 px-2 py-0.5 rounded">
                               {product.sku}
                             </span>
                             {product.category?.name && (
@@ -135,7 +135,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                               </span>
                             )}
                           </div>
-                          <h4 className="text-sm font-medium text-white truncate mt-1 group-hover:text-[#c5a880] transition-colors">
+                          <h4 className="text-sm font-medium text-white truncate mt-1 group-hover:text-[#CC1F1F] transition-colors">
                             {product.name}
                           </h4>
                         </div>
@@ -147,7 +147,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                   <div className="pt-3 mt-2 border-t border-white/5 px-2">
                     <button
                       onClick={handleViewAll}
-                      className="w-full py-2.5 text-center text-xs font-semibold uppercase tracking-luxury text-[#c5a880] hover:text-white transition-colors flex items-center justify-center gap-2"
+                      className="w-full py-2.5 text-center text-xs font-semibold uppercase tracking-luxury text-[#CC1F1F] hover:text-white transition-colors flex items-center justify-center gap-2"
                     >
                       View all results in catalog <ArrowRight className="w-3.5 h-3.5" />
                     </button>
@@ -163,7 +163,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                 <div className="py-8 px-4 text-center">
                   <p className="text-xs uppercase tracking-luxury text-neutral-500 font-semibold mb-3">Popular Searches</p>
                   <div className="flex flex-wrap justify-center gap-2">
-                    {['Wall Light', 'Italian Lights', 'LH-6031W', 'Gold Wall Lamp', 'Pendant', 'IP65 Facade', 'Brass Table Lamp'].map((tag) => (
+                    {['Wall Lamp', 'LED Chandelier', 'Pendant Lamp', 'Double Height', 'Outdoor Light', 'Dining Table Lamp', 'Table Lamp', 'Floor Lamp', 'Filament Bulb', 'Spare Driver'].map((tag) => (
                       <button
                         key={tag}
                         onClick={() => setSearchTerm(tag)}
