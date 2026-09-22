@@ -88,9 +88,9 @@ export const Dashboard = () => {
       subtitle: `${stats.featuredCount} Featured in Showroom`,
       icon: Package,
       path: '/admin/products',
-      color: 'from-[#CC1F1F]/20 to-[#CC1F1F]/5',
-      borderColor: 'border-[#CC1F1F]/30',
-      iconColor: 'text-[#CC1F1F]',
+      color: 'from-[#D4AF37]/20 to-[#D4AF37]/5',
+      borderColor: 'border-[#D4AF37]/30',
+      iconColor: 'text-[#D4AF37]',
     },
     {
       title: 'Catalog Categories',
@@ -130,14 +130,14 @@ export const Dashboard = () => {
       {/* Welcome & Top Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-[#14171d] to-[#181b22] p-6 lg:p-8 rounded-2xl border border-white/10 shadow-xl">
         <div>
-          <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-1">
+          <span className="text-[10px] uppercase tracking-luxury text-[#D4AF37] font-semibold block mb-1">
             Executive Overview
           </span>
           <h1 className="text-2xl lg:text-3xl font-serif-luxury font-bold text-white tracking-wide">
-            {settings.companyName || 'LightHut'} Management
+            {settings.companyName || 'NiceLamp'} Management
           </h1>
           <p className="text-xs text-neutral-400 mt-1 max-w-xl">
-            Control center for luxury luminaires, architectural collections, homepage displays, and client project inquiries.
+            Control center for designer lamps, lighting collections, homepage displays, and client inquiries.
           </p>
         </div>
 
@@ -209,7 +209,7 @@ export const Dashboard = () => {
             </div>
             <Link
               to="/admin/products"
-              className="text-xs text-[#CC1F1F] hover:underline font-semibold uppercase tracking-luxury flex items-center gap-1"
+              className="text-xs text-[#D4AF37] hover:underline font-semibold uppercase tracking-luxury flex items-center gap-1"
             >
               <span>View All</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -259,7 +259,7 @@ export const Dashboard = () => {
                       <div className="min-w-0">
                         <Link
                           to={`/admin/products/edit/${prod._id}`}
-                          className="text-sm font-semibold text-white hover:text-[#CC1F1F] transition-colors truncate block"
+                          className="text-sm font-semibold text-white hover:text-[#D4AF37] transition-colors truncate block"
                         >
                           {prod.name || prod.title}
                         </Link>
@@ -270,7 +270,7 @@ export const Dashboard = () => {
                           {prod.price > 0 && (
                             <>
                               <span>•</span>
-                              <span className="text-[#CC1F1F] font-mono">₹{prod.price.toLocaleString()}</span>
+                              <span className="text-[#D4AF37] font-mono">₹{prod.price.toLocaleString()}</span>
                             </>
                           )}
                         </div>
@@ -308,12 +308,12 @@ export const Dashboard = () => {
           <div className="bg-[#14171d] border border-white/10 rounded-2xl p-5 shadow-xl">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-serif-luxury font-bold text-white tracking-wide flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 text-[#CC1F1F]" />
+                <MessageSquare className="w-4 h-4 text-[#D4AF37]" />
                 <span>Client Inquiries</span>
               </h3>
               <Link
                 to="/admin/inquiries"
-                className="text-[11px] text-[#CC1F1F] hover:underline uppercase tracking-luxury font-semibold"
+                className="text-[11px] text-[#D4AF37] hover:underline uppercase tracking-luxury font-semibold"
               >
                 All Inquiries
               </Link>
@@ -362,17 +362,17 @@ export const Dashboard = () => {
           {/* Management Shortcuts Card */}
           <div className="bg-gradient-to-br from-[#1c2028] to-[#111318] border border-white/10 rounded-2xl p-5 shadow-xl">
             <h3 className="text-sm font-serif-luxury font-bold text-white tracking-wide mb-3 flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#CC1F1F]" />
+              <ShieldCheck className="w-4 h-4 text-[#D4AF37]" />
               <span>Catalog Operations</span>
             </h3>
 
             <div className="grid grid-cols-2 gap-2">
               <Link
                 to="/admin/homepage"
-                className="p-3 rounded-xl bg-white/5 hover:bg-[#CC1F1F]/10 border border-white/5 hover:border-[#CC1F1F]/30 transition-all text-left group"
+                className="p-3 rounded-xl bg-white/5 hover:bg-[#D4AF37]/10 border border-white/5 hover:border-[#D4AF37]/30 transition-all text-left group"
               >
-                <Sliders className="w-4 h-4 text-[#CC1F1F] mb-2" />
-                <span className="text-xs font-semibold text-white block group-hover:text-[#CC1F1F]">
+                <Sliders className="w-4 h-4 text-[#D4AF37] mb-2" />
+                <span className="text-xs font-semibold text-white block group-hover:text-[#D4AF37]">
                   Homepage CMS
                 </span>
                 <span className="text-[10px] text-neutral-400">Hero & Banners</span>
@@ -380,10 +380,10 @@ export const Dashboard = () => {
 
               <Link
                 to="/admin/categories"
-                className="p-3 rounded-xl bg-white/5 hover:bg-[#CC1F1F]/10 border border-white/5 hover:border-[#CC1F1F]/30 transition-all text-left group"
+                className="p-3 rounded-xl bg-white/5 hover:bg-[#D4AF37]/10 border border-white/5 hover:border-[#D4AF37]/30 transition-all text-left group"
               >
-                <Layers className="w-4 h-4 text-[#CC1F1F] mb-2" />
-                <span className="text-xs font-semibold text-white block group-hover:text-[#CC1F1F]">
+                <Layers className="w-4 h-4 text-[#D4AF37] mb-2" />
+                <span className="text-xs font-semibold text-white block group-hover:text-[#D4AF37]">
                   Categories
                 </span>
                 <span className="text-[10px] text-neutral-400">Organize Grid</span>
@@ -391,10 +391,10 @@ export const Dashboard = () => {
 
               <Link
                 to="/admin/media"
-                className="p-3 rounded-xl bg-white/5 hover:bg-[#CC1F1F]/10 border border-white/5 hover:border-[#CC1F1F]/30 transition-all text-left group"
+                className="p-3 rounded-xl bg-white/5 hover:bg-[#D4AF37]/10 border border-white/5 hover:border-[#D4AF37]/30 transition-all text-left group"
               >
-                <Eye className="w-4 h-4 text-[#CC1F1F] mb-2" />
-                <span className="text-xs font-semibold text-white block group-hover:text-[#CC1F1F]">
+                <Eye className="w-4 h-4 text-[#D4AF37] mb-2" />
+                <span className="text-xs font-semibold text-white block group-hover:text-[#D4AF37]">
                   Media Assets
                 </span>
                 <span className="text-[10px] text-neutral-400">Upload Photos</span>
@@ -402,10 +402,10 @@ export const Dashboard = () => {
 
               <Link
                 to="/admin/settings"
-                className="p-3 rounded-xl bg-white/5 hover:bg-[#CC1F1F]/10 border border-white/5 hover:border-[#CC1F1F]/30 transition-all text-left group"
+                className="p-3 rounded-xl bg-white/5 hover:bg-[#D4AF37]/10 border border-white/5 hover:border-[#D4AF37]/30 transition-all text-left group"
               >
-                <TrendingUp className="w-4 h-4 text-[#CC1F1F] mb-2" />
-                <span className="text-xs font-semibold text-white block group-hover:text-[#CC1F1F]">
+                <TrendingUp className="w-4 h-4 text-[#D4AF37] mb-2" />
+                <span className="text-xs font-semibold text-white block group-hover:text-[#D4AF37]">
                   Site Settings
                 </span>
                 <span className="text-[10px] text-neutral-400">Brand & Contact</span>

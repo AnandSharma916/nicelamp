@@ -12,7 +12,7 @@ export const Categories = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    document.title = `Lighting Categories | ${settings.companyName || 'LightHut'}`;
+    document.title = `Lighting Categories | ${settings.companyName || 'NiceLamp'}`;
     const fetchCategories = async () => {
       try {
         setLoading(true);
@@ -32,7 +32,7 @@ export const Categories = () => {
   return (
     <div className="pt-24 pb-20 bg-[#090a0d] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-b border-white/10 mb-12">
-        <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-2">
+        <span className="text-xs uppercase tracking-luxury text-[#D4AF37] font-semibold block mb-2">
           Architecture & Ambience
         </span>
         <h1 className="text-3xl sm:text-5xl font-serif-luxury font-bold text-white tracking-tight">
@@ -62,7 +62,7 @@ export const Categories = () => {
               >
                 <Link
                   to={`/category/${category.slug}`}
-                  className="group relative block h-80 rounded-2xl overflow-hidden border border-white/10 hover:border-[#CC1F1F]/50 transition-all duration-500 shadow-xl"
+                  className="group relative block h-80 rounded-2xl overflow-hidden border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-500 shadow-xl"
                 >
                   <img
                     src={category.image || 'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=800&q=80'}
@@ -73,7 +73,7 @@ export const Categories = () => {
 
                   <div className="absolute inset-0 p-6 flex flex-col justify-between">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono text-[#CC1F1F] bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10">
+                      <span className="text-xs font-mono text-[#D4AF37] bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10">
                         {String(idx + 1).padStart(2, '0')}
                       </span>
                       {category.productsCount !== undefined && (
@@ -84,7 +84,7 @@ export const Categories = () => {
                     </div>
 
                     <div>
-                      <h3 className="text-2xl font-serif-luxury text-white font-bold group-hover:text-[#CC1F1F] transition-colors">
+                      <h3 className="text-2xl font-serif-luxury text-white font-bold group-hover:text-[#D4AF37] transition-colors">
                         {category.name}
                       </h3>
                       {category.description && (
@@ -92,7 +92,7 @@ export const Categories = () => {
                           {category.description}
                         </p>
                       )}
-                      <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-luxury text-[#CC1F1F] group-hover:translate-x-1 transition-transform">
+                      <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-luxury text-[#D4AF37] group-hover:translate-x-1 transition-transform">
                         <span>Explore Collection</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </div>

@@ -29,7 +29,7 @@ export const AdminLayout = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#0b0c10] text-neutral-200">
-        <div className="w-10 h-10 rounded-full border-2 border-[#CC1F1F] border-t-transparent animate-spin" />
+        <div className="w-10 h-10 rounded-full border-2 border-[#D4AF37] border-t-transparent animate-spin" />
       </div>
     );
   }
@@ -40,7 +40,7 @@ export const AdminLayout = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#090a0d] p-4 text-center">
         <div className="max-w-md bg-[#14171d] border border-white/10 p-8 rounded-2xl shadow-2xl">
-          <ShieldAlert className="w-12 h-12 text-[#CC1F1F] mx-auto mb-4" />
+          <ShieldAlert className="w-12 h-12 text-[#D4AF37] mx-auto mb-4" />
           <h2 className="text-xl font-serif-luxury text-white font-bold mb-2">
             Authentication Required
           </h2>
@@ -96,17 +96,17 @@ export const AdminLayout = () => {
               {settings.logo ? (
                 <img
                   src={settings.logo}
-                  alt={settings.companyName || 'LightHut'}
+                  alt={settings.companyName || 'NiceLamp'}
                   className="h-10 w-auto object-contain"
                 />
               ) : (
                 <LHLogo className="h-10 w-auto" />
               )}
               <div>
-                <span className="font-serif-luxury text-sm font-bold text-white block tracking-wider group-hover:text-[#CC1F1F] transition-colors">
-                  {settings.companyName || 'LightHut'}
+                <span className="font-serif-luxury text-sm font-bold text-white block tracking-wider group-hover:text-[#D4AF37] transition-colors">
+                  {settings.companyName || 'NiceLamp'}
                 </span>
-                <span className="text-[9px] uppercase tracking-luxury text-[#CC1F1F] font-semibold block">
+                <span className="text-[9px] uppercase tracking-luxury text-[#D4AF37] font-semibold block">
                   Admin CMS
                 </span>
               </div>
@@ -131,7 +131,7 @@ export const AdminLayout = () => {
                   className={({ isActive }) =>
                     `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury transition-all ${
                       isActive
-                        ? 'bg-[#CC1F1F] text-black shadow-lg shadow-[#CC1F1F]/10 font-bold'
+                        ? 'bg-[#D4AF37] text-black shadow-lg shadow-[#D4AF37]/10 font-bold'
                         : 'text-neutral-400 hover:text-white hover:bg-white/5'
                     }`
                   }
@@ -153,7 +153,7 @@ export const AdminLayout = () => {
             className="flex items-center justify-between px-3.5 py-2 rounded-lg text-xs text-neutral-400 hover:text-white hover:bg-white/5 transition-colors"
           >
             <span className="flex items-center gap-2">
-              <ExternalLink className="w-3.5 h-3.5 text-[#CC1F1F]" />
+              <ExternalLink className="w-3.5 h-3.5 text-[#D4AF37]" />
               <span>Live Website</span>
             </span>
             <span className="text-[10px] text-neutral-500 font-mono">↗</span>
@@ -185,17 +185,17 @@ export const AdminLayout = () => {
               {settings.logo ? (
                 <img
                   src={settings.logo}
-                  alt={settings.companyName || 'LightHut'}
+                  alt={settings.companyName || 'NiceLamp'}
                   className="h-8 w-auto object-contain"
                 />
               ) : (
                 <LHLogo className="h-8 w-auto" />
               )}
               <span className="font-serif-luxury text-sm font-bold text-white tracking-wider">
-                {settings.companyName || 'LightHut'}
+                {settings.companyName || 'NiceLamp'}
               </span>
             </Link>
-            <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold hidden lg:inline-block">
+            <span className="text-xs uppercase tracking-luxury text-[#D4AF37] font-semibold hidden lg:inline-block">
               Administrative Control Hub
             </span>
           </div>
@@ -210,7 +210,7 @@ export const AdminLayout = () => {
             </Link>
 
             <div className="flex items-center gap-2.5 pl-4 border-l border-white/10">
-              <div className="w-8 h-8 rounded-full bg-[#CC1F1F]/20 border border-[#CC1F1F]/40 flex items-center justify-center text-xs font-bold text-[#CC1F1F]">
+              <div className="w-8 h-8 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 flex items-center justify-center text-xs font-bold text-[#D4AF37]">
                 {admin.name?.[0] || 'A'}
               </div>
               <div className="hidden sm:block text-left">

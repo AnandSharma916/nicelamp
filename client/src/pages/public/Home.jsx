@@ -20,7 +20,7 @@ export const Home = () => {
 
   // Set document title
   useEffect(() => {
-    document.title = settings.defaultSeoTitle || 'LightHut | Architectural & Decorative Lighting Solutions';
+    document.title = settings.defaultSeoTitle || 'NiceLamp | Luxury Designer Lamps & Home Lighting';
   }, [settings]);
 
   useEffect(() => {
@@ -71,11 +71,11 @@ export const Home = () => {
 
   if (loading && sections.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#090a0d]">
+      <div className="min-h-screen flex items-center justify-center bg-[#0b0f17]">
         <div className="text-center space-y-4">
-          <div className="w-12 h-12 rounded-full border-2 border-[#CC1F1F] border-t-transparent animate-spin mx-auto" />
-          <p className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold">
-            Loading Architectural Catalog...
+          <div className="w-12 h-12 rounded-full border-2 border-[#D4AF37] border-t-transparent animate-spin mx-auto" />
+          <p className="text-xs uppercase tracking-luxury text-[#D4AF37] font-semibold">
+            Loading Catalog...
           </p>
         </div>
       </div>

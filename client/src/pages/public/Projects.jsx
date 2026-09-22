@@ -9,7 +9,7 @@ export const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
 
   useEffect(() => {
-    document.title = `Architectural Lighting Projects & Installations | ${settings.companyName || 'LightHut'}`;
+    document.title = `Lighting Projects & Installations | ${settings.companyName || 'NiceLamp'}`;
   }, [settings.companyName]);
 
   const projects = [
@@ -129,7 +129,7 @@ export const Projects = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-white/10 mb-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-2">
+            <span className="text-xs uppercase tracking-luxury text-[#D4AF37] font-semibold block mb-2">
               Installed Excellence
             </span>
             <h1 className="text-3xl sm:text-5xl font-serif-luxury font-bold text-white tracking-tight">
@@ -152,7 +152,7 @@ export const Projects = () => {
                 onClick={() => setActiveFilter(tab.id)}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-luxury transition-all ${
                   activeFilter === tab.id
-                    ? 'bg-[#CC1F1F] text-black shadow'
+                    ? 'bg-[#D4AF37] text-black shadow'
                     : 'text-neutral-400 hover:text-white'
                 }`}
               >
@@ -174,7 +174,7 @@ export const Projects = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4 }}
-                className="group rounded-2xl overflow-hidden bg-[#14171d] border border-white/10 hover:border-[#CC1F1F]/50 transition-all duration-500 shadow-xl flex flex-col justify-between"
+                className="group rounded-2xl overflow-hidden bg-[#14171d] border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-500 shadow-xl flex flex-col justify-between"
               >
                 <div>
                   <div className="relative aspect-[16/10] overflow-hidden">
@@ -185,7 +185,7 @@ export const Projects = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#14171d] via-[#14171d]/20 to-transparent" />
                     <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-                      <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10 font-semibold">
+                      <span className="text-[10px] uppercase tracking-luxury text-[#D4AF37] bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10 font-semibold">
                         {project.categoryLabel}
                       </span>
                       {project.lampType && (
@@ -199,11 +199,11 @@ export const Projects = () => {
 
                   <div className="p-6 space-y-3">
                     <div className="flex items-center gap-1.5 text-xs text-neutral-400">
-                      <MapPin className="w-3.5 h-3.5 text-[#CC1F1F]" />
+                      <MapPin className="w-3.5 h-3.5 text-[#D4AF37]" />
                       <span>{project.location}</span>
                     </div>
 
-                    <h3 className="font-serif-luxury text-xl text-white font-bold group-hover:text-[#CC1F1F] transition-colors">
+                    <h3 className="font-serif-luxury text-xl text-white font-bold group-hover:text-[#D4AF37] transition-colors">
                       {project.title}
                     </h3>
 
@@ -221,7 +221,7 @@ export const Projects = () => {
                     {project.fixtures.map((sku) => (
                       <span
                         key={sku}
-                        className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-white/5 text-[#CC1F1F] border border-white/5"
+                        className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-white/5 text-[#D4AF37] border border-white/5"
                       >
                         {sku}
                       </span>
@@ -230,7 +230,7 @@ export const Projects = () => {
 
                   <Link
                     to="/catalog"
-                    className="text-xs font-semibold uppercase tracking-luxury text-[#CC1F1F] hover:text-white flex items-center gap-1 transition-colors"
+                    className="text-xs font-semibold uppercase tracking-luxury text-[#D4AF37] hover:text-white flex items-center gap-1 transition-colors"
                   >
                     <span>View Fixtures</span>
                     <ArrowRight className="w-3 h-3" />

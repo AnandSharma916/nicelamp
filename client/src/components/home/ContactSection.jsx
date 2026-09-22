@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, MessageSquare, Send, Clock, Loader2 } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageSquare, Send, Clock, Loader2, Sparkles } from 'lucide-react';
 import { useSettings } from '../../context/SettingsContext';
 import { inquiryService } from '../../services/api';
 import { useToast } from '../../context/ToastContext';
@@ -17,11 +17,11 @@ export const ContactSection = ({ section }) => {
   });
   const [submitting, setSubmitting] = useState(false);
 
-  const title = section?.title || 'Showroom & Headquarters';
-  const subtitle = section?.subtitle || 'Experience Our Luminaires In Person';
+  const title = section?.title || 'Visit or Contact Us';
+  const subtitle = section?.subtitle || 'WE ARE HERE TO HELP';
   const description =
     section?.description ||
-    'Visit our flagship architectural lighting experience center to inspect fixtures, evaluate color temperatures, and discuss custom engineering with our specialists.';
+    'Have questions about lamp specifications, custom sizes, or delivery? Our lighting team is happy to assist you.';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ export const ContactSection = ({ section }) => {
     try {
       setSubmitting(true);
       await inquiryService.createInquiry(formData);
-      addToast('Inquiry sent successfully! Our lighting specialists will respond shortly.', 'success');
+      addToast('Message sent successfully! Our team will contact you soon.', 'success');
       setFormData({ name: '', email: '', phone: '', company: '', message: '' });
     } catch (err) {
       addToast('Failed to submit message. Please try again.', 'error');
@@ -43,43 +43,44 @@ export const ContactSection = ({ section }) => {
   };
 
   return (
-    <section className="py-24 bg-[#090a0d] relative overflow-hidden">
+    <section className="py-20 sm:py-24 bg-[#0b0f17] relative overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-2">
-            {subtitle}
-          </span>
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#161e2c] border border-[#D4AF37]/30 text-[10px] uppercase tracking-wider text-[#FDE68A] font-bold mb-3">
+            <Sparkles className="w-3 h-3 text-[#F59E0B]" />
+            <span>{subtitle}</span>
+          </div>
           <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-white tracking-tight">
             {title}
           </h2>
-          <p className="text-sm text-neutral-400 mt-3 leading-relaxed">
+          <p className="text-sm text-neutral-300 mt-2 leading-relaxed">
             {description}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Contact & Showroom Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* Left Column: Contact Details & Showroom */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 rounded-2xl bg-[#14171d] border border-white/10 space-y-4 shadow-xl">
-              <h3 className="font-serif-luxury text-lg text-white font-semibold">
-                Direct Communication
+            <div className="p-6 sm:p-7 rounded-2xl bg-[#161e2c] border border-white/10 space-y-5 shadow-xl">
+              <h3 className="font-serif-luxury text-lg text-white font-bold">
+                Direct Contact
               </h3>
 
               {settings.address && (
-                <div className="flex items-start gap-3 text-xs text-neutral-300">
-                  <MapPin className="w-4 h-4 text-[#CC1F1F] shrink-0 mt-0.5" />
+                <div className="flex items-start gap-3.5 text-xs text-neutral-300">
+                  <MapPin className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-white font-medium block mb-0.5">Showroom & Works</span>
+                    <span className="text-white font-semibold block mb-0.5">Showroom & Store</span>
                     <span>{settings.address}</span>
                   </div>
                 </div>
               )}
 
               {settings.phone && (
-                <div className="flex items-start gap-3 text-xs text-neutral-300">
-                  <Phone className="w-4 h-4 text-[#CC1F1F] shrink-0 mt-0.5" />
+                <div className="flex items-start gap-3.5 text-xs text-neutral-300">
+                  <Phone className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-white font-medium block mb-0.5">Telephone</span>
+                    <span className="text-white font-semibold block mb-0.5">Phone & Call</span>
                     <a href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`} className="hover:text-white transition-colors">
                       {settings.phone}
                     </a>
@@ -88,10 +89,10 @@ export const ContactSection = ({ section }) => {
               )}
 
               {settings.email && (
-                <div className="flex items-start gap-3 text-xs text-neutral-300">
-                  <Mail className="w-4 h-4 text-[#CC1F1F] shrink-0 mt-0.5" />
+                <div className="flex items-start gap-3.5 text-xs text-neutral-300">
+                  <Mail className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-white font-medium block mb-0.5">Technical Inquiries</span>
+                    <span className="text-white font-semibold block mb-0.5">Email</span>
                     <a href={`mailto:${settings.email}`} className="hover:text-white transition-colors">
                       {settings.email}
                     </a>
@@ -99,11 +100,11 @@ export const ContactSection = ({ section }) => {
                 </div>
               )}
 
-              <div className="flex items-start gap-3 text-xs text-neutral-300">
-                <Clock className="w-4 h-4 text-[#CC1F1F] shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3.5 text-xs text-neutral-300">
+                <Clock className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-white font-medium block mb-0.5">Showroom Hours</span>
-                  <span>Monday – Saturday: 10:00 AM – 7:30 PM (IST)</span>
+                  <span className="text-white font-semibold block mb-0.5">Opening Hours</span>
+                  <span>Monday – Saturday: 10:00 AM – 8:00 PM</span>
                 </div>
               </div>
 
@@ -113,30 +114,30 @@ export const ContactSection = ({ section }) => {
                     href={`https://wa.me/${settings.whatsapp.replace(/[^\d]/g, '')}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-full py-3 px-4 rounded-xl bg-emerald-950/60 border border-emerald-700/50 hover:bg-emerald-900/80 text-emerald-200 text-xs font-semibold uppercase tracking-luxury flex items-center justify-center gap-2 transition-all shadow-lg"
+                    className="w-full py-3 px-4 rounded-xl bg-emerald-950/60 border border-emerald-600/40 hover:bg-emerald-900/80 text-emerald-200 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg"
                   >
                     <MessageSquare className="w-4 h-4 text-emerald-400" />
-                    <span>Instant WhatsApp Consultation</span>
+                    <span>Quick WhatsApp Chat</span>
                   </a>
                 </div>
               )}
             </div>
           </div>
 
-          {/* Right Column: Direct Contact Form */}
+          {/* Right Column: Simple Contact Form */}
           <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-2xl bg-[#14171d] border border-white/10 shadow-2xl">
+            <div className="p-6 sm:p-8 rounded-2xl bg-[#161e2c] border border-white/10 shadow-2xl">
               <h3 className="font-serif-luxury text-xl text-white font-bold mb-2">
-                Send Direct Message
+                Send Us a Message
               </h3>
-              <p className="text-xs text-neutral-400 mb-6">
-                Fill in your project details and our senior lighting engineer will reach out promptly.
+              <p className="text-xs text-neutral-300 mb-6">
+                Fill in your details below and our team will get back to you shortly.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1 font-medium">
+                    <label className="block text-xs text-neutral-300 mb-1 font-medium">
                       Your Name *
                     </label>
                     <input
@@ -144,12 +145,12 @@ export const ContactSection = ({ section }) => {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. Rajiv Kapoor"
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
+                      placeholder="e.g. Rahul Sharma"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#0b0f17] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#D4AF37] text-sm"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1 font-medium">
+                    <label className="block text-xs text-neutral-300 mb-1 font-medium">
                       Email Address *
                     </label>
                     <input
@@ -157,15 +158,15 @@ export const ContactSection = ({ section }) => {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="e.g. rajiv@studio.com"
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
+                      placeholder="e.g. rahul@example.com"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#0b0f17] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#D4AF37] text-sm"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1 font-medium">
+                    <label className="block text-xs text-neutral-300 mb-1 font-medium">
                       Phone Number
                     </label>
                     <input
@@ -173,34 +174,34 @@ export const ContactSection = ({ section }) => {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+91 98000 00000"
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#0b0f17] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#D4AF37] text-sm"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1 font-medium">
-                      Company / Studio
+                    <label className="block text-xs text-neutral-300 mb-1 font-medium">
+                      City / Area
                     </label>
                     <input
                       type="text"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      placeholder="Architectural Studio"
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
+                      placeholder="e.g. Delhi, Mumbai, Bengaluru"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#0b0f17] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#D4AF37] text-sm"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1 font-medium">
-                    Message / Lighting Requirements *
+                  <label className="block text-xs text-neutral-300 mb-1 font-medium">
+                    What lights are you looking for? *
                   </label>
                   <textarea
                     required
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Describe your architectural project, schedule, quantities, or specific luminaire models..."
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm resize-none"
+                    placeholder="Tell us about the room, preferred style (chandeliers, wall lights, pendants), or any specific models you liked..."
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0b0f17] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#D4AF37] text-sm resize-none"
                   />
                 </div>
 
@@ -208,7 +209,7 @@ export const ContactSection = ({ section }) => {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="btn-gold w-full sm:w-auto px-8 py-3 rounded-lg text-xs font-semibold uppercase tracking-luxury flex items-center justify-center gap-2 shadow-xl disabled:opacity-50"
+                    className="btn-gold w-full sm:w-auto px-8 py-3.5 rounded-xl text-xs font-bold uppercase tracking-luxury flex items-center justify-center gap-2 shadow-xl disabled:opacity-50"
                   >
                     {submitting ? (
                       <>

@@ -5,27 +5,27 @@ const SettingsContext = createContext(null);
 
 export const SettingsProvider = ({ children }) => {
   const [settings, setSettings] = useState({
-    companyName: 'LightHut',
-    tagline: 'Decorative Solutions — Luxury Architectural Luminaires',
+    companyName: 'NiceLamp',
+    tagline: 'Luxury Designer Lamps & Premium Home Lighting',
     logo: '',
     favicon: '/favicon.svg',
-    email: 'info@lighthutcatalog.com',
+    email: 'info@nicelamp.com',
     phone: '+91 8045811438',
-    address: 'Plot No. 42, Industrial Area Phase II, Delhi, India',
+    address: 'Industrial Area Phase II, Delhi, India',
     whatsapp: '+91 9811000000',
     socialLinks: {
-      instagram: 'https://instagram.com/lighthut',
-      facebook: 'https://facebook.com/lighthut',
-      linkedin: 'https://linkedin.com/company/lighthut',
-      pinterest: 'https://pinterest.com/lighthut',
+      instagram: 'https://instagram.com/nicelamp',
+      facebook: 'https://facebook.com/nicelamp',
+      linkedin: 'https://linkedin.com/company/nicelamp',
+      pinterest: 'https://pinterest.com/nicelamp',
     },
     footerContent: {
-      copyrightText: '© 2026 LightHut Decorative Solutions. All Rights Reserved.',
-      aboutText: 'Pioneering contemporary architectural lighting solutions, precision engineered luminaires, and tailored illumination for luxury residential and commercial environments across India.',
+      copyrightText: '© 2026 NiceLamp. All Rights Reserved.',
+      aboutText: 'Crafting luxury designer lamps, ambient pendants, chandeliers, and premium lighting fixtures to elevate modern homes across India.',
       gstNumber: '07BSYPK8425N1ZP',
     },
-    defaultSeoTitle: 'LightHut | Decorative Solutions & Architectural Lighting',
-    defaultSeoDescription: 'Discover high-performance architectural wall lamps, pendant luminaires, modern chandeliers, and custom lighting fixtures.',
+    defaultSeoTitle: 'NiceLamp | Luxury Designer Lamps & Home Lighting',
+    defaultSeoDescription: 'Explore luxury designer lamps, ambient pendant lights, modern chandeliers, and artisanal fixtures for elegant living spaces.',
   });
   const [loading, setLoading] = useState(true);
 

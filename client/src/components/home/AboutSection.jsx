@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Award, CheckCircle, ArrowRight, Shield, Zap, Sparkles, Sun, Moon, Sliders } from 'lucide-react';
-import { useAmbiance } from '../common/AmbientLightExperience';
+import { Award, CheckCircle, ArrowRight, Sparkles, Heart, Sun, Moon, Sliders, ShieldCheck } from 'lucide-react';
 
 export const AboutSection = ({ section }) => {
-  const { activeKelvin } = useAmbiance();
   const [splitPos, setSplitPos] = useState(50); // 0% - 100% Day vs Night slider
   const [isDragging, setIsDragging] = useState(false);
 
-  const title = section?.title || 'Precision Craftsmanship Meets Optical Mastery';
-  const subtitle = section?.subtitle || 'About LightHut Decorative Solutions';
+  const title = section?.title || 'Crafted to Bring Warmth & Beauty to Every Home';
+  const subtitle = section?.subtitle || 'ABOUT NICELAMP';
   const description =
     section?.description ||
-    'With decades of dedicated expertise in architectural illumination, LightHut manufactures and supplies premier lighting fixtures engineered for high-performance residential estates, boutique hotels, and landmark commercial pavilions.';
-  const btnText = section?.buttonText || 'Read Full Company Profile';
+    'At NiceLamp, we believe lighting transforms the soul of a home. We bring together thoughtful design, hand-finished metals, and luminous crystal glass to create lamps that elevate your everyday living with warmth and elegance.';
+  const btnText = section?.buttonText || 'Discover Our Story';
   const btnLink = section?.buttonLink || '/about';
 
   const dayImage =
-    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80';
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85';
   const nightImage =
-    'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=1200&q=80';
+    'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=1200&q=85';
 
   const handleSliderMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -29,23 +27,13 @@ export const AboutSection = ({ section }) => {
   };
 
   return (
-    <section className="py-24 bg-[#090a0d] relative overflow-hidden select-none border-t border-white/5">
-      {/* Dynamic Ambient Background Glow */}
-      <div
-        className="absolute top-1/2 left-0 w-96 h-96 rounded-full blur-3xl pointer-events-none transition-all duration-1000"
-        style={{
-          backgroundColor: activeKelvin.hex,
-          opacity: 0.12,
-          transform: 'translateY(-50%)',
-        }}
-      />
-
+    <section className="py-20 sm:py-24 bg-[#0b0f17] relative overflow-hidden select-none border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
-          {/* Left Column: Interactive Day/Night Architectural Lighting Visualizer */}
+          {/* Left Column: Interactive Day/Night Lighting Visualizer */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -25 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
@@ -57,133 +45,126 @@ export const AboutSection = ({ section }) => {
                 if (isDragging || e.buttons === 1) handleSliderMove(e);
               }}
               onClick={handleSliderMove}
-              className="relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl aspect-[4/3] sm:aspect-[16/11] cursor-ew-resize group"
+              className="relative rounded-2xl overflow-hidden border border-white/12 shadow-2xl aspect-[4/3] sm:aspect-[16/11] cursor-ew-resize group"
             >
-              {/* Day Ambient Layer (Base) */}
+              {/* Day Ambient Layer (Base) - CLEAR & CRISP */}
               <img
                 src={dayImage}
-                alt="Architectural Lighting Day Elevation"
+                alt="Living Room in Daylight"
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-black/25" />
 
-              {/* Night Illuminated Layer (Clipped) */}
+              {/* Night Illuminated Layer (Clipped) - BRIGHT & WARM */}
               <div
                 className="absolute inset-0 overflow-hidden"
                 style={{ clipPath: `inset(0 ${100 - splitPos}% 0 0)` }}
               >
                 <img
                   src={nightImage}
-                  alt="Architectural Lighting Night Elevation"
-                  className="absolute inset-0 w-full h-full object-cover object-center filter brightness-110 contrast-105"
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: `radial-gradient(ellipse at 40% 50%, rgba(${activeKelvin.rgb}, 0.25) 0%, rgba(0,0,0,0.4) 100%)`,
-                  }}
+                  alt="Living Room with Warm Night Lighting"
+                  className="absolute inset-0 w-full h-full object-cover object-center filter brightness-105"
                 />
               </div>
 
               {/* Draggable Divider Line */}
               <div
-                className="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_15px_#ffffff] pointer-events-none z-20"
+                className="absolute top-0 bottom-0 w-0.5 bg-[#D4AF37] shadow-[0_0_12px_#D4AF37] pointer-events-none z-20"
                 style={{ left: `${splitPos}%` }}
               >
                 {/* Center Handle Pill */}
-                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#11141c] border-2 border-white shadow-xl flex items-center justify-center text-[10px] font-mono font-bold text-white">
-                  <Sliders className="w-3.5 h-3.5 text-amber-400 rotate-90" />
+                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#161e2c] border-2 border-[#D4AF37] shadow-xl flex items-center justify-center text-[10px] font-bold text-white">
+                  <Sliders className="w-3.5 h-3.5 text-[#D4AF37] rotate-90" />
                 </div>
               </div>
 
               {/* Day / Night Tags on Corner */}
-              <div className="absolute top-3 left-3 z-30 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/10 text-[10px] font-mono text-neutral-300">
-                <Moon className="w-3 h-3 text-amber-400" />
-                <span>Night Luminaire</span>
+              <div className="absolute top-3 left-3 z-30 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0b0f17]/85 backdrop-blur-md border border-white/12 text-[10px] font-semibold text-[#FDE68A]">
+                <Moon className="w-3 h-3 text-[#F59E0B]" />
+                <span>Night Glow</span>
               </div>
-              <div className="absolute top-3 right-3 z-30 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/10 text-[10px] font-mono text-neutral-300">
-                <Sun className="w-3 h-3 text-sky-300" />
+              <div className="absolute top-3 right-3 z-30 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0b0f17]/85 backdrop-blur-md border border-white/12 text-[10px] font-semibold text-neutral-200">
+                <Sun className="w-3 h-3 text-amber-300" />
                 <span>Day Ambient</span>
               </div>
 
               {/* Drag instruction notice */}
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[9.5px] font-mono text-neutral-400 opacity-80 group-hover:opacity-100 transition-opacity">
-                Slide across image to compare illumination
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 px-3 py-1 rounded-full bg-[#0b0f17]/80 backdrop-blur-md border border-white/10 text-[10px] text-neutral-300">
+                Slide across image to see night glow
               </div>
             </div>
 
             {/* Floating Experience Card */}
-            <div className="absolute -bottom-6 -right-4 sm:bottom-4 sm:right-4 bg-[#141720]/95 border border-[#CC1F1F]/40 rounded-2xl p-5 shadow-2xl backdrop-blur-xl max-w-[260px] z-30">
-              <div className="flex items-center gap-3 mb-1.5">
-                <Award className="w-6 h-6 text-[#CC1F1F]" />
-                <span className="font-serif-luxury text-2xl text-white font-bold">25+ Years</span>
+            <div className="absolute -bottom-5 -right-3 sm:bottom-4 sm:right-4 bg-[#161e2c]/95 border border-[#D4AF37]/30 rounded-2xl p-4 sm:p-5 shadow-2xl backdrop-blur-xl max-w-[240px] z-30">
+              <div className="flex items-center gap-2.5 mb-1.5">
+                <Award className="w-5 h-5 text-[#D4AF37]" />
+                <span className="font-serif-luxury text-xl sm:text-2xl text-white font-bold">10,000+</span>
               </div>
-              <p className="text-[11px] text-neutral-300 leading-relaxed font-light">
-                Engineering precision architectural luminaires for landmark residences and hotels.
+              <p className="text-[11px] text-neutral-300 leading-relaxed">
+                Homes, apartments & villas lit with warmth across India.
               </p>
             </div>
           </motion.div>
 
-          {/* Right Column: Narrative & Holographic Engineering Specs */}
+          {/* Right Column: Clean & Simple Narrative */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 25 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="lg:col-span-6 space-y-6"
           >
             <div>
-              <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-bold block mb-2">
+              <span className="text-xs uppercase tracking-luxury text-[#D4AF37] font-bold block mb-2">
                 {subtitle}
               </span>
-              <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-white tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-white tracking-tight leading-snug">
                 {title}
               </h2>
             </div>
 
-            <p className="text-sm text-neutral-300 leading-relaxed font-light">
+            <p className="text-sm text-neutral-300 leading-relaxed">
               {description}
             </p>
 
-            {/* Photometric Highlights Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-amber-400/40 transition-colors group">
+            {/* Simple Highlights Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+              <div className="p-4 rounded-xl bg-[#161e2c]/60 border border-white/8 hover:border-[#D4AF37]/40 transition-colors">
                 <div className="flex items-center gap-2 text-white font-semibold text-xs uppercase tracking-wider mb-1.5">
-                  <Shield className="w-4 h-4 text-[#CC1F1F] group-hover:text-amber-400 transition-colors" />
-                  <span>Optical Purity (CRI &gt; 98)</span>
+                  <Sparkles className="w-4 h-4 text-[#D4AF37]" />
+                  <span>Handcrafted Quality</span>
                 </div>
-                <p className="text-xs text-neutral-400 leading-relaxed">
-                  Single-bin LED diodes deliver museum-grade spectral reproduction with no chromatic distortion.
+                <p className="text-xs text-neutral-300 leading-relaxed">
+                  Carefully crafted with high-grade brass, frosted glass, and premium finishes built to last.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-amber-400/40 transition-colors group">
+              <div className="p-4 rounded-xl bg-[#161e2c]/60 border border-white/8 hover:border-[#D4AF37]/40 transition-colors">
                 <div className="flex items-center gap-2 text-white font-semibold text-xs uppercase tracking-wider mb-1.5">
-                  <Zap className="w-4 h-4 text-[#CC1F1F] group-hover:text-amber-400 transition-colors" />
-                  <span>Flicker-Free Drivers</span>
+                  <Heart className="w-4 h-4 text-[#D4AF37]" />
+                  <span>Eye-Friendly Warmth</span>
                 </div>
-                <p className="text-xs text-neutral-400 leading-relaxed">
-                  Deep Triac and 0-10V dimming algorithms engineered for seamless 0.1% to 100% control.
+                <p className="text-xs text-neutral-300 leading-relaxed">
+                  Soothing, flicker-free warm light designed to create a calm, welcoming mood in your living spaces.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-amber-400/40 transition-colors group">
+              <div className="p-4 rounded-xl bg-[#161e2c]/60 border border-white/8 hover:border-[#D4AF37]/40 transition-colors">
                 <div className="flex items-center gap-2 text-white font-semibold text-xs uppercase tracking-wider mb-1.5">
-                  <Sparkles className="w-4 h-4 text-[#CC1F1F] group-hover:text-amber-400 transition-colors" />
-                  <span>K9 Prismatic Crystal</span>
+                  <CheckCircle className="w-4 h-4 text-[#D4AF37]" />
+                  <span>500+ Unique Designs</span>
                 </div>
-                <p className="text-xs text-neutral-400 leading-relaxed">
-                  Precision multi-faceted geometric crystals with internal optical dispersion.
+                <p className="text-xs text-neutral-300 leading-relaxed">
+                  From statement chandeliers to minimalist wall sconces, find the ideal lamp for every corner.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-amber-400/40 transition-colors group">
+              <div className="p-4 rounded-xl bg-[#161e2c]/60 border border-white/8 hover:border-[#D4AF37]/40 transition-colors">
                 <div className="flex items-center gap-2 text-white font-semibold text-xs uppercase tracking-wider mb-1.5">
-                  <CheckCircle className="w-4 h-4 text-[#CC1F1F] group-hover:text-amber-400 transition-colors" />
-                  <span>IP65 Weather Seal</span>
+                  <ShieldCheck className="w-4 h-4 text-[#D4AF37]" />
+                  <span>Safe Pan-India Delivery</span>
                 </div>
-                <p className="text-xs text-neutral-400 leading-relaxed">
-                  Marine-grade die-cast housings resistant to high UV index, heavy monsoon, and saline air.
+                <p className="text-xs text-neutral-300 leading-relaxed">
+                  Multilayer shockproof packaging ensuring each lamp reaches your doorstep in pristine condition.
                 </p>
               </div>
             </div>
@@ -191,10 +172,10 @@ export const AboutSection = ({ section }) => {
             <div className="pt-2">
               <Link
                 to={btnLink}
-                className="inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-luxury text-[#CC1F1F] hover:text-white transition-colors group"
+                className="btn-gold inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs uppercase tracking-luxury shadow-lg transition-all transform hover:-translate-y-0.5"
               >
                 <span>{btnText}</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </motion.div>

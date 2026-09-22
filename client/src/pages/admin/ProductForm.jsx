@@ -309,8 +309,8 @@ export const ProductForm = () => {
   if (loading) {
     return (
       <div className="py-20 flex flex-col items-center justify-center space-y-4 text-center">
-        <Loader2 className="w-8 h-8 text-[#CC1F1F] animate-spin" />
-        <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold">
+        <Loader2 className="w-8 h-8 text-[#D4AF37] animate-spin" />
+        <span className="text-xs uppercase tracking-luxury text-[#D4AF37] font-semibold">
           Loading Luminaire Architecture...
         </span>
       </div>
@@ -329,7 +329,7 @@ export const ProductForm = () => {
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
-            <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] font-semibold block">
+            <span className="text-[10px] uppercase tracking-luxury text-[#D4AF37] font-semibold block">
               {isEditMode ? 'Modify Specifications' : 'New Catalog Entry'}
             </span>
             <h1 className="text-2xl font-serif-luxury font-bold text-white tracking-wide">
@@ -351,10 +351,10 @@ export const ProductForm = () => {
               setIsJustUpdated(false);
               setPreviewOpen(true);
             }}
-            className="px-4 py-2.5 rounded-xl border border-white/10 hover:border-[#CC1F1F]/50 bg-white/5 hover:bg-white/10 text-white text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 transition-all shadow-md"
+            className="px-4 py-2.5 rounded-xl border border-white/10 hover:border-[#D4AF37]/50 bg-white/5 hover:bg-white/10 text-white text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 transition-all shadow-md"
             title="Preview how this luminaire looks on the storefront"
           >
-            <Eye className="w-4 h-4 text-[#CC1F1F]" />
+            <Eye className="w-4 h-4 text-[#D4AF37]" />
             <span>Quick Preview</span>
           </button>
 
@@ -364,10 +364,10 @@ export const ProductForm = () => {
               href={`/product/${formData.slug}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3.5 py-2.5 rounded-xl border border-white/10 hover:border-[#CC1F1F]/50 bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-luxury flex items-center gap-1.5 transition-all shadow-md"
+              className="px-3.5 py-2.5 rounded-xl border border-white/10 hover:border-[#D4AF37]/50 bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white text-xs font-semibold uppercase tracking-luxury flex items-center gap-1.5 transition-all shadow-md"
               title="Open public product page in new tab"
             >
-              <ExternalLink className="w-3.5 h-3.5 text-[#CC1F1F]" />
+              <ExternalLink className="w-3.5 h-3.5 text-[#D4AF37]" />
               <span className="hidden md:inline">Open Live</span>
             </a>
           )}
@@ -409,7 +409,7 @@ export const ProductForm = () => {
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury transition-all shrink-0 ${
                 activeTab === tab.id
-                  ? 'bg-[#CC1F1F] text-black font-bold shadow-lg shadow-[#CC1F1F]/10'
+                  ? 'bg-[#D4AF37] text-black font-bold shadow-lg shadow-[#D4AF37]/10'
                   : 'text-neutral-400 hover:text-white hover:bg-white/5'
               }`}
             >
@@ -439,7 +439,7 @@ export const ProductForm = () => {
                   value={formData.title}
                   onChange={handleTitleChange}
                   placeholder="e.g. Aurelia Brass Pendant Chandelier"
-                  className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm"
                 />
               </div>
 
@@ -453,7 +453,7 @@ export const ProductForm = () => {
                   onChange={handleChange}
                   name="slug"
                   placeholder="aurelia-brass-pendant-chandelier"
-                  className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm font-mono"
+                  className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm font-mono"
                 />
               </div>
             </div>
@@ -468,7 +468,7 @@ export const ProductForm = () => {
                   required
                   value={formData.category}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white text-sm focus:outline-none focus:border-[#CC1F1F]"
+                  className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white text-sm focus:outline-none focus:border-[#D4AF37]"
                 >
                   <option value="">Select Category</option>
                   {categories.map((c) => (
@@ -489,7 +489,7 @@ export const ProductForm = () => {
                   value={formData.sku}
                   onChange={handleChange}
                   placeholder="e.g. LH-WL-402-BR"
-                  className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm font-mono"
+                  className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm font-mono"
                 />
               </div>
             </div>
@@ -504,7 +504,7 @@ export const ProductForm = () => {
                 value={formData.shortDescription}
                 onChange={handleChange}
                 placeholder="Sculptural minimalist brass pendant with warm indirect ambient illumination."
-                className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
+                className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm"
               />
             </div>
 
@@ -518,7 +518,7 @@ export const ProductForm = () => {
                 value={formData.description}
                 onChange={handleChange}
                 placeholder="Detailed information regarding design pedigree, optical diffuser, installation methods, and finish characteristics..."
-                className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm leading-relaxed"
+                className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm leading-relaxed"
               />
             </div>
 
@@ -532,7 +532,7 @@ export const ProductForm = () => {
                 value={formData.tags}
                 onChange={handleChange}
                 placeholder="modern, gold, brass, dining, chandelier, minimal"
-                className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
+                className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm"
               />
             </div>
           </div>
@@ -942,7 +942,7 @@ export const ProductForm = () => {
                         href={formData.pdfUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-xs text-[#CC1F1F] hover:underline font-mono truncate max-w-[280px] flex items-center gap-1"
+                        className="text-xs text-[#D4AF37] hover:underline font-mono truncate max-w-[280px] flex items-center gap-1"
                       >
                         <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                         <span className="truncate">{formData.pdfUrl}</span>
@@ -975,7 +975,7 @@ export const ProductForm = () => {
                 value={formData.price}
                 onChange={handleChange}
                 placeholder="0 for custom quote"
-                className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white font-mono text-sm focus:outline-none focus:border-[#CC1F1F]"
+                className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white font-mono text-sm focus:outline-none focus:border-[#D4AF37]"
               />
               <span className="text-[11px] text-neutral-500 mt-1 block">
                 Leave at 0 if prices are available only via custom trade quote.
@@ -989,7 +989,7 @@ export const ProductForm = () => {
                   name="isPublished"
                   checked={formData.isPublished}
                   onChange={handleChange}
-                  className="w-4 h-4 rounded text-[#CC1F1F] focus:ring-[#CC1F1F] bg-[#090a0d] border-white/20"
+                  className="w-4 h-4 rounded text-[#D4AF37] focus:ring-[#D4AF37] bg-[#090a0d] border-white/20"
                 />
                 <div>
                   <span className="text-xs font-semibold text-white uppercase tracking-luxury block">
@@ -1007,7 +1007,7 @@ export const ProductForm = () => {
                   name="isFeatured"
                   checked={formData.isFeatured}
                   onChange={handleChange}
-                  className="w-4 h-4 rounded text-[#CC1F1F] focus:ring-[#CC1F1F] bg-[#090a0d] border-white/20"
+                  className="w-4 h-4 rounded text-[#D4AF37] focus:ring-[#D4AF37] bg-[#090a0d] border-white/20"
                 />
                 <div>
                   <span className="text-xs font-semibold text-white uppercase tracking-luxury block">
@@ -1025,7 +1025,7 @@ export const ProductForm = () => {
                   name="isNewArrival"
                   checked={formData.isNewArrival}
                   onChange={handleChange}
-                  className="w-4 h-4 rounded text-[#CC1F1F] focus:ring-[#CC1F1F] bg-[#090a0d] border-white/20"
+                  className="w-4 h-4 rounded text-[#D4AF37] focus:ring-[#D4AF37] bg-[#090a0d] border-white/20"
                 />
                 <div>
                   <span className="text-xs font-semibold text-white uppercase tracking-luxury block">

@@ -215,7 +215,7 @@ export const AmbientLightExperience = ({ children }) => {
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
                     <label className="text-[10px] uppercase tracking-luxury text-neutral-400 font-semibold flex items-center gap-1.5">
-                      <Sliders className="w-3 h-3 text-[#CC1F1F]" />
+                      <Sliders className="w-3 h-3 text-[#D4AF37]" />
                       <span>Luminous Intensity</span>
                     </label>
                     <span className="text-[10px] font-mono font-bold text-amber-300">
@@ -229,7 +229,7 @@ export const AmbientLightExperience = ({ children }) => {
                     step="0.05"
                     value={luxIntensity}
                     onChange={(e) => setLuxIntensity(parseFloat(e.target.value))}
-                    className="w-full h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-[#CC1F1F]"
+                    className="w-full h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-[#D4AF37]"
                   />
                   <div className="flex justify-between text-[9px] text-neutral-500 font-mono mt-1">
                     <span>30% Subdued</span>
@@ -247,7 +247,7 @@ export const AmbientLightExperience = ({ children }) => {
                   <button
                     onClick={() => setPhotonCursorEnabled(!photonCursorEnabled)}
                     className={`w-9 h-5 rounded-full p-0.5 transition-colors ${
-                      photonCursorEnabled ? 'bg-[#CC1F1F]' : 'bg-neutral-700'
+                      photonCursorEnabled ? 'bg-[#D4AF37]' : 'bg-neutral-700'
                     }`}
                   >
                     <div

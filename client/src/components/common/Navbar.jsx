@@ -125,13 +125,13 @@ const MegaMenu = ({ onClose }) => (
   >
     {/* Header row */}
     <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/8">
-      <span className="text-[10px] uppercase tracking-[0.25em] text-[#CC1F1F] font-bold">
+      <span className="text-[10px] uppercase tracking-[0.25em] text-[#D4AF37] font-bold">
         Product Categories
       </span>
       <Link
         to="/catalog"
         onClick={onClose}
-        className="flex items-center gap-1 text-[10px] uppercase tracking-wider text-neutral-400 hover:text-[#CC1F1F] transition-colors font-semibold"
+        className="flex items-center gap-1 text-[10px] uppercase tracking-wider text-neutral-400 hover:text-[#D4AF37] transition-colors font-semibold"
       >
         View Full Catalog <ArrowRight className="w-3 h-3" />
       </Link>
@@ -146,24 +146,24 @@ const MegaMenu = ({ onClose }) => (
             to={`/category/${cat.slug}`}
             onClick={onClose}
             className="flex items-center gap-1.5 text-white font-bold text-[11px] uppercase tracking-wider
-                       hover:text-[#CC1F1F] transition-colors group"
+                       hover:text-[#D4AF37] transition-colors group"
           >
             <span className="text-sm leading-none">{cat.icon}</span>
             <span>{cat.name}</span>
             {cat.sub.length > 0 && (
-              <ChevronRight className="w-2.5 h-2.5 text-neutral-500 group-hover:text-[#CC1F1F] transition-colors ml-auto" />
+              <ChevronRight className="w-2.5 h-2.5 text-neutral-500 group-hover:text-[#D4AF37] transition-colors ml-auto" />
             )}
           </Link>
 
           {/* Sub-categories */}
           {cat.sub.length > 0 && (
-            <ul className="space-y-0.5 pl-5 border-l border-[#CC1F1F]/20">
+            <ul className="space-y-0.5 pl-5 border-l border-[#D4AF37]/20">
               {cat.sub.map((sub) => (
                 <li key={sub.slug}>
                   <Link
                     to={`/category/${cat.slug}/${sub.slug}`}
                     onClick={onClose}
-                    className="block text-[11px] text-neutral-400 hover:text-[#CC1F1F]
+                    className="block text-[11px] text-neutral-400 hover:text-[#D4AF37]
                                hover:translate-x-0.5 transition-all duration-150 py-0.5 leading-snug"
                   >
                     {sub.name}
@@ -204,7 +204,7 @@ const MobileCatItem = ({ cat, onClose }) => {
           to={`/category/${cat.slug}`}
           onClick={onClose}
           className="flex items-center gap-2 flex-1 px-4 py-2.5 text-sm font-semibold text-neutral-200
-                     hover:text-[#CC1F1F] transition-colors"
+                     hover:text-[#D4AF37] transition-colors"
         >
           <span className="text-base">{cat.icon}</span>
           {cat.name}
@@ -212,7 +212,7 @@ const MobileCatItem = ({ cat, onClose }) => {
         {cat.sub.length > 0 && (
           <button
             onClick={() => setOpen(!open)}
-            className="p-2 text-neutral-400 hover:text-[#CC1F1F] transition-colors"
+            className="p-2 text-neutral-400 hover:text-[#D4AF37] transition-colors"
             aria-label={`Expand ${cat.name}`}
           >
             <ChevronDown
@@ -229,14 +229,14 @@ const MobileCatItem = ({ cat, onClose }) => {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="overflow-hidden pl-10 pr-4 space-y-0.5 border-l border-[#CC1F1F]/30 ml-7"
+            className="overflow-hidden pl-10 pr-4 space-y-0.5 border-l border-[#D4AF37]/30 ml-7"
           >
             {cat.sub.map((sub) => (
               <li key={sub.slug}>
                 <Link
                   to={`/category/${cat.slug}/${sub.slug}`}
                   onClick={onClose}
-                  className="block py-1.5 text-xs text-neutral-400 hover:text-[#CC1F1F] transition-colors"
+                  className="block py-1.5 text-xs text-neutral-400 hover:text-[#D4AF37] transition-colors"
                 >
                   {sub.name}
                 </Link>
@@ -291,15 +291,15 @@ export const Navbar = () => {
           {/* ── Logo ── */}
           <Link to="/" className="flex items-center gap-3 group shrink-0">
             {settings.logo ? (
-              <img src={settings.logo} alt={settings.companyName || 'LightHut'} className="h-12 w-auto object-contain" />
+              <img src={settings.logo} alt={settings.companyName || 'NiceLamp'} className="h-12 w-auto object-contain" />
             ) : (
               <LHLogo className="h-12 w-auto" />
             )}
             <div className="leading-none hidden sm:block">
-              <span className="font-serif-luxury text-[15px] tracking-wider text-white font-bold block group-hover:text-[#CC1F1F] transition-colors">
-                {settings.companyName || 'LightHut'}
+              <span className="font-serif-luxury text-[15px] tracking-wider text-white font-bold block group-hover:text-[#D4AF37] transition-colors">
+                {settings.companyName || 'NiceLamp'}
               </span>
-              <span className="text-[8.5px] uppercase tracking-[0.22em] text-[#CC1F1F] font-semibold block mt-0.5">
+              <span className="text-[8.5px] uppercase tracking-[0.22em] text-[#D4AF37] font-semibold block mt-0.5">
                 Decorative Solutions
               </span>
             </div>
@@ -314,7 +314,7 @@ export const Navbar = () => {
               className={({ isActive }) =>
                 `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
                   isActive
-                    ? 'text-[#CC1F1F] bg-white/5 font-bold'
+                    ? 'text-[#D4AF37] bg-white/5 font-bold'
                     : 'text-neutral-300 hover:text-white hover:bg-white/5'
                 }`
               }
@@ -333,14 +333,14 @@ export const Navbar = () => {
                 onClick={() => setMegaOpen(!megaOpen)}
                 className={`flex items-center gap-1 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
                   megaOpen || location.pathname.startsWith('/category') || location.pathname === '/categories'
-                    ? 'text-[#CC1F1F] bg-white/5 font-bold'
+                    ? 'text-[#D4AF37] bg-white/5 font-bold'
                     : 'text-neutral-300 hover:text-white hover:bg-white/5'
                 }`}
               >
                 <span>Categories</span>
                 <ChevronDown
                   className={`w-3 h-3 transition-transform duration-200 ${
-                    megaOpen ? 'rotate-180 text-[#CC1F1F]' : 'text-neutral-400'
+                    megaOpen ? 'rotate-180 text-[#D4AF37]' : 'text-neutral-400'
                   }`}
                 />
               </button>
@@ -360,7 +360,7 @@ export const Navbar = () => {
               className={({ isActive }) =>
                 `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
                   isActive
-                    ? 'text-[#CC1F1F] bg-white/5 font-bold'
+                    ? 'text-[#D4AF37] bg-white/5 font-bold'
                     : 'text-neutral-300 hover:text-white hover:bg-white/5'
                 }`
               }
@@ -374,7 +374,7 @@ export const Navbar = () => {
               className={({ isActive }) =>
                 `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
                   isActive
-                    ? 'text-[#CC1F1F] bg-white/5 font-bold'
+                    ? 'text-[#D4AF37] bg-white/5 font-bold'
                     : 'text-neutral-300 hover:text-white hover:bg-white/5'
                 }`
               }
@@ -388,7 +388,7 @@ export const Navbar = () => {
               className={({ isActive }) =>
                 `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
                   isActive
-                    ? 'text-[#CC1F1F] bg-white/5 font-bold'
+                    ? 'text-[#D4AF37] bg-white/5 font-bold'
                     : 'text-neutral-300 hover:text-white hover:bg-white/5'
                 }`
               }
@@ -402,7 +402,7 @@ export const Navbar = () => {
               className={({ isActive }) =>
                 `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
                   isActive
-                    ? 'text-[#CC1F1F] bg-white/5 font-bold'
+                    ? 'text-[#D4AF37] bg-white/5 font-bold'
                     : 'text-neutral-300 hover:text-white hover:bg-white/5'
                 }`
               }
@@ -421,7 +421,7 @@ export const Navbar = () => {
                          transition-all text-[11px] uppercase tracking-wider font-semibold"
               aria-label="Search"
             >
-              <Search className="w-3.5 h-3.5 text-[#CC1F1F]" />
+              <Search className="w-3.5 h-3.5 text-[#D4AF37]" />
               <span>Search</span>
             </button>
 
@@ -429,7 +429,7 @@ export const Navbar = () => {
               id="navbar-inquiry-btn"
               onClick={() => setInquiryOpen(true)}
               className="btn-gold flex items-center gap-1.5 px-4 py-2 rounded-lg text-[11px] font-bold
-                         uppercase tracking-wider shadow-lg shadow-[#CC1F1F]/20"
+                         uppercase tracking-wider shadow-lg shadow-[#D4AF37]/20"
             >
               <Send className="w-3.5 h-3.5" />
               <span>Send Inquiry</span>
@@ -444,7 +444,7 @@ export const Navbar = () => {
               className="p-2 rounded-lg text-neutral-300 hover:text-white hover:bg-white/5 transition-colors"
               aria-label="Search"
             >
-              <Search className="w-5 h-5 text-[#CC1F1F]" />
+              <Search className="w-5 h-5 text-[#D4AF37]" />
             </button>
             <button
               id="mobile-menu-btn"
@@ -487,9 +487,9 @@ export const Navbar = () => {
                   <LHLogo className="h-9 w-auto" />
                   <div className="leading-none">
                     <span className="font-serif-luxury text-sm font-bold text-white block">
-                      {settings.companyName || 'LightHut'}
+                      {settings.companyName || 'NiceLamp'}
                     </span>
-                    <span className="text-[8px] uppercase tracking-[0.2em] text-[#CC1F1F] font-semibold block mt-0.5">
+                    <span className="text-[8px] uppercase tracking-[0.2em] text-[#D4AF37] font-semibold block mt-0.5">
                       Decorative Solutions
                     </span>
                   </div>
@@ -514,7 +514,7 @@ export const Navbar = () => {
                     className={({ isActive }) =>
                       `block px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.15em] rounded-xl transition-colors ${
                         isActive
-                          ? 'text-[#CC1F1F] bg-[#CC1F1F]/10 font-bold'
+                          ? 'text-[#D4AF37] bg-[#D4AF37]/10 font-bold'
                           : 'text-neutral-300 hover:text-white hover:bg-white/5'
                       }`
                     }
@@ -526,13 +526,13 @@ export const Navbar = () => {
                 {/* 2. Product Categories Accordion */}
                 <div className="px-4 py-2">
                   <div className="flex items-center justify-between px-1 mb-2">
-                    <p className="text-[9px] uppercase tracking-[0.25em] text-[#CC1F1F] font-bold">
+                    <p className="text-[9px] uppercase tracking-[0.25em] text-[#D4AF37] font-bold">
                       Categories
                     </p>
                     <Link
                       to="/categories"
                       onClick={closeMobile}
-                      className="text-[10px] uppercase tracking-wider text-neutral-400 hover:text-[#CC1F1F] transition-colors"
+                      className="text-[10px] uppercase tracking-wider text-neutral-400 hover:text-[#D4AF37] transition-colors"
                     >
                       All Categories →
                     </Link>
@@ -559,7 +559,7 @@ export const Navbar = () => {
                       className={({ isActive }) =>
                         `block px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.15em] rounded-xl transition-colors ${
                           isActive
-                            ? 'text-[#CC1F1F] bg-[#CC1F1F]/10 font-bold'
+                            ? 'text-[#D4AF37] bg-[#D4AF37]/10 font-bold'
                             : 'text-neutral-300 hover:text-white hover:bg-white/5'
                         }`
                       }
@@ -584,7 +584,7 @@ export const Navbar = () => {
                     href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`}
                     className="flex items-center gap-2 text-xs text-neutral-400 hover:text-white transition-colors px-1"
                   >
-                    <Phone className="w-3.5 h-3.5 text-[#CC1F1F]" />
+                    <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
                     <span>Call: {settings.phone}</span>
                   </a>
                 )}

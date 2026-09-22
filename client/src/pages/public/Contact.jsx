@@ -37,7 +37,7 @@ export const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    document.title = `Contact & Architectural Showroom | ${settings.companyName || 'LightHut'}`;
+    document.title = `Contact Us & Lighting Showroom | ${settings.companyName || 'NiceLamp'}`;
   }, [settings.companyName]);
 
   const handleSubmit = async (e) => {
@@ -51,7 +51,7 @@ export const Contact = () => {
       setSubmitting(true);
       await inquiryService.createInquiry(formData);
       setSubmitted(true);
-      addToast('Inquiry received. Our engineering consultant will respond shortly.', 'success');
+      addToast('Inquiry received! Our team will get back to you shortly.', 'success');
       setFormData({ name: '', email: '', phone: '', company: '', message: '' });
     } catch (err) {
       addToast('Failed to submit message. Please try again.', 'error');
@@ -61,21 +61,21 @@ export const Contact = () => {
   };
 
   return (
-    <div className="bg-[#090a0d] min-h-screen">
+    <div className="bg-[#0b0f17] min-h-screen">
       {/* ── HERO BANNER SECTION ── */}
-      <section className="relative pt-28 pb-16 lg:pt-32 lg:pb-20 border-b border-white/10 overflow-hidden bg-[#0a0c10]">
-        {/* Architectural Background Photography with Cinematic Lighting */}
+      <section className="relative pt-28 pb-16 lg:pt-32 lg:pb-20 border-b border-white/10 overflow-hidden bg-[#0b0f17]">
+        {/* Architectural Background Photography */}
         <div className="absolute inset-0 z-0">
           <img
             src={settings?.contactBannerImage || '/contact-banner.jpg'}
-            alt={`${settings.companyName || 'LightHut'} Architectural Experience Center & Lighting Showroom`}
-            className="w-full h-full object-cover object-center transform scale-105 filter brightness-[0.75] contrast-[1.08] transition-transform duration-1000"
+            alt={`${settings.companyName || 'NiceLamp'} Experience Center & Lighting Showroom`}
+            className="w-full h-full object-cover object-center transform scale-105 filter brightness-[0.9] contrast-[1.05] transition-transform duration-1000"
           />
-          {/* Multi-layered Gradients & Dark Glass Tint */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#090a0d] via-[#090a0d]/85 to-[#090a0d]/50" />
+          {/* Subtle gradient for text readability while keeping image crisp and clear */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b0f17]/90 via-[#0b0f17]/60 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#090a0d] via-[#090a0d]/35 to-black/65" />
           {/* Ambient Lighting Orbs */}
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#CC1F1F]/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#D4AF37]/20 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-20 right-1/4 w-80 h-80 bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
           {/* Geometric Architectural Blueprint Grid Accent */}
           <div
@@ -100,7 +100,7 @@ export const Contact = () => {
                 Home
               </Link>
               <ChevronRight className="w-3.5 h-3.5 text-neutral-600" />
-              <span className="text-[#CC1F1F] font-semibold">Contact & Architectural Showroom</span>
+              <span className="text-[#D4AF37] font-semibold">Contact & Architectural Showroom</span>
             </nav>
 
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/70 border border-emerald-500/30 text-emerald-300 text-xs font-medium shadow-sm backdrop-blur-md">
@@ -119,8 +119,8 @@ export const Contact = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury text-[#CC1F1F] font-bold mb-3">
-                <Sparkles className="w-3.5 h-3.5 text-[#CC1F1F]" />
+              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury text-[#D4AF37] font-bold mb-3">
+                <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
                 Architectural Consultation & Trade Liaison
               </span>
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif-luxury font-bold text-white tracking-tight leading-[1.15]">
@@ -144,7 +144,7 @@ export const Contact = () => {
                   e.preventDefault();
                   document.getElementById('inquiry-form')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="btn-gold px-6 py-3 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 shadow-xl hover:shadow-[#CC1F1F]/30 transition-all cursor-pointer"
+                className="btn-gold px-6 py-3 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 shadow-xl hover:shadow-[#D4AF37]/30 transition-all cursor-pointer"
               >
                 <span>Request Consultation</span>
                 <ArrowDown className="w-3.5 h-3.5" />
@@ -155,7 +155,7 @@ export const Contact = () => {
                   href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`}
                   className="px-5 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 transition-all backdrop-blur-sm"
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#CC1F1F]" />
+                  <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
                   <span>Direct Line</span>
                 </a>
               )}
@@ -183,7 +183,7 @@ export const Contact = () => {
           >
             <div className="p-4 rounded-xl bg-[#14171d]/70 border border-white/10 backdrop-blur-md">
               <div className="flex items-center gap-2.5 mb-1 text-white">
-                <Building2 className="w-4 h-4 text-[#CC1F1F]" />
+                <Building2 className="w-4 h-4 text-[#D4AF37]" />
                 <span className="font-serif-luxury font-bold text-xs">Flagship Showroom</span>
               </div>
               <p className="text-[11px] text-neutral-400 leading-snug">
@@ -193,7 +193,7 @@ export const Contact = () => {
 
             <div className="p-4 rounded-xl bg-[#14171d]/70 border border-white/10 backdrop-blur-md">
               <div className="flex items-center gap-2.5 mb-1 text-white">
-                <Clock className="w-4 h-4 text-[#CC1F1F]" />
+                <Clock className="w-4 h-4 text-[#D4AF37]" />
                 <span className="font-serif-luxury font-bold text-xs">24h Turnaround</span>
               </div>
               <p className="text-[11px] text-neutral-400 leading-snug">
@@ -203,7 +203,7 @@ export const Contact = () => {
 
             <div className="p-4 rounded-xl bg-[#14171d]/70 border border-white/10 backdrop-blur-md">
               <div className="flex items-center gap-2.5 mb-1 text-white">
-                <Layers className="w-4 h-4 text-[#CC1F1F]" />
+                <Layers className="w-4 h-4 text-[#D4AF37]" />
                 <span className="font-serif-luxury font-bold text-xs">Dialux & IES</span>
               </div>
               <p className="text-[11px] text-neutral-400 leading-snug">
@@ -213,7 +213,7 @@ export const Contact = () => {
 
             <div className="p-4 rounded-xl bg-[#14171d]/70 border border-white/10 backdrop-blur-md">
               <div className="flex items-center gap-2.5 mb-1 text-white">
-                <ShieldCheck className="w-4 h-4 text-[#CC1F1F]" />
+                <ShieldCheck className="w-4 h-4 text-[#D4AF37]" />
                 <span className="font-serif-luxury font-bold text-xs">Trade Volume Rates</span>
               </div>
               <p className="text-[11px] text-neutral-400 leading-snug">
@@ -231,7 +231,7 @@ export const Contact = () => {
           <div className="lg:col-span-5 space-y-6">
             <div className="p-8 rounded-2xl bg-[#14171d] border border-white/10 space-y-6 shadow-xl">
               <div>
-                <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-bold block mb-1">
+                <span className="text-xs uppercase tracking-luxury text-[#D4AF37] font-bold block mb-1">
                   Experience Center
                 </span>
                 <h3 className="font-serif-luxury text-xl text-white font-bold">
@@ -241,7 +241,7 @@ export const Contact = () => {
 
               {settings.address && (
                 <div className="flex items-start gap-3.5 text-xs text-neutral-300">
-                  <MapPin className="w-5 h-5 text-[#CC1F1F] shrink-0 mt-0.5" />
+                  <MapPin className="w-5 h-5 text-[#D4AF37] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-white block mb-0.5">Showroom & Manufacturing Works</strong>
                     <span className="leading-relaxed">{settings.address}</span>
@@ -251,7 +251,7 @@ export const Contact = () => {
 
               {settings.phone && (
                 <div className="flex items-start gap-3.5 text-xs text-neutral-300">
-                  <Phone className="w-5 h-5 text-[#CC1F1F] shrink-0 mt-0.5" />
+                  <Phone className="w-5 h-5 text-[#D4AF37] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-white block mb-0.5">Direct Line</strong>
                     <a href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`} className="hover:text-white transition-colors">
@@ -263,7 +263,7 @@ export const Contact = () => {
 
               {settings.email && (
                 <div className="flex items-start gap-3.5 text-xs text-neutral-300">
-                  <Mail className="w-5 h-5 text-[#CC1F1F] shrink-0 mt-0.5" />
+                  <Mail className="w-5 h-5 text-[#D4AF37] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-white block mb-0.5">Engineering Inquiries</strong>
                     <a href={`mailto:${settings.email}`} className="hover:text-white transition-colors">
@@ -274,7 +274,7 @@ export const Contact = () => {
               )}
 
               <div className="flex items-start gap-3.5 text-xs text-neutral-300">
-                <Clock className="w-5 h-5 text-[#CC1F1F] shrink-0 mt-0.5" />
+                <Clock className="w-5 h-5 text-[#D4AF37] shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-white block mb-0.5">Showroom Operating Hours</strong>
                   <span>Monday – Saturday: 10:00 AM – 7:30 PM (IST)</span>
@@ -307,7 +307,7 @@ export const Contact = () => {
                       href={`https://maps.google.com/?q=${encodeURIComponent(settings.address)}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1 text-[11px] text-[#CC1F1F] hover:text-white transition-colors"
+                      className="inline-flex items-center gap-1 text-[11px] text-[#D4AF37] hover:text-white transition-colors"
                     >
                       <span>Open in Google Maps</span>
                       <ExternalLink className="w-3 h-3" />
@@ -331,12 +331,12 @@ export const Contact = () => {
             <div className="p-8 sm:p-10 rounded-2xl bg-[#14171d] border border-white/10 shadow-2xl">
               {submitted ? (
                 <div className="py-12 text-center">
-                  <div className="w-16 h-16 rounded-full bg-[#CC1F1F]/15 border border-[#CC1F1F]/40 flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle2 className="w-8 h-8 text-[#CC1F1F]" />
+                  <div className="w-16 h-16 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/40 flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle2 className="w-8 h-8 text-[#D4AF37]" />
                   </div>
                   <h3 className="text-2xl font-serif-luxury text-white font-bold mb-2">Message Dispatched</h3>
                   <p className="text-sm text-neutral-400 max-w-md mx-auto mb-6 leading-relaxed">
-                    Thank you for contacting {settings.companyName || 'LightHut'}. Our team will review your specifications and get back to you within one business day.
+                    Thank you for contacting {settings.companyName || 'NiceLamp'}. Our team will review your message and get back to you within one business day.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -348,10 +348,10 @@ export const Contact = () => {
               ) : (
                 <>
                   <h3 className="font-serif-luxury text-2xl text-white font-bold mb-2">
-                    Request Technical Consultation
+                    Send Us a Message
                   </h3>
                   <p className="text-xs text-neutral-400 mb-8 leading-relaxed">
-                    Please provide your project context, luminaire quantities, or specific requirements below.
+                    Share your requirements, desired lamp designs, or questions below. Our team is happy to assist you!
                   </p>
 
                   <form onSubmit={handleSubmit} className="space-y-4">
@@ -366,7 +366,7 @@ export const Contact = () => {
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           placeholder="e.g. Vikram Singhania"
-                          className="w-full px-4 py-3 rounded-xl bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
+                          className="w-full px-4 py-3 rounded-xl bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm"
                         />
                       </div>
                       <div>
@@ -379,7 +379,7 @@ export const Contact = () => {
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           placeholder="e.g. vikram@studio.com"
-                          className="w-full px-4 py-3 rounded-xl bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
+                          className="w-full px-4 py-3 rounded-xl bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm"
                         />
                       </div>
                     </div>
@@ -394,7 +394,7 @@ export const Contact = () => {
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="+91 98000 00000"
-                          className="w-full px-4 py-3 rounded-xl bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
+                          className="w-full px-4 py-3 rounded-xl bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm"
                         />
                       </div>
                       <div>
@@ -406,7 +406,7 @@ export const Contact = () => {
                           value={formData.company}
                           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                           placeholder="Studio Architects LLP"
-                          className="w-full px-4 py-3 rounded-xl bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm"
+                          className="w-full px-4 py-3 rounded-xl bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm"
                         />
                       </div>
                     </div>
@@ -421,7 +421,7 @@ export const Contact = () => {
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         placeholder="Specify fixture models (e.g. LH-6031W), project location, finishes, and quantities required..."
-                        className="w-full px-4 py-3 rounded-xl bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm resize-none"
+                        className="w-full px-4 py-3 rounded-xl bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm resize-none"
                       />
                     </div>
 

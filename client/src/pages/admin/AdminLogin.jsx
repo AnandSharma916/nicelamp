@@ -49,7 +49,7 @@ export const AdminLogin = () => {
   return (
     <div className="min-h-screen bg-[#090a0d] flex items-center justify-center p-4 relative overflow-hidden">
       {/* Subtle Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#CC1F1F]/10 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#D4AF37]/10 blur-[140px] rounded-full pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 15 }}
@@ -59,17 +59,17 @@ export const AdminLogin = () => {
       >
         {/* Header Branding */}
         <div className="text-center mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#1c2028] to-[#090a0d] border border-[#CC1F1F]/40 flex items-center justify-center mx-auto mb-4 shadow-xl">
-            <SunMedium className="w-6 h-6 text-[#CC1F1F]" />
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#1c2028] to-[#090a0d] border border-[#D4AF37]/40 flex items-center justify-center mx-auto mb-4 shadow-xl">
+            <SunMedium className="w-6 h-6 text-[#D4AF37]" />
           </div>
-          <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-1">
+          <span className="text-[10px] uppercase tracking-luxury text-[#D4AF37] font-semibold block mb-1">
             Single Admin Portal
           </span>
           <h1 className="text-2xl font-serif-luxury font-bold text-white tracking-tight">
-            {settings.companyName || 'LightHut'} Console
+            {settings.companyName || 'NiceLamp'} Console
           </h1>
           <p className="text-xs text-neutral-400 mt-1">
-            Sign in to manage catalog luminaires, sections & inquiries
+            Sign in to manage catalog lamps, sections & inquiries
           </p>
         </div>
 
@@ -92,8 +92,8 @@ export const AdminLogin = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@lighthut.com"
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm transition-colors"
+                placeholder="admin@nicelamp.com"
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm transition-colors"
               />
             </div>
           </div>
@@ -110,7 +110,7 @@ export const AdminLogin = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••••••"
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#CC1F1F] text-sm transition-colors"
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm transition-colors"
               />
             </div>
           </div>
@@ -137,7 +137,7 @@ export const AdminLogin = () => {
 
         <div className="mt-8 pt-6 border-t border-white/10 text-center">
           <div className="inline-flex items-center gap-1.5 text-[11px] text-neutral-500">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#CC1F1F]" />
+            <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF37]" />
             <span>Encrypted with bcrypt & HTTP-only JWT sessions</span>
           </div>
         </div>

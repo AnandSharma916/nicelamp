@@ -143,7 +143,7 @@ export const HomepageCms = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-1">
+          <span className="text-[10px] uppercase tracking-luxury text-[#D4AF37] font-semibold block mb-1">
             Storefront Layout & Presentation
           </span>
           <h1 className="text-2xl font-serif-luxury font-bold text-white tracking-wide">
@@ -167,7 +167,7 @@ export const HomepageCms = () => {
 
       {loading ? (
         <div className="py-20 text-center text-xs text-neutral-500">
-          <Loader2 className="w-8 h-8 text-[#CC1F1F] animate-spin mx-auto mb-2" />
+          <Loader2 className="w-8 h-8 text-[#D4AF37] animate-spin mx-auto mb-2" />
           <span>Loading dynamic section tree...</span>
         </div>
       ) : sections.length === 0 ? (
@@ -190,7 +190,7 @@ export const HomepageCms = () => {
                     key={sec._id}
                     className={`p-4 flex items-center justify-between gap-3 transition-colors ${
                       isSelected
-                        ? 'bg-[#CC1F1F]/10 border-l-4 border-l-[#CC1F1F]'
+                        ? 'bg-[#D4AF37]/10 border-l-4 border-l-[#D4AF37]'
                         : 'hover:bg-white/[0.02]'
                     }`}
                   >
@@ -253,7 +253,7 @@ export const HomepageCms = () => {
               <div className="bg-[#14171d] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
                 <div className="flex items-center justify-between pb-4 border-b border-white/10">
                   <div>
-                    <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] font-semibold block">
+                    <span className="text-[10px] uppercase tracking-luxury text-[#D4AF37] font-semibold block">
                       Section Content Editor
                     </span>
                     <h2 className="text-lg font-serif-luxury font-bold text-white tracking-wide">
@@ -284,7 +284,7 @@ export const HomepageCms = () => {
                         setSelectedSection((p) => ({ ...p, title: e.target.value }))
                       }
                       placeholder="e.g. Architectural & Luxury Decorative Lighting"
-                      className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white text-sm focus:outline-none focus:border-[#CC1F1F]"
+                      className="w-full px-4 py-3 rounded-xl bg-[#090a0d] border border-white/10 text-white text-sm focus:outline-none focus:border-[#D4AF37]"
                     />
                   </div>
 
@@ -299,7 +299,7 @@ export const HomepageCms = () => {
                         setSelectedSection((p) => ({ ...p, subtitle: e.target.value }))
                       }
                       placeholder="Atmospheric narrative and design philosophy..."
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#CC1F1F]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#D4AF37]"
                     />
                   </div>
 
@@ -314,7 +314,7 @@ export const HomepageCms = () => {
                         setSelectedSection((p) => ({ ...p, badge: e.target.value }))
                       }
                       placeholder="e.g. 2026 LUXURY COLLECTION"
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-[#CC1F1F]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-[#D4AF37]"
                     />
                   </div>
 

@@ -38,7 +38,7 @@ export const ProductDetail = () => {
           setProduct(data.product);
           setRelatedProducts(data.relatedProducts || []);
           setSelectedImageIndex(0);
-          document.title = `${data.product.name} (${data.product.sku}) | ${settings.companyName || 'LightHut'}`;
+          document.title = `${data.product.name} (${data.product.sku}) | ${settings.companyName || 'NiceLamp'}`;
         }
       } catch (err) {
         console.error('Failed to fetch product details:', err);
@@ -60,7 +60,7 @@ export const ProductDetail = () => {
   if (loading) {
     return (
       <div className="min-h-screen pt-32 pb-20 flex items-center justify-center bg-[#090a0d]">
-        <div className="w-10 h-10 rounded-full border-2 border-[#CC1F1F] border-t-transparent animate-spin" />
+        <div className="w-10 h-10 rounded-full border-2 border-[#D4AF37] border-t-transparent animate-spin" />
       </div>
     );
   }
@@ -91,23 +91,20 @@ export const ProductDetail = () => {
   const currentImage = images[selectedImageIndex] || images[0];
 
   const specsList = [
-    { label: 'SKU / Model Code', value: product.sku },
+    { label: 'Model Code', value: product.sku },
     { label: 'Category', value: product.category?.name },
     { label: 'Dimensions', value: product.specifications?.dimensions },
     { label: 'Material', value: product.specifications?.material },
-    { label: 'Finish / Plating', value: product.specifications?.finish },
-    { label: 'Wattage & Light Source', value: product.specifications?.wattage },
+    { label: 'Finish & Color', value: product.specifications?.finish },
+    { label: 'Light Source / Bulb', value: product.specifications?.wattage },
     { label: 'Input Voltage', value: product.specifications?.voltage },
-    { label: 'Color Temperature (CCT)', value: product.specifications?.colorTemperature },
-    { label: 'Ingress Protection (IP)', value: product.specifications?.ipRating },
-    { label: 'Installation Type', value: product.specifications?.installationType },
-    { label: 'Beam Angle', value: product.specifications?.beamAngle },
-    { label: 'Color Rendering (CRI)', value: product.specifications?.cri },
-    { label: 'Luminous Flux', value: product.specifications?.luminousFlux },
+    { label: 'Light Color (Warm / White)', value: product.specifications?.colorTemperature },
+    { label: 'Water & Weather Protection', value: product.specifications?.ipRating },
+    { label: 'Mounting / Placement', value: product.specifications?.installationType },
   ].filter((item) => item.value && String(item.value).trim() !== '');
 
   return (
-    <div className="pt-24 pb-20 bg-[#090a0d] min-h-screen">
+    <div className="pt-24 pb-20 bg-[#0b0f17] min-h-screen">
       {/* Draft Notification Banner */}
       {!product.isPublished && (
         <div className="bg-amber-500/10 border-b border-amber-500/20 text-amber-300 py-2.5 px-4 text-center text-xs font-medium flex items-center justify-center gap-2">
@@ -131,7 +128,7 @@ export const ProductDetail = () => {
             </>
           )}
           <ChevronRight className="w-3.5 h-3.5 text-neutral-600" />
-          <span className="text-[#CC1F1F] truncate font-medium">{product.name}</span>
+          <span className="text-[#D4AF37] truncate font-medium">{product.name}</span>
         </nav>
       </div>
 
@@ -147,11 +144,11 @@ export const ProductDetail = () => {
                 className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
-                <span className="text-xs font-mono font-semibold px-3 py-1 rounded-lg bg-black/80 backdrop-blur-md text-[#CC1F1F] border border-white/10 shadow-lg">
+                <span className="text-xs font-mono font-semibold px-3 py-1 rounded-lg bg-black/80 backdrop-blur-md text-[#D4AF37] border border-white/10 shadow-lg">
                   {product.sku}
                 </span>
                 {product.isFeatured && (
-                  <span className="text-xs font-semibold uppercase tracking-luxury px-2.5 py-1 rounded-lg bg-[#CC1F1F] text-black shadow flex items-center gap-1">
+                  <span className="text-xs font-semibold uppercase tracking-luxury px-2.5 py-1 rounded-lg bg-[#D4AF37] text-black shadow flex items-center gap-1">
                     <Sparkles className="w-3 h-3" /> Featured
                   </span>
                 )}
@@ -160,7 +157,7 @@ export const ProductDetail = () => {
               <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2">
                 <button
                   onClick={handleShare}
-                  className="p-2.5 rounded-xl bg-black/70 backdrop-blur-md text-white hover:text-[#CC1F1F] border border-white/10 transition-colors shadow-lg"
+                  className="p-2.5 rounded-xl bg-black/70 backdrop-blur-md text-white hover:text-[#D4AF37] border border-white/10 transition-colors shadow-lg"
                   title="Copy share link"
                 >
                   <Share2 className="w-4 h-4" />
@@ -177,7 +174,7 @@ export const ProductDetail = () => {
                     onClick={() => setSelectedImageIndex(index)}
                     className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 shrink-0 transition-all ${
                       selectedImageIndex === index
-                        ? 'border-[#CC1F1F] shadow-lg scale-105'
+                        ? 'border-[#D4AF37] shadow-lg scale-105'
                         : 'border-white/10 hover:border-white/30 opacity-70 hover:opacity-100'
                     }`}
                   >
@@ -192,7 +189,7 @@ export const ProductDetail = () => {
           <div className="lg:col-span-5 space-y-6">
             <div>
               {product.category?.name && (
-                <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-2">
+                <span className="text-xs uppercase tracking-luxury text-[#D4AF37] font-semibold block mb-2">
                   {product.category.name}
                 </span>
               )}
@@ -272,7 +269,7 @@ export const ProductDetail = () => {
           <div className="mt-24 pt-12 border-t border-white/10">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-1">
+                <span className="text-xs uppercase tracking-luxury text-[#D4AF37] font-semibold block mb-1">
                   Coordinated Fixtures
                 </span>
                 <h2 className="text-2xl font-serif-luxury text-white font-bold">
@@ -281,7 +278,7 @@ export const ProductDetail = () => {
               </div>
               <Link
                 to={`/category/${product.category?.slug}`}
-                className="text-xs uppercase tracking-luxury text-[#CC1F1F] hover:text-white font-semibold transition-colors hidden sm:block"
+                className="text-xs uppercase tracking-luxury text-[#D4AF37] hover:text-white font-semibold transition-colors hidden sm:block"
               >
                 View Category →
               </Link>

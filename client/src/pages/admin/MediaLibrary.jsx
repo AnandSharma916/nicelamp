@@ -80,7 +80,7 @@ export const MediaLibrary = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-1">
+          <span className="text-[10px] uppercase tracking-luxury text-[#D4AF37] font-semibold block mb-1">
             Digital Asset Management
           </span>
           <h1 className="text-2xl font-serif-luxury font-bold text-white tracking-wide">
@@ -112,7 +112,7 @@ export const MediaLibrary = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search media files by name..."
-            className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#CC1F1F] text-xs transition-colors"
+            className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#090a0d] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-[#D4AF37] text-xs transition-colors"
           />
         </div>
 
@@ -124,7 +124,7 @@ export const MediaLibrary = () => {
       {/* Media Grid */}
       {loading ? (
         <div className="py-20 text-center text-xs text-neutral-500">
-          <Loader2 className="w-8 h-8 text-[#CC1F1F] animate-spin mx-auto mb-2" />
+          <Loader2 className="w-8 h-8 text-[#D4AF37] animate-spin mx-auto mb-2" />
           <span>Scanning storage repository...</span>
         </div>
       ) : filteredMedia.length === 0 ? (
@@ -169,7 +169,7 @@ export const MediaLibrary = () => {
                     </a>
                     <button
                       onClick={() => handleCopyUrl(url, id)}
-                      className="p-2 rounded-lg bg-[#CC1F1F] text-black hover:bg-[#CC1F1F]/90 transition-colors"
+                      className="p-2 rounded-lg bg-[#D4AF37] text-black hover:bg-[#D4AF37]/90 transition-colors"
                       title="Copy URL to clipboard"
                     >
                       {copiedId === id ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}

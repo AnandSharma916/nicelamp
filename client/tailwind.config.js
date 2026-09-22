@@ -8,12 +8,19 @@ export default {
   theme: {
     extend: {
       colors: {
+        gold: {
+          DEFAULT: '#D4AF37',
+          light:   '#F59E0B',
+          dark:    '#B8860B',
+          hover:   '#E5A93C',
+          subtle:  'rgba(212, 175, 55, 0.12)'
+        },
         brand: {
-          950: '#090a0d',
-          900: '#111318',
-          850: '#181b22',
-          800: '#20242d',
-          700: '#2e3340',
+          950: '#0b0f17',
+          900: '#111722',
+          850: '#161e2c',
+          800: '#1e283a',
+          700: '#2b384f',
           600: '#485065',
           500: '#6b7280',
           400: '#9ca3af',
@@ -21,22 +28,23 @@ export default {
           200: '#e2e8f0',
           100: '#f1f5f9',
           50:  '#f8fafc',
+          // Re-mapped red aliases to warm gold to ensure backwards compatibility
           red: {
-            DEFAULT: '#CC1F1F',
-            light:   '#E53E3E',
-            dark:    '#9B1515',
-            hover:   '#B91C1C',
-            subtle:  'rgba(204, 31, 31, 0.12)'
+            DEFAULT: '#D4AF37',
+            light:   '#F59E0B',
+            dark:    '#B8860B',
+            hover:   '#E5A93C',
+            subtle:  'rgba(212, 175, 55, 0.12)'
           }
         }
       },
       fontFamily: {
-        serif: ['"Cinzel"', '"Playfair Display"', 'Georgia', 'serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
         sans:  ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
         mono:  ['"JetBrains Mono"', 'monospace']
       },
       letterSpacing: {
-        'luxury': '0.2em',
+        'luxury': '0.15em',
         'subtle': '0.05em'
       }
     },

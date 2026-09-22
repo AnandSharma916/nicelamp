@@ -375,7 +375,7 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
         {/* ── Top Header Strip (Slim 36px) ── */}
         <div className="flex items-center justify-between px-4 py-2 border-b border-white/10 bg-[#0d1017]">
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#CC1F1F] shadow-[0_0_6px_#CC1F1F]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] shadow-[0_0_6px_#D4AF37]" />
             <span className="text-[10px] uppercase tracking-wider text-[#ff6b6b] font-bold">
               Lighting Categories
             </span>
@@ -420,7 +420,7 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
                     onClick={() => handleCategoryHover(cat)}
                     className={`w-full text-left flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs transition-all duration-120 group ${
                       isSelected
-                        ? 'bg-[#181d28] text-white font-semibold border-l-2 border-[#CC1F1F]'
+                        ? 'bg-[#181d28] text-white font-semibold border-l-2 border-[#D4AF37]'
                         : 'text-neutral-300 hover:bg-white/5 hover:text-white'
                     }`}
                   >
@@ -428,7 +428,7 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
                       <span
                         className={`w-5 h-5 rounded flex items-center justify-center shrink-0 ${
                           isSelected
-                            ? 'bg-[#CC1F1F] text-white shadow-sm'
+                            ? 'bg-[#D4AF37] text-white shadow-sm'
                             : 'bg-white/5 text-neutral-400 group-hover:text-white'
                         }`}
                       >
@@ -488,7 +488,7 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
                       onClick={() => handleSubcategoryHover(sub)}
                       className={`w-full text-left flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs transition-all duration-120 group ${
                         isSelected
-                          ? 'bg-[#181d28] text-white font-semibold border border-[#CC1F1F]/40'
+                          ? 'bg-[#181d28] text-white font-semibold border border-[#D4AF37]/40'
                           : 'text-neutral-300 hover:bg-white/5 hover:text-white'
                       }`}
                     >
@@ -496,7 +496,7 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
                       <span
                         className={`text-[10px] font-mono px-1.5 py-0.2 rounded shrink-0 ${
                           isSelected
-                            ? 'bg-[#CC1F1F]/25 text-[#ff8080]'
+                            ? 'bg-[#D4AF37]/25 text-[#ff8080]'
                             : 'bg-white/5 text-neutral-400'
                         }`}
                       >
@@ -547,10 +547,10 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
                       key={idx}
                       to={`/catalog?search=${encodeURIComponent(item.name)}`}
                       onClick={onClose}
-                      className="group flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-[#0a0d14] hover:bg-[#181d2a] border border-white/8 hover:border-[#CC1F1F]/50 transition-all text-xs"
+                      className="group flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-[#0a0d14] hover:bg-[#181d2a] border border-white/8 hover:border-[#D4AF37]/50 transition-all text-xs"
                     >
                       <div className="flex items-center gap-2 truncate pr-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#CC1F1F] shadow-[0_0_6px_#CC1F1F] shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] shadow-[0_0_6px_#D4AF37] shrink-0" />
                         <span className="truncate text-[11.5px] font-semibold text-white group-hover:text-white">
                           {item.name}
                         </span>

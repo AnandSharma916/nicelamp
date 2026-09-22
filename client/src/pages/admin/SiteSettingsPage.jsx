@@ -114,7 +114,7 @@ export const SiteSettingsPage = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-1">
+          <span className="text-[10px] uppercase tracking-luxury text-[#D4AF37] font-semibold block mb-1">
             Global Metadata & Branding
           </span>
           <h1 className="text-2xl font-serif-luxury font-bold text-white tracking-wide">
@@ -148,7 +148,7 @@ export const SiteSettingsPage = () => {
         {/* 1. Brand Identity */}
         <div className="bg-[#14171d] border border-white/10 rounded-2xl p-6 sm:p-8 space-y-5 shadow-xl">
           <h2 className="text-base font-serif-luxury font-bold text-white flex items-center gap-2">
-            <Building2 className="w-4 h-4 text-[#CC1F1F]" />
+            <Building2 className="w-4 h-4 text-[#D4AF37]" />
             <span>Brand Identity & Logo</span>
           </h2>
 
@@ -162,8 +162,8 @@ export const SiteSettingsPage = () => {
                 name="companyName"
                 value={formData.companyName}
                 onChange={handleChange}
-                placeholder="LightHut Decorative Solutions"
-                className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#CC1F1F]"
+                placeholder="NiceLamp Designer Lighting"
+                className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#D4AF37]"
               />
             </div>
 
@@ -177,7 +177,7 @@ export const SiteSettingsPage = () => {
                 value={formData.tagline}
                 onChange={handleChange}
                 placeholder="Architectural & Luxury Decorative Luminaires"
-                className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#CC1F1F]"
+                className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#D4AF37]"
               />
             </div>
           </div>
@@ -246,7 +246,7 @@ export const SiteSettingsPage = () => {
         {/* 2. Direct Contact Details */}
         <div className="bg-[#14171d] border border-white/10 rounded-2xl p-6 sm:p-8 space-y-5 shadow-xl">
           <h2 className="text-base font-serif-luxury font-bold text-white flex items-center gap-2">
-            <Phone className="w-4 h-4 text-[#CC1F1F]" />
+            <Phone className="w-4 h-4 text-[#D4AF37]" />
             <span>Consultation & Contact Channels</span>
           </h2>
 
@@ -288,7 +288,7 @@ export const SiteSettingsPage = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="info@lighthutcatalog.com"
+                placeholder="info@nicelamp.com"
                 className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs"
               />
             </div>
@@ -312,7 +312,7 @@ export const SiteSettingsPage = () => {
         {/* 3. Legal & Social Links */}
         <div className="bg-[#14171d] border border-white/10 rounded-2xl p-6 sm:p-8 space-y-5 shadow-xl">
           <h2 className="text-base font-serif-luxury font-bold text-white flex items-center gap-2">
-            <Globe className="w-4 h-4 text-[#CC1F1F]" />
+            <Globe className="w-4 h-4 text-[#D4AF37]" />
             <span>Digital Footprint & Regulatory</span>
           </h2>
 
@@ -338,7 +338,7 @@ export const SiteSettingsPage = () => {
                 type="url"
                 value={formData.socialLinks.instagram}
                 onChange={(e) => handleNestedChange('socialLinks', 'instagram', e.target.value)}
-                placeholder="https://instagram.com/lighthut"
+                placeholder="https://instagram.com/nicelamp"
                 className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono"
               />
             </div>
@@ -361,7 +361,7 @@ export const SiteSettingsPage = () => {
         {/* 4. Default Search Engine Optimization */}
         <div className="bg-[#14171d] border border-white/10 rounded-2xl p-6 sm:p-8 space-y-5 shadow-xl">
           <h2 className="text-base font-serif-luxury font-bold text-white flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-[#CC1F1F]" />
+            <ShieldCheck className="w-4 h-4 text-[#D4AF37]" />
             <span>Search Engine Optimization (SEO) Defaults</span>
           </h2>
 
@@ -374,7 +374,7 @@ export const SiteSettingsPage = () => {
               name="defaultSeoTitle"
               value={formData.defaultSeoTitle}
               onChange={handleChange}
-              placeholder="LightHut | Architectural & Decorative Lighting Solutions"
+              placeholder="NiceLamp | Luxury Designer Lamps & Home Lighting"
               className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs"
             />
           </div>

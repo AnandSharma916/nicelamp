@@ -21,7 +21,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#090a0d] border-t border-white/10 text-neutral-400 text-sm">
+    <footer className="bg-[#0b0f17] border-t border-white/10 text-neutral-400 text-sm">
       {/* Main Footer Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
@@ -29,15 +29,15 @@ export const Footer = () => {
           <div className="space-y-4">
             <Link to="/" className="inline-block">
               <span className="font-serif-luxury text-xl text-white font-semibold block tracking-wider">
-                {settings.companyName}
+                {settings.companyName || 'NiceLamp'}
               </span>
-              <span className="text-[10px] uppercase tracking-luxury text-[#CC1F1F] font-medium block">
-                {settings.tagline || 'Decorative Solutions'}
+              <span className="text-[10px] uppercase tracking-luxury text-[#D4AF37] font-medium block">
+                {settings.tagline || 'Decorative Lighting'}
               </span>
             </Link>
             <p className="text-xs text-neutral-400 leading-relaxed max-w-sm">
               {settings.footerContent?.aboutText ||
-                'Pioneering contemporary architectural lighting solutions, precision engineered luminaires, and tailored illumination for luxury spaces.'}
+                'NiceLamp brings you premium decorative lighting, handcrafted chandeliers, and ambient wall lamps designed to illuminate your home with beauty and warmth.'}
             </p>
             {settings.footerContent?.gstNumber && (
               <div className="pt-2">
@@ -55,31 +55,31 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <Link to="/catalog" className="hover:text-[#CC1F1F] transition-colors flex items-center gap-1 group">
+                <Link to="/catalog" className="hover:text-[#D4AF37] transition-colors flex items-center gap-1 group">
                   <span>Product Catalog</span>
                   <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link to="/categories" className="hover:text-[#CC1F1F] transition-colors flex items-center gap-1 group">
+                <Link to="/categories" className="hover:text-[#D4AF37] transition-colors flex items-center gap-1 group">
                   <span>Categories Overview</span>
                   <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link to="/projects" className="hover:text-[#CC1F1F] transition-colors flex items-center gap-1 group">
+                <Link to="/projects" className="hover:text-[#D4AF37] transition-colors flex items-center gap-1 group">
                   <span>Architectural Projects</span>
                   <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-[#CC1F1F] transition-colors flex items-center gap-1 group">
+                <Link to="/about" className="hover:text-[#D4AF37] transition-colors flex items-center gap-1 group">
                   <span>Company Profile</span>
                   <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:text-[#CC1F1F] transition-colors flex items-center gap-1 group">
+                <Link to="/contact" className="hover:text-[#D4AF37] transition-colors flex items-center gap-1 group">
                   <span>Contact & Showroom</span>
                   <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
@@ -103,37 +103,37 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <Link to="/category/wall-lamp" className="hover:text-[#CC1F1F] transition-colors">
+                <Link to="/category/wall-lamp" className="hover:text-[#D4AF37] transition-colors">
                   Wall Lamp (LED & E27)
                 </Link>
               </li>
               <li>
-                <Link to="/category/pendant-lamp" className="hover:text-[#CC1F1F] transition-colors">
+                <Link to="/category/pendant-lamp" className="hover:text-[#D4AF37] transition-colors">
                   Pendant Lamp (Hanging Lights)
                 </Link>
               </li>
               <li>
-                <Link to="/category/chandelier" className="hover:text-[#CC1F1F] transition-colors">
+                <Link to="/category/chandelier" className="hover:text-[#D4AF37] transition-colors">
                   Chandelier Collection
                 </Link>
               </li>
               <li>
-                <Link to="/category/double-height" className="hover:text-[#CC1F1F] transition-colors">
+                <Link to="/category/double-height" className="hover:text-[#D4AF37] transition-colors">
                   Double Height Chandeliers
                 </Link>
               </li>
               <li>
-                <Link to="/category/dining-table-lamp" className="hover:text-[#CC1F1F] transition-colors">
+                <Link to="/category/dining-table-lamp" className="hover:text-[#D4AF37] transition-colors">
                   Dining Table Lamps
                 </Link>
               </li>
               <li>
-                <Link to="/category/outdoor-light" className="hover:text-[#CC1F1F] transition-colors">
+                <Link to="/category/outdoor-light" className="hover:text-[#D4AF37] transition-colors">
                   Outdoor Lights & Gate Lamps
                 </Link>
               </li>
               <li>
-                <Link to="/category/spare-part" className="hover:text-[#CC1F1F] transition-colors">
+                <Link to="/category/spare-part" className="hover:text-[#D4AF37] transition-colors">
                   Spare Parts & Filament Bulbs
                 </Link>
               </li>
@@ -148,13 +148,13 @@ export const Footer = () => {
             <div className="space-y-3 text-xs">
               {settings.address && (
                 <div className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-[#CC1F1F] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
                   <span>{settings.address}</span>
                 </div>
               )}
               {settings.phone && (
                 <div className="flex items-center gap-2.5">
-                  <Phone className="w-4 h-4 text-[#CC1F1F] shrink-0" />
+                  <Phone className="w-4 h-4 text-[#D4AF37] shrink-0" />
                   <a href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`} className="hover:text-white transition-colors">
                     {settings.phone}
                   </a>
@@ -162,7 +162,7 @@ export const Footer = () => {
               )}
               {settings.email && (
                 <div className="flex items-center gap-2.5">
-                  <Mail className="w-4 h-4 text-[#CC1F1F] shrink-0" />
+                  <Mail className="w-4 h-4 text-[#D4AF37] shrink-0" />
                   <a href={`mailto:${settings.email}`} className="hover:text-white transition-colors">
                     {settings.email}
                   </a>
@@ -190,7 +190,7 @@ export const Footer = () => {
                   href={settings.socialLinks.instagram}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#CC1F1F]/20 hover:text-[#CC1F1F] border border-white/10 flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#D4AF37]/20 hover:text-[#D4AF37] border border-white/10 flex items-center justify-center transition-colors"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-4 h-4" />
@@ -201,7 +201,7 @@ export const Footer = () => {
                   href={settings.socialLinks.facebook}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#CC1F1F]/20 hover:text-[#CC1F1F] border border-white/10 flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#D4AF37]/20 hover:text-[#D4AF37] border border-white/10 flex items-center justify-center transition-colors"
                   aria-label="Facebook"
                 >
                   <Facebook className="w-4 h-4" />
@@ -212,7 +212,7 @@ export const Footer = () => {
                   href={settings.socialLinks.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#CC1F1F]/20 hover:text-[#CC1F1F] border border-white/10 flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#D4AF37]/20 hover:text-[#D4AF37] border border-white/10 flex items-center justify-center transition-colors"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-4 h-4" />
@@ -226,12 +226,12 @@ export const Footer = () => {
       {/* Bottom Copyright Bar */}
       <div className="border-t border-white/5 bg-[#07080a] py-6 text-xs text-neutral-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p>{settings.footerContent?.copyrightText || '© 2026 LightHut. All Rights Reserved.'}</p>
+          <p>{settings.footerContent?.copyrightText || '© 2026 NiceLamp. All Rights Reserved.'}</p>
           <div className="flex items-center gap-6">
-            <span className="text-[11px] text-neutral-600">Architectural Luminaire Manufacturer</span>
+            <span className="text-[11px] text-neutral-500">Luxury Designer Lamps & Lighting</span>
             <button
               onClick={scrollToTop}
-              className="text-[#CC1F1F] hover:text-white transition-colors text-xs uppercase tracking-luxury flex items-center gap-1"
+              className="text-[#D4AF37] hover:text-white transition-colors text-xs uppercase tracking-luxury flex items-center gap-1"
             >
               Back to top ↑
             </button>

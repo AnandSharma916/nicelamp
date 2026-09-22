@@ -170,14 +170,14 @@ export const ProjectsSection = ({ section }) => {
   return (
     <section className="py-24 bg-[#090a0d] relative overflow-hidden border-t border-white/5">
       {/* Ambient background lighting glow */}
-      <div className="absolute top-1/3 -right-40 w-96 h-96 bg-[#CC1F1F]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 -right-40 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 -left-40 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* ── Section Header ── */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
           <div className="max-w-2xl">
-            <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-2">
+            <span className="text-xs uppercase tracking-luxury text-[#D4AF37] font-semibold block mb-2">
               {subtitle}
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-white tracking-tight leading-tight">
@@ -190,7 +190,7 @@ export const ProjectsSection = ({ section }) => {
 
           <Link
             to={btnLink}
-            className="btn-gold inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-semibold uppercase tracking-luxury shrink-0 shadow-lg hover:shadow-[#CC1F1F]/25 transition-all"
+            className="btn-gold inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-semibold uppercase tracking-luxury shrink-0 shadow-lg hover:shadow-[#D4AF37]/25 transition-all"
           >
             <span>{btnText}</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -214,7 +214,7 @@ export const ProjectsSection = ({ section }) => {
                 {isActive && (
                   <motion.div
                     layoutId="project-active-tab-pill"
-                    className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#CC1F1F]/20 to-transparent pointer-events-none"
+                    className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#D4AF37]/20 to-transparent pointer-events-none"
                     transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                   />
                 )}
@@ -242,7 +242,7 @@ export const ProjectsSection = ({ section }) => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4 }}
-                className="group relative rounded-2xl overflow-hidden bg-[#14171d] border border-white/10 hover:border-[#CC1F1F]/50 transition-all duration-500 shadow-xl flex flex-col justify-between"
+                className="group relative rounded-2xl overflow-hidden bg-[#14171d] border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-500 shadow-xl flex flex-col justify-between"
               >
                 {/* Image Container with Badges */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-[#0a0c10]">
@@ -254,7 +254,7 @@ export const ProjectsSection = ({ section }) => {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#14171d] via-[#14171d]/30 to-transparent" />
 
                   {/* Top-Left: Project Context Badge */}
-                  <span className="absolute top-3.5 left-3.5 text-[10px] uppercase tracking-luxury text-[#CC1F1F] bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10 font-semibold">
+                  <span className="absolute top-3.5 left-3.5 text-[10px] uppercase tracking-luxury text-[#D4AF37] bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10 font-semibold">
                     {project.categoryLabel}
                   </span>
 
@@ -270,19 +270,19 @@ export const ProjectsSection = ({ section }) => {
                   <div>
                     {/* Location */}
                     <div className="flex items-center gap-1.5 text-xs text-neutral-400 mb-2 font-medium">
-                      <MapPin className="w-3.5 h-3.5 text-[#CC1F1F]" />
+                      <MapPin className="w-3.5 h-3.5 text-[#D4AF37]" />
                       <span>{project.location}</span>
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-serif-luxury text-lg sm:text-xl text-white font-bold group-hover:text-[#CC1F1F] transition-colors mb-2 leading-snug">
+                    <h3 className="font-serif-luxury text-lg sm:text-xl text-white font-bold group-hover:text-[#D4AF37] transition-colors mb-2 leading-snug">
                       {project.title}
                     </h3>
 
                     {/* Installed Fixture Callout */}
                     {project.fixtureCode && (
                       <div className="mb-3 inline-flex items-center gap-1.5 text-[11px] font-mono text-neutral-300 bg-white/[0.04] border border-white/10 px-2.5 py-0.5 rounded-md">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#CC1F1F]" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
                         <span>Fixture: {project.fixtureCode}</span>
                       </div>
                     )}
@@ -301,7 +301,7 @@ export const ProjectsSection = ({ section }) => {
 
                     <Link
                       to="/projects"
-                      className="inline-flex items-center gap-1 text-xs uppercase tracking-luxury text-[#CC1F1F] group-hover:text-white transition-colors font-semibold shrink-0"
+                      className="inline-flex items-center gap-1 text-xs uppercase tracking-luxury text-[#D4AF37] group-hover:text-white transition-colors font-semibold shrink-0"
                     >
                       <span>Inspect</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

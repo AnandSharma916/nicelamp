@@ -42,7 +42,7 @@ export const Catalog = () => {
   const [catalogDropdownOpen, setCatalogDropdownOpen] = useState(false);
 
   useEffect(() => {
-    document.title = `Luminaires Catalog | ${settings.companyName || 'LightHut'}`;
+    document.title = `Lamps & Lighting Catalog | ${settings.companyName || 'NiceLamp'}`;
   }, [settings.companyName]);
 
   // Fetch categories for sidebar filter
@@ -123,7 +123,7 @@ export const Catalog = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-b border-white/10 mb-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-2">
+            <span className="text-xs uppercase tracking-luxury text-[#D4AF37] font-semibold block mb-2">
               Architectural Lighting Collection
             </span>
             <h1 className="text-3xl sm:text-5xl font-serif-luxury font-bold text-white tracking-tight">
@@ -135,7 +135,7 @@ export const Catalog = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs font-mono text-[#CC1F1F] bg-[#CC1F1F]/10 border border-[#CC1F1F]/20 px-3 py-1.5 rounded-lg">
+            <span className="text-xs font-mono text-[#D4AF37] bg-[#D4AF37]/10 border border-[#D4AF37]/20 px-3 py-1.5 rounded-lg">
               {totalProducts} {totalProducts === 1 ? 'Fixture Found' : 'Fixtures Found'}
             </span>
           </div>
@@ -150,7 +150,7 @@ export const Catalog = () => {
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               placeholder="Search by SKU, model, finish, or material..."
-              className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-[#14171d] border border-white/10 text-white placeholder-neutral-500 text-xs focus:outline-none focus:border-[#CC1F1F] transition-colors"
+              className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-[#14171d] border border-white/10 text-white placeholder-neutral-500 text-xs focus:outline-none focus:border-[#D4AF37] transition-colors"
             />
             {searchInput && (
               <button
@@ -175,11 +175,11 @@ export const Catalog = () => {
                 onClick={() => setCatalogDropdownOpen(!catalogDropdownOpen)}
                 className={`px-3.5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider flex items-center gap-2 transition-all ${
                   catalogDropdownOpen
-                    ? 'bg-[#CC1F1F] text-white shadow-lg shadow-[#CC1F1F]/30 border border-[#CC1F1F]'
+                    ? 'bg-[#D4AF37] text-white shadow-lg shadow-[#D4AF37]/30 border border-[#D4AF37]'
                     : 'bg-[#14171d] hover:bg-[#1a1e27] border border-white/10 text-neutral-300 hover:text-white'
                 }`}
               >
-                <Layers className="w-3.5 h-3.5 text-[#CC1F1F]" />
+                <Layers className="w-3.5 h-3.5 text-[#D4AF37]" />
                 <span>Categories</span>
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${catalogDropdownOpen ? 'rotate-180 text-white' : ''}`} />
               </button>
@@ -200,17 +200,17 @@ export const Catalog = () => {
               onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
               className="lg:hidden px-4 py-2.5 rounded-xl bg-[#14171d] border border-white/10 text-xs font-semibold uppercase tracking-luxury text-neutral-300 flex items-center gap-2"
             >
-              <Filter className="w-3.5 h-3.5 text-[#CC1F1F]" />
+              <Filter className="w-3.5 h-3.5 text-[#D4AF37]" />
               <span>Filters</span>
             </button>
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-2">
-              <ArrowUpDown className="w-3.5 h-3.5 text-[#CC1F1F]" />
+              <ArrowUpDown className="w-3.5 h-3.5 text-[#D4AF37]" />
               <select
                 value={currentSort}
                 onChange={(e) => updateQuery({ sort: e.target.value })}
-                className="bg-[#14171d] border border-white/10 rounded-xl px-3 py-2 text-xs font-semibold uppercase tracking-luxury text-neutral-300 focus:outline-none focus:border-[#CC1F1F]"
+                className="bg-[#14171d] border border-white/10 rounded-xl px-3 py-2 text-xs font-semibold uppercase tracking-luxury text-neutral-300 focus:outline-none focus:border-[#D4AF37]"
               >
                 <option value="sortOrder">Featured & Order</option>
                 <option value="newest">Newest First</option>
@@ -229,7 +229,7 @@ export const Catalog = () => {
               Active Filters:
             </span>
             {currentCategory !== 'all' && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs bg-[#CC1F1F]/15 text-[#CC1F1F] border border-[#CC1F1F]/30 font-medium">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30 font-medium">
                 Category: {categories.find((c) => c.slug === currentCategory)?.name || currentCategory}
                 <button onClick={() => updateQuery({ category: 'all' })}>
                   <X className="w-3 h-3 hover:text-white" />
@@ -237,7 +237,7 @@ export const Catalog = () => {
               </span>
             )}
             {currentSearch && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs bg-[#CC1F1F]/15 text-[#CC1F1F] border border-[#CC1F1F]/30 font-medium">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30 font-medium">
                 Query: "{currentSearch}"
                 <button
                   onClick={() => {
@@ -250,7 +250,7 @@ export const Catalog = () => {
               </span>
             )}
             {currentFeatured && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs bg-[#CC1F1F]/15 text-[#CC1F1F] border border-[#CC1F1F]/30 font-medium">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30 font-medium">
                 Featured Only
                 <button onClick={() => updateQuery({ featured: '' })}>
                   <X className="w-3 h-3 hover:text-white" />
@@ -275,13 +275,13 @@ export const Catalog = () => {
             <div className="p-6 rounded-2xl bg-[#14171d] border border-white/10 space-y-6 shadow-xl">
               <div className="flex items-center justify-between pb-4 border-b border-white/10">
                 <span className="text-xs uppercase tracking-luxury text-white font-bold flex items-center gap-2">
-                  <Filter className="w-3.5 h-3.5 text-[#CC1F1F]" />
+                  <Filter className="w-3.5 h-3.5 text-[#D4AF37]" />
                   Categories
                 </span>
                 {currentCategory !== 'all' && (
                   <button
                     onClick={() => updateQuery({ category: 'all' })}
-                    className="text-[11px] text-[#CC1F1F] hover:underline"
+                    className="text-[11px] text-[#D4AF37] hover:underline"
                   >
                     Reset
                   </button>
@@ -294,7 +294,7 @@ export const Catalog = () => {
                   onClick={() => updateQuery({ category: 'all' })}
                   className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
                     currentCategory === 'all'
-                      ? 'bg-[#CC1F1F] text-black font-semibold shadow'
+                      ? 'bg-[#D4AF37] text-black font-semibold shadow'
                       : 'text-neutral-300 hover:bg-white/5 hover:text-white'
                   }`}
                 >
@@ -307,7 +307,7 @@ export const Catalog = () => {
                     onClick={() => updateQuery({ category: cat.slug })}
                     className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
                       currentCategory === cat.slug
-                        ? 'bg-[#CC1F1F] text-black font-semibold shadow'
+                        ? 'bg-[#D4AF37] text-black font-semibold shadow'
                         : 'text-neutral-300 hover:bg-white/5 hover:text-white'
                     }`}
                   >
@@ -332,10 +332,10 @@ export const Catalog = () => {
                     type="checkbox"
                     checked={currentFeatured === 'true'}
                     onChange={(e) => updateQuery({ featured: e.target.checked ? 'true' : '' })}
-                    className="rounded bg-[#090a0d] border-white/20 text-[#CC1F1F] focus:ring-0 focus:ring-offset-0 w-4 h-4 cursor-pointer"
+                    className="rounded bg-[#090a0d] border-white/20 text-[#D4AF37] focus:ring-0 focus:ring-offset-0 w-4 h-4 cursor-pointer"
                   />
                   <span className="text-xs text-neutral-300 group-hover:text-white transition-colors flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-[#CC1F1F]" />
+                    <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
                     Featured Fixtures Only
                   </span>
                 </label>
@@ -377,7 +377,7 @@ export const Catalog = () => {
                           onClick={() => updateQuery({ page: p })}
                           className={`w-9 h-9 rounded-xl text-xs font-mono font-medium transition-all ${
                             currentPage === p
-                              ? 'bg-[#CC1F1F] text-black font-bold shadow-lg'
+                              ? 'bg-[#D4AF37] text-black font-bold shadow-lg'
                               : 'bg-[#14171d] text-neutral-400 hover:text-white border border-white/10'
                           }`}
                         >

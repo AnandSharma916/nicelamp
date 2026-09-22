@@ -100,7 +100,7 @@ export const ProductPreviewModal = ({
           {/* Header Bar */}
           <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-[#0e1014]">
             <div className="flex items-center gap-2.5">
-              <div className="p-1.5 rounded-lg bg-[#CC1F1F]/15 text-[#CC1F1F] border border-[#CC1F1F]/30">
+              <div className="p-1.5 rounded-lg bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30">
                 <Eye className="w-4 h-4" />
               </div>
               <div>
@@ -128,11 +128,11 @@ export const ProductPreviewModal = ({
                   href={`/product/${slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs font-medium border border-white/10 hover:border-[#CC1F1F]/40 transition-all"
+                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs font-medium border border-white/10 hover:border-[#D4AF37]/40 transition-all"
                   title="Open storefront page in new tab"
                 >
                   <span>Open in Storefront</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-[#CC1F1F]" />
+                  <ExternalLink className="w-3.5 h-3.5 text-[#D4AF37]" />
                 </a>
               )}
               <button
@@ -167,7 +167,7 @@ export const ProductPreviewModal = ({
                   {/* Highlights Badges on Image */}
                   <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
                     {product.isFeatured && (
-                      <span className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#CC1F1F] text-black shadow-md flex items-center gap-1">
+                      <span className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#D4AF37] text-black shadow-md flex items-center gap-1">
                         <Sparkles className="w-3 h-3" /> Featured
                       </span>
                     )}
@@ -189,7 +189,7 @@ export const ProductPreviewModal = ({
                         onClick={() => setSelectedImgIdx(idx)}
                         className={`w-14 h-14 rounded-xl overflow-hidden border-2 shrink-0 transition-all ${
                           selectedImgIdx === idx
-                            ? 'border-[#CC1F1F] scale-105 shadow-md'
+                            ? 'border-[#D4AF37] scale-105 shadow-md'
                             : 'border-white/10 opacity-60 hover:opacity-100'
                         }`}
                       >
@@ -203,7 +203,7 @@ export const ProductPreviewModal = ({
               {/* Luminaire Details Preview */}
               <div className="space-y-4">
                 <div>
-                  <span className="text-[10px] uppercase font-mono tracking-widest text-[#CC1F1F] font-semibold block mb-1">
+                  <span className="text-[10px] uppercase font-mono tracking-widest text-[#D4AF37] font-semibold block mb-1">
                     {categoryName || product.category?.name || 'Architectural Lighting'} • SKU: {sku}
                   </span>
                   <h2 className="text-xl font-serif-luxury font-bold text-white tracking-wide leading-snug">
@@ -249,13 +249,13 @@ export const ProductPreviewModal = ({
                 {/* Data Sheet Link Preview */}
                 {product.pdfUrl && (
                   <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-neutral-300">
-                    <FileText className="w-4 h-4 text-[#CC1F1F]" />
+                    <FileText className="w-4 h-4 text-[#D4AF37]" />
                     <span className="truncate flex-1 font-mono text-[11px]">{product.pdfUrl}</span>
                     <a
                       href={product.pdfUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#CC1F1F] hover:underline text-[11px] font-semibold shrink-0"
+                      className="text-[#D4AF37] hover:underline text-[11px] font-semibold shrink-0"
                     >
                       View PDF ↗
                     </a>

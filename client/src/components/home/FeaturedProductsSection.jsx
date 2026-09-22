@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { productService } from '../../services/api';
 import { ProductCard } from '../catalog/ProductCard';
@@ -26,35 +25,36 @@ export const FeaturedProductsSection = ({ section }) => {
     fetchFeatured();
   }, []);
 
-  const title = section?.title || 'Curated Signature Fixtures';
-  const subtitle = section?.subtitle || 'Spotlight On Architectural Highlights';
+  const title = section?.title || 'Featured Lighting Collection';
+  const subtitle = section?.subtitle || 'MOST LOVED DESIGNS';
   const description =
     section?.description ||
-    'Hand-selected luminaires representing our highest echelon of optical engineering, material purity, and timeless form factor.';
-  const btnText = section?.buttonText || 'Browse Full Catalog';
+    'Discover our most popular chandeliers, statement pendants, and ambient wall lamps handpicked for modern Indian homes.';
+  const btnText = section?.buttonText || 'View All Lights';
   const btnLink = section?.buttonLink || '/catalog';
 
   return (
-    <section className="py-24 bg-[#0d0f14] relative overflow-hidden">
+    <section className="py-20 sm:py-24 bg-[#0b0f17] relative overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">
-            <span className="text-xs uppercase tracking-luxury text-[#CC1F1F] font-semibold block mb-2">
-              {subtitle}
-            </span>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#161e2c] border border-[#D4AF37]/30 text-[10px] uppercase tracking-wider text-[#FDE68A] font-bold mb-3">
+              <Sparkles className="w-3 h-3 text-[#F59E0B]" />
+              <span>{subtitle}</span>
+            </div>
             <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-white tracking-tight">
               {title}
             </h2>
-            <p className="text-sm text-neutral-400 mt-3 leading-relaxed">
+            <p className="text-sm text-neutral-300 mt-2 leading-relaxed">
               {description}
             </p>
           </div>
           <Link
             to={btnLink}
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury text-[#CC1F1F] hover:text-white font-semibold group shrink-0 transition-colors"
+            className="btn-gold inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs uppercase tracking-luxury shadow-lg transition-all transform hover:-translate-y-0.5 shrink-0"
           >
             <span>{btnText}</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
