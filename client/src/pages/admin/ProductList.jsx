@@ -168,13 +168,13 @@ export const ProductList = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <span className="text-[10px] uppercase tracking-luxury text-[#D4AF37] font-semibold block mb-1">
-            Inventory & Showroom
+            Catalog Management
           </span>
           <h1 className="text-2xl font-serif-luxury font-bold text-white tracking-wide">
-            Architectural Luminaires Catalog
+            Product Catalog
           </h1>
           <p className="text-xs text-neutral-400 mt-0.5">
-            Manage specifications, photometrics, imagery, and pricing across {totalCount} fixtures.
+            Manage your lighting collection, specifications, imagery, and pricing across {totalCount} catalog products.
           </p>
         </div>
 
@@ -183,7 +183,7 @@ export const ProductList = () => {
           className="btn-gold px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 self-start sm:self-auto shadow-lg"
         >
           <Plus className="w-4 h-4" />
-          <span>Add New Luminaire</span>
+          <span>Add to Catalog</span>
         </Link>
       </div>
 

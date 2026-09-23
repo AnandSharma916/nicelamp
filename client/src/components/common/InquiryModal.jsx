@@ -72,27 +72,27 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-xl bg-[#14171d] border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10 flex flex-col max-h-[90vh] my-auto"
+            className="relative w-full max-w-xl bg-white border border-neutral-200 rounded-2xl shadow-2xl overflow-hidden z-10 flex flex-col max-h-[90vh] my-auto"
           >
             <button
               onClick={onClose}
-              className="absolute top-5 right-5 p-2 rounded-lg text-neutral-400 hover:text-white hover:bg-white/5 transition-colors z-20"
+              className="absolute top-5 right-5 p-2 rounded-lg text-neutral-400 hover:text-neutral-900 hover:bg-neutral-100 transition-colors z-20"
             >
               <X className="w-5 h-5" />
             </button>
 
             {submitted ? (
               <div className="p-6 md:p-8 py-12 text-center overflow-y-auto modal-scrollbar">
-                <div className="w-16 h-16 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-8 h-8 text-[#D4AF37]" />
+                <div className="w-16 h-16 rounded-full bg-[#DC2626]/15 border border-[#DC2626]/30 flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-[#DC2626]" />
                 </div>
-                <h3 className="text-2xl font-serif-luxury text-white mb-2">Inquiry Received</h3>
-                <p className="text-sm text-neutral-400 max-w-md mx-auto mb-6">
-                  Thank you, <span className="text-white font-medium">{formData.name}</span>. An architectural lighting specialist will review your request and get in touch within 24 hours.
+                <h3 className="text-2xl font-serif-luxury text-neutral-900 font-bold mb-2">Inquiry Received</h3>
+                <p className="text-sm text-neutral-600 max-w-md mx-auto mb-6">
+                  Thank you, <span className="text-neutral-900 font-semibold">{formData.name}</span>. A lighting specialist will review your request and get in touch within 24 hours.
                 </p>
                 <button
                   onClick={onClose}
-                  className="btn-gold px-8 py-2.5 rounded-lg text-sm font-semibold uppercase tracking-luxury"
+                  className="btn-gold px-8 py-2.5 rounded-lg text-sm font-bold uppercase tracking-luxury"
                 >
                   Close
                 </button>
@@ -100,19 +100,19 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
             ) : (
               <div className="p-6 md:p-8 overflow-y-auto modal-scrollbar">
                 <div className="mb-6">
-                  <span className="text-xs uppercase tracking-luxury text-[#D4AF37] font-semibold">
+                  <span className="text-xs uppercase tracking-luxury text-[#DC2626] font-bold">
                     Product & Technical Enquiry
                   </span>
-                  <h3 className="text-2xl font-serif-luxury text-white mt-1">
+                  <h3 className="text-2xl font-serif-luxury text-neutral-900 font-bold mt-1">
                     {product ? product.name : 'Request Luminaire Specification'}
                   </h3>
                   {product && (
                     <div className="flex items-center gap-2 mt-2">
-                      <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20">
+                      <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626] border border-[#DC2626]/30">
                         SKU: {product.sku}
                       </span>
                       {product.category?.name && (
-                        <span className="text-xs text-neutral-400">Category: {product.category.name}</span>
+                        <span className="text-xs text-neutral-500 font-medium">Category: {product.category.name}</span>
                       )}
                     </div>
                   )}
@@ -121,7 +121,7 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1 font-medium">
+                      <label className="block text-xs uppercase tracking-luxury text-neutral-600 mb-1 font-semibold">
                         Full Name *
                       </label>
                       <input
@@ -130,11 +130,11 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="John Doe"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-neutral-300 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-[#DC2626] text-sm shadow-sm"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1 font-medium">
+                      <label className="block text-xs uppercase tracking-luxury text-neutral-600 mb-1 font-semibold">
                         Email Address *
                       </label>
                       <input
@@ -143,14 +143,14 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="john@example.com"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-neutral-300 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-[#DC2626] text-sm shadow-sm"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1 font-medium">
+                      <label className="block text-xs uppercase tracking-luxury text-neutral-600 mb-1 font-semibold">
                         Phone / WhatsApp
                       </label>
                       <input
@@ -158,11 +158,11 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+91 98000 00000"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-neutral-300 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-[#DC2626] text-sm shadow-sm"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1 font-medium">
+                      <label className="block text-xs uppercase tracking-luxury text-neutral-600 mb-1 font-semibold">
                         Company / Architectural Studio
                       </label>
                       <input
@@ -170,13 +170,13 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                         placeholder="Studio Design Ltd."
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-neutral-300 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-[#DC2626] text-sm shadow-sm"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1 font-medium">
+                    <label className="block text-xs uppercase tracking-luxury text-neutral-600 mb-1 font-semibold">
                       Inquiry Details / Project Requirements *
                     </label>
                     <textarea
@@ -184,7 +184,7 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0b0c10] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#D4AF37] text-sm resize-none"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-neutral-300 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-[#DC2626] text-sm resize-none shadow-sm"
                     />
                   </div>
 
@@ -192,14 +192,14 @@ export const InquiryModal = ({ isOpen, onClose, product = null }) => {
                     <button
                       type="button"
                       onClick={onClose}
-                      className="px-5 py-2.5 text-xs uppercase tracking-luxury text-neutral-400 hover:text-white transition-colors"
+                      className="px-5 py-2.5 text-xs uppercase tracking-luxury text-neutral-500 hover:text-neutral-900 transition-colors font-semibold"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="btn-gold px-7 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-luxury flex items-center gap-2 disabled:opacity-50"
+                      className="btn-gold px-7 py-2.5 rounded-lg text-xs font-bold uppercase tracking-luxury flex items-center gap-2 shadow-sm disabled:opacity-50"
                     >
                       {submitting ? (
                         <>

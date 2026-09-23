@@ -330,10 +330,10 @@ export const ProductForm = () => {
           </Link>
           <div>
             <span className="text-[10px] uppercase tracking-luxury text-[#D4AF37] font-semibold block">
-              {isEditMode ? 'Modify Specifications' : 'New Catalog Entry'}
+              {isEditMode ? 'Modify Catalog Product' : 'New Catalog Entry'}
             </span>
             <h1 className="text-2xl font-serif-luxury font-bold text-white tracking-wide">
-              {isEditMode ? formData.title || 'Edit Luminaire' : 'Add Architectural Luminaire'}
+              {isEditMode ? formData.title || 'Edit Catalog Product' : 'Add Catalog Product'}
             </h1>
           </div>
         </div>
@@ -386,7 +386,7 @@ export const ProductForm = () => {
             ) : (
               <>
                 <Save className="w-4 h-4" />
-                <span>{isEditMode ? 'Update Luminaire' : 'Publish Luminaire'}</span>
+                <span>{isEditMode ? 'Update Catalog Product' : 'Publish to Catalog'}</span>
               </>
             )}
           </button>
@@ -1062,7 +1062,7 @@ export const ProductForm = () => {
             ) : (
               <>
                 <Save className="w-4 h-4" />
-                <span>{isEditMode ? 'Update Luminaire' : 'Publish Luminaire'}</span>
+                <span>{isEditMode ? 'Update Catalog Product' : 'Publish to Catalog'}</span>
               </>
             )}
           </button>

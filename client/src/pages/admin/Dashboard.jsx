@@ -134,7 +134,7 @@ export const Dashboard = () => {
             Executive Overview
           </span>
           <h1 className="text-2xl lg:text-3xl font-serif-luxury font-bold text-white tracking-wide">
-            {settings.companyName || 'NiceLamp'} Management
+            {settings.companyName || 'Lighting Studio'} Management
           </h1>
           <p className="text-xs text-neutral-400 mt-1 max-w-xl">
             Control center for designer lamps, lighting collections, homepage displays, and client inquiries.

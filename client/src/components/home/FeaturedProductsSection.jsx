@@ -34,24 +34,24 @@ export const FeaturedProductsSection = ({ section }) => {
   const btnLink = section?.buttonLink || '/catalog';
 
   return (
-    <section className="py-20 sm:py-24 bg-[#0b0f17] relative overflow-hidden border-t border-white/5">
+    <section className="py-20 sm:py-24 bg-white relative overflow-hidden border-t border-neutral-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#161e2c] border border-[#D4AF37]/30 text-[10px] uppercase tracking-wider text-[#FDE68A] font-bold mb-3">
-              <Sparkles className="w-3 h-3 text-[#F59E0B]" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-[10px] uppercase tracking-wider text-[#DC2626] font-bold mb-3">
+              <Sparkles className="w-3 h-3 text-[#DC2626]" />
               <span>{subtitle}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-neutral-900 tracking-tight">
               {title}
             </h2>
-            <p className="text-sm text-neutral-300 mt-2 leading-relaxed">
+            <p className="text-sm text-neutral-600 mt-2 leading-relaxed">
               {description}
             </p>
           </div>
           <Link
             to={btnLink}
-            className="btn-gold inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs uppercase tracking-luxury shadow-lg transition-all transform hover:-translate-y-0.5 shrink-0"
+            className="btn-gold inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs uppercase tracking-luxury shadow-md transition-all transform hover:-translate-y-0.5 shrink-0"
           >
             <span>{btnText}</span>
             <ArrowRight className="w-4 h-4" />
@@ -61,7 +61,7 @@ export const FeaturedProductsSection = ({ section }) => {
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[1, 2, 3, 4].map((n) => (
-              <div key={n} className="h-96 rounded-2xl bg-white/5 animate-pulse" />
+              <div key={n} className="h-96 rounded-2xl bg-neutral-100 animate-pulse" />
             ))}
           </div>
         ) : (

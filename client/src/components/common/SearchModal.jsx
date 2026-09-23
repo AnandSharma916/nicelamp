@@ -74,18 +74,18 @@ export const SearchModal = ({ isOpen, onClose }) => {
             initial={{ opacity: 0, scale: 0.95, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            className="relative w-full max-w-2xl bg-[#14171d] border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10"
+            className="relative w-full max-w-2xl bg-white border border-neutral-200 rounded-2xl shadow-2xl overflow-hidden z-10"
           >
             {/* Search Input Bar */}
-            <div className="flex items-center px-6 py-4 border-b border-white/10 bg-[#181b22]">
-              <Search className="w-5 h-5 text-[#D4AF37] mr-3 shrink-0" />
+            <div className="flex items-center px-6 py-4 border-b border-neutral-200 bg-[#f8fafc]">
+              <Search className="w-5 h-5 text-[#DC2626] mr-3 shrink-0" />
               <input
                 ref={inputRef}
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search luminaires by name, SKU (e.g. LH-6031W), material..."
-                className="w-full bg-transparent text-white placeholder-neutral-500 focus:outline-none text-base"
+                className="w-full bg-transparent text-neutral-900 placeholder-neutral-400 focus:outline-none text-base"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && searchTerm.trim()) {
                     handleViewAll();
@@ -94,10 +94,10 @@ export const SearchModal = ({ isOpen, onClose }) => {
                   }
                 }}
               />
-              {loading && <Loader2 className="w-5 h-5 text-[#D4AF37] animate-spin mr-3 shrink-0" />}
+              {loading && <Loader2 className="w-5 h-5 text-[#DC2626] animate-spin mr-3 shrink-0" />}
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-white/5 transition-colors"
+                className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-900 hover:bg-neutral-100 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -107,17 +107,17 @@ export const SearchModal = ({ isOpen, onClose }) => {
             <div className="max-h-[60vh] overflow-y-auto p-4 space-y-2 modal-scrollbar">
               {results.length > 0 ? (
                 <div>
-                  <div className="text-xs uppercase tracking-luxury text-[#D4AF37] px-3 py-2 font-semibold">
+                  <div className="text-xs uppercase tracking-luxury text-[#DC2626] px-3 py-2 font-bold">
                     Matching Luminaires ({results.length})
                   </div>
-                  <div className="divide-y divide-white/5">
+                  <div className="divide-y divide-neutral-100">
                     {results.map((product) => (
                       <div
                         key={product._id}
                         onClick={() => handleSelectProduct(product.slug)}
-                        className="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 cursor-pointer transition-colors group"
+                        className="flex items-center gap-4 p-3 rounded-xl hover:bg-neutral-50 cursor-pointer transition-colors group"
                       >
-                        <div className="w-14 h-14 rounded-lg overflow-hidden bg-black/40 border border-white/10 shrink-0">
+                        <div className="w-14 h-14 rounded-lg overflow-hidden bg-neutral-100 border border-neutral-200 shrink-0">
                           <img
                             src={product.images?.[0]?.url || 'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=200&q=80'}
                             alt={product.name}
@@ -126,38 +126,38 @@ export const SearchModal = ({ isOpen, onClose }) => {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-mono font-medium text-[#D4AF37] bg-[#D4AF37]/10 px-2 py-0.5 rounded">
+                            <span className="text-xs font-mono font-semibold text-[#DC2626] bg-[#DC2626]/10 px-2 py-0.5 rounded">
                               {product.sku}
                             </span>
                             {product.category?.name && (
-                              <span className="text-xs text-neutral-400 truncate">
+                              <span className="text-xs text-neutral-500 truncate">
                                 {product.category.name}
                               </span>
                             )}
                           </div>
-                          <h4 className="text-sm font-medium text-white truncate mt-1 group-hover:text-[#D4AF37] transition-colors">
+                          <h4 className="text-sm font-semibold text-neutral-900 truncate mt-1 group-hover:text-[#DC2626] transition-colors">
                             {product.name}
                           </h4>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-neutral-500 group-hover:text-white group-hover:translate-x-1 transition-all shrink-0" />
+                        <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-neutral-900 group-hover:translate-x-1 transition-all shrink-0" />
                       </div>
                     ))}
                   </div>
 
-                  <div className="pt-3 mt-2 border-t border-white/5 px-2">
+                  <div className="pt-3 mt-2 border-t border-neutral-100 px-2">
                     <button
                       onClick={handleViewAll}
-                      className="w-full py-2.5 text-center text-xs font-semibold uppercase tracking-luxury text-[#D4AF37] hover:text-white transition-colors flex items-center justify-center gap-2"
+                      className="w-full py-2.5 text-center text-xs font-bold uppercase tracking-luxury text-[#DC2626] hover:text-neutral-900 transition-colors flex items-center justify-center gap-2"
                     >
                       View all results in catalog <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>
               ) : searchTerm.trim() ? (
-                <div className="py-12 text-center text-neutral-400">
-                  <Lightbulb className="w-8 h-8 text-neutral-600 mx-auto mb-3" />
-                  <p className="text-sm">No luminaires found matching "{searchTerm}"</p>
-                  <p className="text-xs text-neutral-500 mt-1">Try searching by category, finish, or generic name</p>
+                <div className="py-12 text-center text-neutral-500">
+                  <Lightbulb className="w-8 h-8 text-neutral-400 mx-auto mb-3" />
+                  <p className="text-sm font-medium">No luminaires found matching "{searchTerm}"</p>
+                  <p className="text-xs text-neutral-400 mt-1">Try searching by category, finish, or model code</p>
                 </div>
               ) : (
                 <div className="py-8 px-4 text-center">
@@ -167,7 +167,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                       <button
                         key={tag}
                         onClick={() => setSearchTerm(tag)}
-                        className="px-3 py-1.5 rounded-full text-xs bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white border border-white/5 transition-all"
+                        className="px-3 py-1.5 rounded-full text-xs bg-neutral-100 hover:bg-neutral-200 text-neutral-700 hover:text-neutral-900 border border-neutral-200 transition-all"
                       >
                         {tag}
                       </button>

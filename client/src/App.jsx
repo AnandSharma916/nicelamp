@@ -23,14 +23,8 @@ import { NotFound } from './pages/public/NotFound';
 
 // Admin Pages
 import { AdminLogin } from './pages/admin/AdminLogin';
-import { Dashboard } from './pages/admin/Dashboard';
 import { ProductList } from './pages/admin/ProductList';
 import { ProductForm } from './pages/admin/ProductForm';
-import { CategoryManagement } from './pages/admin/CategoryManagement';
-import { HomepageCms } from './pages/admin/HomepageCms';
-import { MediaLibrary } from './pages/admin/MediaLibrary';
-import { InquiryList } from './pages/admin/InquiryList';
-import { SiteSettingsPage } from './pages/admin/SiteSettingsPage';
 
 function App() {
   return (
@@ -56,18 +50,15 @@ function App() {
               {/* Admin Portal Authentication */}
               <Route path="/admin/login" element={<AdminLogin />} />
 
-              {/* Protected Admin CMS Management Console */}
+              {/* Protected Admin Console - Dedicated Catalog Section */}
               <Route path="/admin" element={<AdminLayout />}>
-                <Route index element={<Navigate to="/admin/dashboard" replace />} />
-                <Route path="dashboard" element={<Dashboard />} />
+                <Route index element={<Navigate to="/admin/products" replace />} />
                 <Route path="products" element={<ProductList />} />
                 <Route path="products/new" element={<ProductForm />} />
                 <Route path="products/edit/:id" element={<ProductForm />} />
-                <Route path="categories" element={<CategoryManagement />} />
-                <Route path="homepage" element={<HomepageCms />} />
-                <Route path="media" element={<MediaLibrary />} />
-                <Route path="inquiries" element={<InquiryList />} />
-                <Route path="settings" element={<SiteSettingsPage />} />
+                <Route path="catalog" element={<Navigate to="/admin/products" replace />} />
+                <Route path="catalog/new" element={<Navigate to="/admin/products/new" replace />} />
+                <Route path="*" element={<Navigate to="/admin/products" replace />} />
               </Route>
             </Routes>
           </BrowserRouter>

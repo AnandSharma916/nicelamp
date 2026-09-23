@@ -20,42 +20,39 @@ export const CTASection = ({ section }) => {
 
   const whatsappNumber = (settings?.whatsapp || '+919999000000').replace(/[^\d]/g, '');
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    'Hello NiceLamp! I would like recommendations and pricing for decorative lighting for my home.'
+    'Hello! I would like recommendations and pricing for decorative lighting for my home.'
   )}`;
 
   return (
     <>
-      <section className="py-20 sm:py-24 bg-[#0b0f17] relative overflow-hidden border-t border-white/5">
-        {/* Warm Amber Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#D4AF37]/10 blur-[100px] rounded-full pointer-events-none" />
-
+      <section className="py-20 sm:py-24 bg-[#f8fafc] relative overflow-hidden border-t border-neutral-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="rounded-3xl bg-[#161e2c] border border-[#D4AF37]/30 p-8 sm:p-12 shadow-2xl text-center"
+            className="rounded-3xl bg-white border border-neutral-200 p-8 sm:p-12 shadow-xl text-center"
           >
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 mb-6">
-              <Sparkles className="w-3.5 h-3.5 text-[#F59E0B]" />
-              <span className="text-xs uppercase tracking-wider text-[#FDE68A] font-bold">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 mb-6">
+              <Sparkles className="w-3.5 h-3.5 text-[#DC2626]" />
+              <span className="text-xs uppercase tracking-wider text-[#DC2626] font-bold">
                 {subtitle}
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-white tracking-tight leading-tight max-w-2xl mx-auto mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-neutral-900 tracking-tight leading-tight max-w-2xl mx-auto mb-4">
               {title}
             </h2>
 
-            <p className="text-sm sm:text-base text-neutral-300 max-w-xl mx-auto leading-relaxed mb-8">
+            <p className="text-sm sm:text-base text-neutral-600 max-w-xl mx-auto leading-relaxed mb-8">
               {description}
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <button
                 onClick={() => setInquiryOpen(true)}
-                className="btn-gold px-7 py-3.5 rounded-xl text-xs font-bold uppercase tracking-luxury flex items-center gap-2 shadow-xl hover:brightness-110 transition-all transform hover:-translate-y-0.5"
+                className="btn-gold px-7 py-3.5 rounded-xl text-xs font-bold uppercase tracking-luxury flex items-center gap-2 shadow-md hover:brightness-105 transition-all transform hover:-translate-y-0.5"
               >
                 <Send className="w-4 h-4" />
                 <span>{primaryBtnText}</span>
@@ -65,9 +62,9 @@ export const CTASection = ({ section }) => {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/20 hover:border-[#D4AF37]/60 bg-[#0b0f17]/60 hover:bg-[#0b0f17] text-white text-xs font-bold uppercase tracking-luxury transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-neutral-300 hover:border-[#DC2626] bg-white hover:bg-neutral-50 text-neutral-800 text-xs font-bold uppercase tracking-luxury shadow-sm transition-all"
               >
-                <MessageCircle className="w-4 h-4 text-[#F59E0B]" />
+                <MessageCircle className="w-4 h-4 text-[#DC2626]" />
                 <span>Chat on WhatsApp</span>
               </a>
 
@@ -81,15 +78,15 @@ export const CTASection = ({ section }) => {
             </div>
 
             {/* Simple Assurance Points */}
-            <div className="mt-10 pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs text-neutral-300">
+            <div className="mt-10 pt-6 border-t border-neutral-100 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs text-neutral-600">
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#D4AF37]" /> Instant WhatsApp Quotes
+                <CheckCircle2 className="w-4 h-4 text-[#DC2626]" /> Instant WhatsApp Quotes
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#D4AF37]" /> Custom Sizing Available
+                <CheckCircle2 className="w-4 h-4 text-[#DC2626]" /> Custom Sizing Available
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#D4AF37]" /> Safe Pan-India Delivery
+                <CheckCircle2 className="w-4 h-4 text-[#DC2626]" /> Doorstep Safe Delivery
               </span>
             </div>
           </motion.div>

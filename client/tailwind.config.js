@@ -9,11 +9,11 @@ export default {
     extend: {
       colors: {
         gold: {
-          DEFAULT: '#D4AF37',
-          light:   '#F59E0B',
-          dark:    '#B8860B',
-          hover:   '#E5A93C',
-          subtle:  'rgba(212, 175, 55, 0.12)'
+          DEFAULT: '#DC2626',
+          light:   '#EF4444',
+          dark:    '#B91C1C',
+          hover:   '#E5202C',
+          subtle:  'rgba(220, 38, 38, 0.12)'
         },
         brand: {
           950: '#0b0f17',
@@ -28,13 +28,12 @@ export default {
           200: '#e2e8f0',
           100: '#f1f5f9',
           50:  '#f8fafc',
-          // Re-mapped red aliases to warm gold to ensure backwards compatibility
           red: {
-            DEFAULT: '#D4AF37',
-            light:   '#F59E0B',
-            dark:    '#B8860B',
-            hover:   '#E5A93C',
-            subtle:  'rgba(212, 175, 55, 0.12)'
+            DEFAULT: '#DC2626',
+            light:   '#EF4444',
+            dark:    '#B91C1C',
+            hover:   '#E5202C',
+            subtle:  'rgba(220, 38, 38, 0.12)'
           }
         }
       },

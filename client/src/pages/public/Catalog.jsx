@@ -42,7 +42,7 @@ export const Catalog = () => {
   const [catalogDropdownOpen, setCatalogDropdownOpen] = useState(false);
 
   useEffect(() => {
-    document.title = `Lamps & Lighting Catalog | ${settings.companyName || 'NiceLamp'}`;
+    document.title = `Lamps & Lighting Catalog | ${settings.companyName || 'Luxury Lighting Collection'}`;
   }, [settings.companyName]);
 
   // Fetch categories for sidebar filter
@@ -118,24 +118,24 @@ export const Catalog = () => {
   };
 
   return (
-    <div className="pt-24 pb-20 bg-[#090a0d] min-h-screen">
+    <div className="pt-24 pb-20 bg-[#f8fafc] min-h-screen">
       {/* Top Banner */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-b border-white/10 mb-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-b border-neutral-200 mb-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <span className="text-xs uppercase tracking-luxury text-[#D4AF37] font-semibold block mb-2">
+            <span className="text-xs uppercase tracking-luxury text-[#DC2626] font-bold block mb-2">
               Architectural Lighting Collection
             </span>
-            <h1 className="text-3xl sm:text-5xl font-serif-luxury font-bold text-white tracking-tight">
+            <h1 className="text-3xl sm:text-5xl font-serif-luxury font-bold text-neutral-900 tracking-tight">
               Product Catalog
             </h1>
-            <p className="text-sm text-neutral-400 mt-2 max-w-xl">
+            <p className="text-sm text-neutral-600 mt-2 max-w-xl font-light">
               Precision-machined sconces, suspended chandeliers, and modular architectural systems.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs font-mono text-[#D4AF37] bg-[#D4AF37]/10 border border-[#D4AF37]/20 px-3 py-1.5 rounded-lg">
+            <span className="text-xs font-mono text-[#DC2626] bg-red-50 border border-red-200 px-3 py-1.5 rounded-lg font-semibold">
               {totalProducts} {totalProducts === 1 ? 'Fixture Found' : 'Fixtures Found'}
             </span>
           </div>
@@ -150,7 +150,7 @@ export const Catalog = () => {
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               placeholder="Search by SKU, model, finish, or material..."
-              className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-[#14171d] border border-white/10 text-white placeholder-neutral-500 text-xs focus:outline-none focus:border-[#D4AF37] transition-colors"
+              className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white border border-neutral-300 text-neutral-900 placeholder-neutral-400 text-xs focus:outline-none focus:border-[#DC2626] shadow-sm transition-colors"
             />
             {searchInput && (
               <button
@@ -159,7 +159,7 @@ export const Catalog = () => {
                   setSearchInput('');
                   updateQuery({ search: '' });
                 }}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-700"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -173,13 +173,13 @@ export const Catalog = () => {
                 type="button"
                 id="catalog-cascading-dropdown-btn"
                 onClick={() => setCatalogDropdownOpen(!catalogDropdownOpen)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider flex items-center gap-2 transition-all ${
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all shadow-sm ${
                   catalogDropdownOpen
-                    ? 'bg-[#D4AF37] text-white shadow-lg shadow-[#D4AF37]/30 border border-[#D4AF37]'
-                    : 'bg-[#14171d] hover:bg-[#1a1e27] border border-white/10 text-neutral-300 hover:text-white'
+                    ? 'bg-[#DC2626] text-white border border-[#DC2626]'
+                    : 'bg-white hover:bg-neutral-50 border border-neutral-300 text-neutral-700 hover:text-neutral-900'
                 }`}
               >
-                <Layers className="w-3.5 h-3.5 text-[#D4AF37]" />
+                <Layers className="w-3.5 h-3.5 text-[#DC2626]" />
                 <span>Categories</span>
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${catalogDropdownOpen ? 'rotate-180 text-white' : ''}`} />
               </button>
@@ -198,19 +198,19 @@ export const Catalog = () => {
             {/* Mobile Filter Toggle */}
             <button
               onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
-              className="lg:hidden px-4 py-2.5 rounded-xl bg-[#14171d] border border-white/10 text-xs font-semibold uppercase tracking-luxury text-neutral-300 flex items-center gap-2"
+              className="lg:hidden px-4 py-2 rounded-xl bg-white border border-neutral-300 text-xs font-bold uppercase tracking-luxury text-neutral-700 flex items-center gap-2 shadow-sm"
             >
-              <Filter className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <Filter className="w-3.5 h-3.5 text-[#DC2626]" />
               <span>Filters</span>
             </button>
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-2">
-              <ArrowUpDown className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <ArrowUpDown className="w-3.5 h-3.5 text-[#DC2626]" />
               <select
                 value={currentSort}
                 onChange={(e) => updateQuery({ sort: e.target.value })}
-                className="bg-[#14171d] border border-white/10 rounded-xl px-3 py-2 text-xs font-semibold uppercase tracking-luxury text-neutral-300 focus:outline-none focus:border-[#D4AF37]"
+                className="bg-white border border-neutral-300 rounded-xl px-3 py-2 text-xs font-semibold uppercase tracking-luxury text-neutral-700 focus:outline-none focus:border-[#DC2626] shadow-sm"
               >
                 <option value="sortOrder">Featured & Order</option>
                 <option value="newest">Newest First</option>
@@ -225,19 +225,19 @@ export const Catalog = () => {
         {/* Active Filter Badges */}
         {(currentCategory !== 'all' || currentSearch || currentFeatured) && (
           <div className="mt-4 flex flex-wrap items-center gap-2">
-            <span className="text-xs text-neutral-500 uppercase tracking-luxury font-semibold mr-1">
+            <span className="text-xs text-neutral-500 uppercase tracking-luxury font-bold mr-1">
               Active Filters:
             </span>
             {currentCategory !== 'all' && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30 font-medium">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs bg-red-50 text-[#DC2626] border border-red-200 font-medium">
                 Category: {categories.find((c) => c.slug === currentCategory)?.name || currentCategory}
                 <button onClick={() => updateQuery({ category: 'all' })}>
-                  <X className="w-3 h-3 hover:text-white" />
+                  <X className="w-3 h-3 hover:text-neutral-900" />
                 </button>
               </span>
             )}
             {currentSearch && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30 font-medium">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs bg-red-50 text-[#DC2626] border border-red-200 font-medium">
                 Query: "{currentSearch}"
                 <button
                   onClick={() => {
@@ -245,21 +245,21 @@ export const Catalog = () => {
                     updateQuery({ search: '' });
                   }}
                 >
-                  <X className="w-3 h-3 hover:text-white" />
+                  <X className="w-3 h-3 hover:text-neutral-900" />
                 </button>
               </span>
             )}
             {currentFeatured && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30 font-medium">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs bg-red-50 text-[#DC2626] border border-red-200 font-medium">
                 Featured Only
                 <button onClick={() => updateQuery({ featured: '' })}>
-                  <X className="w-3 h-3 hover:text-white" />
+                  <X className="w-3 h-3 hover:text-neutral-900" />
                 </button>
               </span>
             )}
             <button
               onClick={clearAllFilters}
-              className="text-xs text-neutral-400 hover:text-white underline ml-2"
+              className="text-xs text-neutral-500 hover:text-neutral-900 underline ml-2 font-medium"
             >
               Clear All
             </button>
@@ -272,16 +272,16 @@ export const Catalog = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Desktop Left Filter Sidebar */}
           <aside className="hidden lg:block lg:col-span-3 space-y-6 sticky top-28">
-            <div className="p-6 rounded-2xl bg-[#14171d] border border-white/10 space-y-6 shadow-xl">
-              <div className="flex items-center justify-between pb-4 border-b border-white/10">
-                <span className="text-xs uppercase tracking-luxury text-white font-bold flex items-center gap-2">
-                  <Filter className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <div className="p-6 rounded-2xl bg-white border border-neutral-200 space-y-6 shadow-sm">
+              <div className="flex items-center justify-between pb-4 border-b border-neutral-100">
+                <span className="text-xs uppercase tracking-luxury text-neutral-900 font-bold flex items-center gap-2">
+                  <Filter className="w-3.5 h-3.5 text-[#DC2626]" />
                   Categories
                 </span>
                 {currentCategory !== 'all' && (
                   <button
                     onClick={() => updateQuery({ category: 'all' })}
-                    className="text-[11px] text-[#D4AF37] hover:underline"
+                    className="text-[11px] text-[#DC2626] hover:underline font-semibold"
                   >
                     Reset
                   </button>
@@ -292,10 +292,10 @@ export const Catalog = () => {
               <div className="space-y-1">
                 <button
                   onClick={() => updateQuery({ category: 'all' })}
-                  className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-colors ${
                     currentCategory === 'all'
-                      ? 'bg-[#D4AF37] text-black font-semibold shadow'
-                      : 'text-neutral-300 hover:bg-white/5 hover:text-white'
+                      ? 'bg-[#DC2626] text-white shadow-sm'
+                      : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900'
                   }`}
                 >
                   <span>All Categories</span>
@@ -305,17 +305,17 @@ export const Catalog = () => {
                   <button
                     key={cat._id}
                     onClick={() => updateQuery({ category: cat.slug })}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-colors ${
                       currentCategory === cat.slug
-                        ? 'bg-[#D4AF37] text-black font-semibold shadow'
-                        : 'text-neutral-300 hover:bg-white/5 hover:text-white'
+                        ? 'bg-[#DC2626] text-white shadow-sm'
+                        : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900'
                     }`}
                   >
                     <span className="truncate text-left">{cat.name}</span>
                     {cat.productsCount !== undefined && (
                       <span
                         className={`text-[10px] font-mono px-1.5 py-0.5 rounded ${
-                          currentCategory === cat.slug ? 'bg-black/20 text-black' : 'text-neutral-500 bg-black/40'
+                          currentCategory === cat.slug ? 'bg-white/20 text-white' : 'text-neutral-500 bg-neutral-100'
                         }`}
                       >
                         {cat.productsCount}
@@ -326,16 +326,16 @@ export const Catalog = () => {
               </div>
 
               {/* Featured Only Filter Toggle */}
-              <div className="pt-4 border-t border-white/10">
+              <div className="pt-4 border-t border-neutral-100">
                 <label className="flex items-center gap-3 cursor-pointer group">
                   <input
                     type="checkbox"
                     checked={currentFeatured === 'true'}
                     onChange={(e) => updateQuery({ featured: e.target.checked ? 'true' : '' })}
-                    className="rounded bg-[#090a0d] border-white/20 text-[#D4AF37] focus:ring-0 focus:ring-offset-0 w-4 h-4 cursor-pointer"
+                    className="rounded border-neutral-300 text-[#DC2626] focus:ring-[#DC2626] w-4 h-4 cursor-pointer"
                   />
-                  <span className="text-xs text-neutral-300 group-hover:text-white transition-colors flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  <span className="text-xs text-neutral-700 group-hover:text-neutral-900 transition-colors flex items-center gap-1.5 font-medium">
+                    <Sparkles className="w-3.5 h-3.5 text-[#DC2626]" />
                     Featured Fixtures Only
                   </span>
                 </label>
@@ -348,7 +348,7 @@ export const Catalog = () => {
             {loading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
-                  <div key={n} className="h-96 rounded-2xl bg-[#14171d] animate-pulse" />
+                  <div key={n} className="h-96 rounded-2xl bg-neutral-200 animate-pulse" />
                 ))}
               </div>
             ) : products.length > 0 ? (
@@ -361,11 +361,11 @@ export const Catalog = () => {
 
                 {/* Pagination Controls */}
                 {totalPages > 1 && (
-                  <div className="mt-14 pt-8 border-t border-white/10 flex items-center justify-between">
+                  <div className="mt-14 pt-8 border-t border-neutral-200 flex items-center justify-between">
                     <button
                       disabled={currentPage <= 1}
                       onClick={() => updateQuery({ page: currentPage - 1 })}
-                      className="px-4 py-2 rounded-xl bg-[#14171d] border border-white/10 text-xs uppercase tracking-luxury text-neutral-300 hover:text-white flex items-center gap-1.5 disabled:opacity-40 disabled:pointer-events-none transition-colors"
+                      className="px-4 py-2 rounded-xl bg-white border border-neutral-300 text-xs uppercase tracking-luxury text-neutral-700 hover:text-neutral-900 flex items-center gap-1.5 disabled:opacity-40 disabled:pointer-events-none transition-colors shadow-sm font-semibold"
                     >
                       <ChevronLeft className="w-4 h-4" /> Previous
                     </button>
@@ -375,10 +375,10 @@ export const Catalog = () => {
                         <button
                           key={p}
                           onClick={() => updateQuery({ page: p })}
-                          className={`w-9 h-9 rounded-xl text-xs font-mono font-medium transition-all ${
+                          className={`w-9 h-9 rounded-xl text-xs font-mono font-bold transition-all shadow-sm ${
                             currentPage === p
-                              ? 'bg-[#D4AF37] text-black font-bold shadow-lg'
-                              : 'bg-[#14171d] text-neutral-400 hover:text-white border border-white/10'
+                              ? 'bg-[#DC2626] text-white shadow'
+                              : 'bg-white text-neutral-600 hover:text-neutral-900 border border-neutral-300 hover:bg-neutral-50'
                           }`}
                         >
                           {p}
@@ -389,7 +389,7 @@ export const Catalog = () => {
                     <button
                       disabled={currentPage >= totalPages}
                       onClick={() => updateQuery({ page: currentPage + 1 })}
-                      className="px-4 py-2 rounded-xl bg-[#14171d] border border-white/10 text-xs uppercase tracking-luxury text-neutral-300 hover:text-white flex items-center gap-1.5 disabled:opacity-40 disabled:pointer-events-none transition-colors"
+                      className="px-4 py-2 rounded-xl bg-white border border-neutral-300 text-xs uppercase tracking-luxury text-neutral-700 hover:text-neutral-900 flex items-center gap-1.5 disabled:opacity-40 disabled:pointer-events-none transition-colors shadow-sm font-semibold"
                     >
                       Next <ChevronRight className="w-4 h-4" />
                     </button>
@@ -397,15 +397,15 @@ export const Catalog = () => {
                 )}
               </>
             ) : (
-              <div className="py-20 text-center rounded-2xl bg-[#14171d] border border-white/10 p-8">
-                <Lightbulb className="w-12 h-12 text-neutral-600 mx-auto mb-4" />
-                <h3 className="text-xl font-serif-luxury text-white font-semibold">No Fixtures Found</h3>
-                <p className="text-xs text-neutral-400 max-w-md mx-auto mt-2 leading-relaxed">
+              <div className="py-20 text-center rounded-2xl bg-white border border-neutral-200 p-8 shadow-sm">
+                <Lightbulb className="w-12 h-12 text-neutral-400 mx-auto mb-4" />
+                <h3 className="text-xl font-serif-luxury text-neutral-900 font-bold">No Fixtures Found</h3>
+                <p className="text-xs text-neutral-500 max-w-md mx-auto mt-2 leading-relaxed">
                   We couldn't find any luminaires matching your criteria. Try resetting your search filters or browse all categories.
                 </p>
                 <button
                   onClick={clearAllFilters}
-                  className="btn-gold px-6 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-luxury mt-6"
+                  className="btn-gold px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-luxury mt-6"
                 >
                   Clear All Filters
                 </button>

@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import { Outlet, NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 import {
-  LayoutDashboard,
   Package,
-  Layers,
-  Sliders,
-  Image as ImageIcon,
-  MessageSquare,
-  Settings as SettingsIcon,
   LogOut,
   ExternalLink,
   Menu,
@@ -29,7 +23,7 @@ export const AdminLayout = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#0b0c10] text-neutral-200">
-        <div className="w-10 h-10 rounded-full border-2 border-[#D4AF37] border-t-transparent animate-spin" />
+        <div className="w-10 h-10 rounded-full border-2 border-[#DC2626] border-t-transparent animate-spin" />
       </div>
     );
   }
@@ -40,7 +34,7 @@ export const AdminLayout = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#090a0d] p-4 text-center">
         <div className="max-w-md bg-[#14171d] border border-white/10 p-8 rounded-2xl shadow-2xl">
-          <ShieldAlert className="w-12 h-12 text-[#D4AF37] mx-auto mb-4" />
+          <ShieldAlert className="w-12 h-12 text-[#DC2626] mx-auto mb-4" />
           <h2 className="text-xl font-serif-luxury text-white font-bold mb-2">
             Authentication Required
           </h2>
@@ -59,13 +53,8 @@ export const AdminLayout = () => {
   }
 
   const navItems = [
-    { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
-    { name: 'Products Catalog', path: '/admin/products', icon: Package },
-    { name: 'Categories', path: '/admin/categories', icon: Layers },
-    { name: 'Homepage CMS', path: '/admin/homepage', icon: Sliders },
-    { name: 'Media Library', path: '/admin/media', icon: ImageIcon },
-    { name: 'Client Inquiries', path: '/admin/inquiries', icon: MessageSquare },
-    { name: 'Site Settings', path: '/admin/settings', icon: SettingsIcon },
+    { name: 'Products Catalog', path: '/admin/products', icon: Package, end: true },
+    { name: 'Add New Product', path: '/admin/products/new', icon: Plus, end: true },
   ];
 
   const handleLogout = async () => {
@@ -74,40 +63,40 @@ export const AdminLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0c10] text-neutral-200 flex">
+    <div className="min-h-screen bg-[#090a0d] text-neutral-200 flex">
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-black/80 z-40 lg:hidden backdrop-blur-sm"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
-      {/* Sidebar Navigation */}
+      {/* Sidebar */}
       <aside
-        className={`fixed lg:sticky top-0 bottom-0 left-0 z-50 w-64 bg-[#111318] border-r border-white/10 flex flex-col justify-between transition-transform duration-300 ${
+        className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-[#0f1117] border-r border-white/10 flex flex-col justify-between transition-transform duration-300 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
         <div>
           {/* Brand Header */}
           <div className="p-5 border-b border-white/10 flex items-center justify-between">
-            <Link to="/admin/dashboard" className="flex items-center gap-3 group">
+            <Link to="/admin/products" className="flex items-center gap-3 group">
               {settings.logo ? (
                 <img
                   src={settings.logo}
-                  alt={settings.companyName || 'NiceLamp'}
+                  alt={settings.companyName || 'Lighting Studio'}
                   className="h-10 w-auto object-contain"
                 />
               ) : (
                 <LHLogo className="h-10 w-auto" />
               )}
               <div>
-                <span className="font-serif-luxury text-sm font-bold text-white block tracking-wider group-hover:text-[#D4AF37] transition-colors">
-                  {settings.companyName || 'NiceLamp'}
+                <span className="font-serif-luxury text-sm font-bold text-white block tracking-wider group-hover:text-[#DC2626] transition-colors">
+                  {settings.companyName || 'Lighting Studio'}
                 </span>
-                <span className="text-[9px] uppercase tracking-luxury text-[#D4AF37] font-semibold block">
-                  Admin CMS
+                <span className="text-[9px] uppercase tracking-luxury text-[#DC2626] font-semibold block">
+                  Catalog Admin
                 </span>
               </div>
             </Link>
@@ -127,11 +116,12 @@ export const AdminLayout = () => {
                 <NavLink
                   key={item.name}
                   to={item.path}
+                  end={item.end}
                   onClick={() => setSidebarOpen(false)}
                   className={({ isActive }) =>
                     `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury transition-all ${
                       isActive
-                        ? 'bg-[#D4AF37] text-black shadow-lg shadow-[#D4AF37]/10 font-bold'
+                        ? 'bg-[#DC2626] text-white shadow-lg shadow-[#DC2626]/20 font-bold'
                         : 'text-neutral-400 hover:text-white hover:bg-white/5'
                     }`
                   }
@@ -181,22 +171,22 @@ export const AdminLayout = () => {
               <Menu className="w-5 h-5" />
             </button>
             {/* Logo in top header — visible on mobile when sidebar is closed */}
-            <Link to="/admin/dashboard" className="flex items-center gap-2.5 lg:hidden">
+            <Link to="/admin/products" className="flex items-center gap-2.5 lg:hidden">
               {settings.logo ? (
                 <img
                   src={settings.logo}
-                  alt={settings.companyName || 'NiceLamp'}
+                  alt={settings.companyName || 'Lighting Studio'}
                   className="h-8 w-auto object-contain"
                 />
               ) : (
                 <LHLogo className="h-8 w-auto" />
               )}
               <span className="font-serif-luxury text-sm font-bold text-white tracking-wider">
-                {settings.companyName || 'NiceLamp'}
+                {settings.companyName || 'Lighting Studio'}
               </span>
             </Link>
             <span className="text-xs uppercase tracking-luxury text-[#D4AF37] font-semibold hidden lg:inline-block">
-              Administrative Control Hub
+              Catalog Management
             </span>
           </div>
 
@@ -206,7 +196,7 @@ export const AdminLayout = () => {
               className="btn-gold px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-luxury flex items-center gap-1.5 shadow"
             >
               <Plus className="w-3.5 h-3.5" />
-              <span>Add Product</span>
+              <span>Add to Catalog</span>
             </Link>
 
             <div className="flex items-center gap-2.5 pl-4 border-l border-white/10">

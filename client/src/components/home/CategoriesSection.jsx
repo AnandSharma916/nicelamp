@@ -62,27 +62,27 @@ export const CategoriesSection = ({ section }) => {
         );
 
   return (
-    <section className="py-20 sm:py-24 bg-[#0b0f17] relative overflow-hidden border-t border-white/5">
+    <section className="py-20 sm:py-24 bg-[#f8fafc] relative overflow-hidden border-t border-neutral-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#161e2c] border border-[#D4AF37]/30 text-[10px] uppercase tracking-wider text-[#FDE68A] font-bold mb-3">
-              <Sparkles className="w-3 h-3 text-[#F59E0B]" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-[10px] uppercase tracking-wider text-[#DC2626] font-bold mb-3">
+              <Sparkles className="w-3 h-3 text-[#DC2626]" />
               <span>{subtitle}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-neutral-900 tracking-tight">
               {title}
             </h2>
-            <p className="text-sm text-neutral-300 mt-2 leading-relaxed">
+            <p className="text-sm text-neutral-600 mt-2 leading-relaxed">
               {description}
             </p>
           </div>
 
           <Link
             to="/categories"
-            className="btn-gold inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs uppercase tracking-luxury shadow-lg transition-all transform hover:-translate-y-0.5 shrink-0"
+            className="btn-gold inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs uppercase tracking-luxury shadow-md transition-all transform hover:-translate-y-0.5 shrink-0"
           >
             <span>View All Categories</span>
             <ArrowRight className="w-4 h-4" />
@@ -97,8 +97,8 @@ export const CategoriesSection = ({ section }) => {
               onClick={() => setSelectedFilter(tab.id)}
               className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
                 selectedFilter === tab.id
-                  ? 'bg-[#D4AF37] text-[#0b0f17] font-bold shadow-lg shadow-[#D4AF37]/20'
-                  : 'bg-[#161e2c] text-neutral-300 hover:text-white hover:bg-[#1e283a] border border-white/5'
+                  ? 'bg-[#DC2626] text-white font-bold shadow-md shadow-[#DC2626]/25'
+                  : 'bg-white text-neutral-700 hover:text-neutral-950 hover:bg-neutral-100 border border-neutral-200 shadow-sm'
               }`}
             >
               {tab.label}
@@ -115,7 +115,7 @@ export const CategoriesSection = ({ section }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: (index % 6) * 0.05 }}
-              className="group relative rounded-2xl overflow-hidden bg-[#161e2c] border border-white/10 hover:border-[#D4AF37]/60 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between h-[420px]"
+              className="group relative rounded-2xl overflow-hidden bg-[#161e2c] border border-white/10 hover:border-[#DC2626]/60 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between h-[420px]"
             >
               {/* ── Background Photography: CLEAR & VIBRANT ── */}
               <div className="absolute inset-0 z-0 overflow-hidden">
@@ -144,7 +144,7 @@ export const CategoriesSection = ({ section }) => {
               {/* Card Bottom Info */}
               <div className="relative z-10 p-6 pt-0 space-y-3">
                 <Link to={`/category/${category.slug}`}>
-                  <h3 className="text-2xl font-serif-luxury text-white font-bold tracking-tight group-hover:text-[#D4AF37] transition-colors">
+                  <h3 className="text-2xl font-serif-luxury text-white font-bold tracking-tight group-hover:text-[#DC2626] transition-colors">
                     {category.name}
                   </h3>
                 </Link>
@@ -160,7 +160,7 @@ export const CategoriesSection = ({ section }) => {
                       <Link
                         key={sub.slug}
                         to={`/category/${category.slug}/${sub.slug}`}
-                        className="px-2.5 py-0.5 rounded-md text-[10px] bg-white/10 hover:bg-[#D4AF37] hover:text-[#0b0f17] text-neutral-200 border border-white/10 transition-colors"
+                        className="px-2.5 py-0.5 rounded-md text-[10px] bg-white/10 hover:bg-[#DC2626] hover:text-white text-neutral-200 border border-white/10 transition-colors"
                       >
                         {sub.name}
                       </Link>
@@ -172,7 +172,7 @@ export const CategoriesSection = ({ section }) => {
                 <div className="pt-3 border-t border-white/10 flex items-center justify-between">
                   <Link
                     to={`/category/${category.slug}`}
-                    className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury text-[#D4AF37] group-hover:text-white font-bold transition-colors"
+                    className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury text-[#DC2626] group-hover:text-white font-bold transition-colors"
                   >
                     <span>Explore Collection</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

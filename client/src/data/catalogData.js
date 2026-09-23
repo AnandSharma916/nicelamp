@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────
-   NiceLamp / LightHut - Master Product Catalog & Categories Data
+   Architectural Lighting - Master Product Catalog & Categories Data
    10 Core Architectural Categories & Subcategories
 ───────────────────────────────────────────────────────────── */
 
@@ -937,7 +937,7 @@ export const MASTER_PRODUCTS = [
     category: 'spare-part',
     subcategory: 'spare-driver',
     categoryName: 'Spare Part',
-    shortDescription: 'Flicker-free constant current replacement driver compatible with NiceLamp fixtures.',
+    shortDescription: 'Flicker-free constant current replacement driver compatible with luxury lighting fixtures.',
     description: 'High-performance replacement driver with built-in short circuit, over-voltage, and thermal overload protection. Supports leading/trailing edge Triac dimmers with zero buzzing.',
     price: 1499,
     isFeatured: false,

@@ -157,31 +157,30 @@ export const CuratedSpacesLookbook = ({ section }) => {
   const currentSpace = SPACES_DATA[activeSpaceIndex];
 
   return (
-    <section className="py-24 sm:py-32 bg-[#090a0d] text-white relative overflow-hidden border-t border-neutral-800 select-none">
+    <section className="py-24 sm:py-32 bg-white text-neutral-900 relative overflow-hidden border-t border-neutral-200 select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-3">
-              <Layers className="w-3.5 h-3.5 text-[#D4AF37]" />
-              <span className="text-[11px] uppercase font-mono tracking-widest text-neutral-300">
-                Interactive Architectural Lookbook
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 mb-3">
+              <Layers className="w-3.5 h-3.5 text-[#DC2626]" />
+              <span className="text-[11px] uppercase font-mono tracking-widest text-[#DC2626] font-bold">
+                Interactive Lookbook
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light font-serif-luxury tracking-tight text-white leading-tight">
-              Spaces Brought to <span className="italic font-normal text-amber-200">Life</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light font-serif-luxury tracking-tight text-neutral-900 leading-tight">
+              Spaces Brought to <span className="italic font-normal text-[#DC2626]">Warmth</span>
             </h2>
 
-            <p className="mt-3 text-sm sm:text-base text-neutral-400 font-light">
-              Explore real architectural spaces designed with NiceLamp fixtures.
-              Tap the illuminated pulsing markers to reveal product specifications.
+            <p className="mt-3 text-sm sm:text-base text-neutral-600 font-light">
+              Explore beautifully illuminated real spaces. Tap the glowing markers to view lamp details and pricing.
             </p>
           </div>
 
           {/* Spaces Navigation Tabs */}
-          <div className="flex flex-wrap gap-2 bg-neutral-900/90 p-1.5 rounded-xl border border-neutral-800">
+          <div className="flex flex-wrap gap-2 bg-neutral-100 p-1.5 rounded-xl border border-neutral-200">
             {SPACES_DATA.map((space, idx) => (
               <button
                 key={space.id}
@@ -191,8 +190,8 @@ export const CuratedSpacesLookbook = ({ section }) => {
                 }}
                 className={`px-3.5 py-2 rounded-lg text-xs font-medium transition-all duration-200 flex items-center gap-1.5 ${
                   activeSpaceIndex === idx
-                    ? 'bg-[#D4AF37] text-white shadow-md'
-                    : 'text-neutral-400 hover:text-white hover:bg-white/5'
+                    ? 'bg-[#DC2626] text-white shadow-md font-bold'
+                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/70'
                 }`}
               >
                 <span>{space.title.split(' ')[0]} {space.title.split(' ')[1]}</span>
@@ -204,7 +203,7 @@ export const CuratedSpacesLookbook = ({ section }) => {
         {/* ════════════════════════════════════════════════════════
             INTERACTIVE CANVAS WITH PULSING HOTSPOTS
         ════════════════════════════════════════════════════════ */}
-        <div className="relative rounded-2xl overflow-hidden aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/10] border border-white/10 shadow-2xl bg-neutral-950">
+        <div className="relative rounded-2xl overflow-hidden aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/10] border border-neutral-200 shadow-2xl bg-neutral-100">
           {/* Space Image */}
           <AnimatePresence mode="wait">
             <motion.img
@@ -219,23 +218,19 @@ export const CuratedSpacesLookbook = ({ section }) => {
             />
           </AnimatePresence>
 
-          {/* Subtle Bottom Gradient for Title Readability - KEEPING IMAGE CLEAR */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
-
-          {/* Space Title HUD overlay at bottom left */}
-          <div className="absolute bottom-6 left-6 z-20 pointer-events-none">
-            <span className="text-[10px] tracking-widest uppercase text-[#FDE68A] font-bold block mb-1">
-              Location: {currentSpace.location}
-            </span>
-            <h3 className="text-xl sm:text-2xl font-serif-luxury text-white font-medium">
-              {currentSpace.title}
-            </h3>
-            <p className="text-xs text-neutral-300 font-light mt-0.5">
-              {currentSpace.subtitle}
-            </p>
+          {/* Space Details Tag */}
+          <div className="absolute top-4 left-4 z-20 pointer-events-none">
+            <div className="bg-white/90 backdrop-blur-md px-3.5 py-2 rounded-xl border border-neutral-200 shadow-md">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[#DC2626] font-bold block">
+                {currentSpace.subtitle}
+              </span>
+              <span className="text-sm font-serif-luxury font-bold text-neutral-900 block">
+                {currentSpace.title} — {currentSpace.location}
+              </span>
+            </div>
           </div>
 
-          {/* ── INTERACTIVE HOTSPOT PINS ── */}
+          {/* Interactive Pulsing Hotspots */}
           {currentSpace.hotspots.map((hs) => {
             const isActive = activeHotspot?.id === hs.id;
             return (
@@ -253,18 +248,18 @@ export const CuratedSpacesLookbook = ({ section }) => {
                   aria-label={`Inspect ${hs.name}`}
                 >
                   {/* Outer animated ripple */}
-                  <span className="absolute inset-0 rounded-full bg-[#D4AF37]/30 animate-ping" />
+                  <span className="absolute inset-0 rounded-full bg-[#DC2626]/30 animate-ping" />
                   
                   {/* Middle glow ring */}
-                  <span className="absolute inset-1.5 rounded-full bg-[#D4AF37]/40 group-hover:scale-125 transition-transform" />
+                  <span className="absolute inset-1.5 rounded-full bg-[#DC2626]/40 group-hover:scale-125 transition-transform" />
 
                   {/* Inner luminous core pin */}
-                  <span className={`relative flex items-center justify-center w-7 h-7 rounded-full border-2 transition-all shadow-[0_0_16px_rgba(212,175,55,0.8)] ${
+                  <span className={`relative flex items-center justify-center w-7 h-7 rounded-full border-2 transition-all shadow-[0_0_16px_rgba(220,38,38,0.8)] ${
                     isActive 
-                      ? 'bg-[#D4AF37] border-white scale-110' 
-                      : 'bg-white/95 border-[#D4AF37] text-[#0b0f17] group-hover:scale-110'
+                      ? 'bg-[#DC2626] border-white scale-110' 
+                      : 'bg-white border-[#DC2626] text-neutral-900 group-hover:scale-110'
                   }`}>
-                    <Sparkles className={`w-3.5 h-3.5 ${isActive ? 'text-[#0b0f17]' : 'text-[#D4AF37]'}`} />
+                    <Sparkles className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-[#DC2626]'}`} />
                   </span>
                 </button>
 
@@ -276,7 +271,7 @@ export const CuratedSpacesLookbook = ({ section }) => {
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.9, y: 5 }}
                       transition={{ duration: 0.2 }}
-                      className={`absolute z-40 w-72 sm:w-80 p-4 rounded-xl bg-[#161e2c]/95 backdrop-blur-xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.8)] text-left ${
+                      className={`absolute z-40 w-72 sm:w-80 p-4 rounded-2xl bg-white/98 backdrop-blur-xl border border-neutral-200 shadow-[0_20px_50px_rgba(0,0,0,0.15)] text-left ${
                         hs.x > 50 ? 'right-0 sm:right-auto sm:-translate-x-3/4' : 'left-0 sm:left-auto sm:-translate-x-1/4'
                       } ${hs.y > 60 ? 'bottom-full mb-3' : 'top-full mt-3'}`}
                     >
@@ -285,39 +280,39 @@ export const CuratedSpacesLookbook = ({ section }) => {
                         <img
                           src={hs.image}
                           alt={hs.name}
-                          className="w-16 h-16 rounded-lg object-cover border border-white/10 shrink-0"
+                          className="w-16 h-16 rounded-xl object-cover border border-neutral-200 shrink-0"
                         />
                         <div className="min-w-0">
-                          <span className="inline-block px-2 py-0.5 rounded bg-[#D4AF37]/20 text-[#FDE68A] text-[10px] font-semibold mb-1">
+                          <span className="inline-block px-2 py-0.5 rounded-md bg-red-50 text-[#DC2626] border border-red-200 text-[10px] font-semibold mb-1">
                             {hs.badge}
                           </span>
-                          <h4 className="text-sm font-semibold text-white truncate leading-tight">
+                          <h4 className="text-sm font-bold text-neutral-900 truncate leading-tight">
                             {hs.name}
                           </h4>
-                          <p className="text-xs text-neutral-400 mt-0.5">
+                          <p className="text-xs text-neutral-500 mt-0.5">
                             {hs.category}
                           </p>
                         </div>
                       </div>
 
                       {/* Specs bullet */}
-                      <div className="text-[11px] text-neutral-300 bg-black/40 p-2.5 rounded-lg border border-white/5 mb-3 flex items-start gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                      <div className="text-[11px] text-neutral-600 bg-neutral-50 p-2.5 rounded-xl border border-neutral-200 mb-3 flex items-start gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#DC2626] shrink-0 mt-0.5" />
                         <span>{hs.specs}</span>
                       </div>
 
                       {/* Price & Action Button */}
-                      <div className="flex items-center justify-between pt-1 border-t border-white/10">
+                      <div className="flex items-center justify-between pt-1 border-t border-neutral-100">
                         <div>
-                          <span className="text-[10px] text-neutral-400 block">Catalog Price:</span>
-                          <span className="text-sm font-bold text-white">{hs.price}</span>
+                          <span className="text-[10px] text-neutral-500 block">Catalog Price:</span>
+                          <span className="text-sm font-bold text-neutral-900">{hs.price}</span>
                         </div>
 
                         <Link
                           to={`/category/${hs.categorySlug}`}
-                          className="btn-gold inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold tracking-wide transition-all shadow-md"
+                          className="btn-gold inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold tracking-wide transition-all shadow-sm"
                         >
-                          <span>Explore Category</span>
+                          <span>View Category</span>
                           <ArrowUpRight className="w-3.5 h-3.5" />
                         </Link>
                       </div>
@@ -331,8 +326,8 @@ export const CuratedSpacesLookbook = ({ section }) => {
 
         {/* Bottom Quick Hotspot Selection Pills */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs">
-          <span className="text-neutral-400 font-mono text-[11px] uppercase tracking-wider flex items-center gap-1">
-            <Eye className="w-3.5 h-3.5 text-[#D4AF37]" /> Featured Luminaires in Scene:
+          <span className="text-neutral-500 font-mono text-[11px] uppercase tracking-wider flex items-center gap-1">
+            <Eye className="w-3.5 h-3.5 text-[#DC2626]" /> Featured Lights in Scene:
           </span>
           {currentSpace.hotspots.map((hs) => (
             <button
@@ -340,13 +335,13 @@ export const CuratedSpacesLookbook = ({ section }) => {
               onClick={() => setActiveHotspot(activeHotspot?.id === hs.id ? null : hs)}
               className={`px-3 py-1.5 rounded-full border transition-all duration-200 flex items-center gap-2 ${
                 activeHotspot?.id === hs.id
-                  ? 'bg-amber-400/20 border-amber-400 text-amber-200 shadow-sm'
-                  : 'bg-neutral-900 border-neutral-800 text-neutral-300 hover:border-neutral-700'
+                  ? 'bg-red-50 border-[#DC2626] text-[#DC2626] shadow-sm font-semibold'
+                  : 'bg-white border-neutral-200 text-neutral-700 hover:border-neutral-300'
               }`}
             >
-              <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+              <span className="w-2 h-2 rounded-full bg-[#DC2626]" />
               <span>{hs.name}</span>
-              <span className="text-neutral-400 font-mono">({hs.price})</span>
+              <span className="text-neutral-500 font-mono">({hs.price})</span>
             </button>
           ))}
         </div>

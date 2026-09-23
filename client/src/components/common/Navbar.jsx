@@ -27,8 +27,8 @@ const PRODUCT_CATEGORIES = [
     slug: 'wall-lamp',
     icon: '💡',
     sub: [
-      { name: 'LED Wall Lamp',  slug: 'led-wall-lamp' },
-      { name: 'E27 Wall Lamp',  slug: 'e27-wall-lamp' },
+      { name: 'LED Wall Lamp', slug: 'led-wall-lamp' },
+      { name: 'E27 Wall Lamp', slug: 'e27-wall-lamp' },
     ],
   },
   {
@@ -45,15 +45,15 @@ const PRODUCT_CATEGORIES = [
     slug: 'chandelier',
     icon: '✨',
     sub: [
-      { name: 'LED Chandelier',      slug: 'led-chandelier' },
-      { name: 'E14 Chandelier',      slug: 'e14-chandelier' },
-      { name: 'Profile Chandelier',  slug: 'profile-chandelier' },
-      { name: 'Glass Chandelier',    slug: 'glass-chandelier' },
-      { name: 'Italian Chandelier',  slug: 'italian-chandelier' },
-      { name: 'Modern Chandelier',   slug: 'modern-chandelier' },
-      { name: 'Antic Chandelier',    slug: 'antic-chandelier' },
-      { name: 'Fan Chandelier',      slug: 'fan-chandelier' },
-      { name: 'Ceiling Chandelier',  slug: 'ceiling-chandelier' },
+      { name: 'LED Chandelier', slug: 'led-chandelier' },
+      { name: 'E14 Chandelier', slug: 'e14-chandelier' },
+      { name: 'Profile Chandelier', slug: 'profile-chandelier' },
+      { name: 'Glass Chandelier', slug: 'glass-chandelier' },
+      { name: 'Italian Chandelier', slug: 'italian-chandelier' },
+      { name: 'Modern Chandelier', slug: 'modern-chandelier' },
+      { name: 'Antic Chandelier', slug: 'antic-chandelier' },
+      { name: 'Fan Chandelier', slug: 'fan-chandelier' },
+      { name: 'Ceiling Chandelier', slug: 'ceiling-chandelier' },
     ],
   },
   {
@@ -62,7 +62,7 @@ const PRODUCT_CATEGORIES = [
     icon: '🏛️',
     sub: [
       { name: 'Crystal Chandelier', slug: 'crystal-chandelier' },
-      { name: 'Modern Chandelier',  slug: 'modern-chandelier-dh' },
+      { name: 'Modern Chandelier', slug: 'modern-chandelier-dh' },
     ],
   },
   {
@@ -103,8 +103,8 @@ const PRODUCT_CATEGORIES = [
     slug: 'spare-part',
     icon: '🔧',
     sub: [
-      { name: 'Hanging Base',  slug: 'hanging-base' },
-      { name: 'Spare Driver',  slug: 'spare-driver' },
+      { name: 'Hanging Base', slug: 'hanging-base' },
+      { name: 'Spare Driver', slug: 'spare-driver' },
     ],
   },
 ];
@@ -125,13 +125,13 @@ const MegaMenu = ({ onClose }) => (
   >
     {/* Header row */}
     <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/8">
-      <span className="text-[10px] uppercase tracking-[0.25em] text-[#D4AF37] font-bold">
+      <span className="text-[10px] uppercase tracking-[0.25em] text-[#DC2626] font-bold">
         Product Categories
       </span>
       <Link
         to="/catalog"
         onClick={onClose}
-        className="flex items-center gap-1 text-[10px] uppercase tracking-wider text-neutral-400 hover:text-[#D4AF37] transition-colors font-semibold"
+        className="flex items-center gap-1 text-[10px] uppercase tracking-wider text-neutral-400 hover:text-[#DC2626] transition-colors font-semibold"
       >
         View Full Catalog <ArrowRight className="w-3 h-3" />
       </Link>
@@ -146,24 +146,24 @@ const MegaMenu = ({ onClose }) => (
             to={`/category/${cat.slug}`}
             onClick={onClose}
             className="flex items-center gap-1.5 text-white font-bold text-[11px] uppercase tracking-wider
-                       hover:text-[#D4AF37] transition-colors group"
+                       hover:text-[#DC2626] transition-colors group"
           >
             <span className="text-sm leading-none">{cat.icon}</span>
             <span>{cat.name}</span>
             {cat.sub.length > 0 && (
-              <ChevronRight className="w-2.5 h-2.5 text-neutral-500 group-hover:text-[#D4AF37] transition-colors ml-auto" />
+              <ChevronRight className="w-2.5 h-2.5 text-neutral-500 group-hover:text-[#DC2626] transition-colors ml-auto" />
             )}
           </Link>
 
           {/* Sub-categories */}
           {cat.sub.length > 0 && (
-            <ul className="space-y-0.5 pl-5 border-l border-[#D4AF37]/20">
+            <ul className="space-y-0.5 pl-5 border-l border-[#DC2626]/20">
               {cat.sub.map((sub) => (
                 <li key={sub.slug}>
                   <Link
                     to={`/category/${cat.slug}/${sub.slug}`}
                     onClick={onClose}
-                    className="block text-[11px] text-neutral-400 hover:text-[#D4AF37]
+                    className="block text-[11px] text-neutral-400 hover:text-[#DC2626]
                                hover:translate-x-0.5 transition-all duration-150 py-0.5 leading-snug"
                   >
                     {sub.name}
@@ -193,7 +193,7 @@ const MegaMenu = ({ onClose }) => (
 );
 
 /* ─────────────────────────────────────────────────────────────
-   Mobile accordion category item
+   Mobile accordion category item - Light Theme
 ───────────────────────────────────────────────────────────── */
 const MobileCatItem = ({ cat, onClose }) => {
   const [open, setOpen] = useState(false);
@@ -203,8 +203,8 @@ const MobileCatItem = ({ cat, onClose }) => {
         <Link
           to={`/category/${cat.slug}`}
           onClick={onClose}
-          className="flex items-center gap-2 flex-1 px-4 py-2.5 text-sm font-semibold text-neutral-200
-                     hover:text-[#D4AF37] transition-colors"
+          className="flex items-center gap-2 flex-1 px-4 py-2.5 text-sm font-semibold text-neutral-800
+                     hover:text-[#DC2626] transition-colors"
         >
           <span className="text-base">{cat.icon}</span>
           {cat.name}
@@ -212,7 +212,7 @@ const MobileCatItem = ({ cat, onClose }) => {
         {cat.sub.length > 0 && (
           <button
             onClick={() => setOpen(!open)}
-            className="p-2 text-neutral-400 hover:text-[#D4AF37] transition-colors"
+            className="p-2 text-neutral-400 hover:text-[#DC2626] transition-colors"
             aria-label={`Expand ${cat.name}`}
           >
             <ChevronDown
@@ -229,14 +229,14 @@ const MobileCatItem = ({ cat, onClose }) => {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="overflow-hidden pl-10 pr-4 space-y-0.5 border-l border-[#D4AF37]/30 ml-7"
+            className="overflow-hidden pl-10 pr-4 space-y-0.5 border-l border-[#DC2626]/30 ml-7"
           >
             {cat.sub.map((sub) => (
               <li key={sub.slug}>
                 <Link
                   to={`/category/${cat.slug}/${sub.slug}`}
                   onClick={onClose}
-                  className="block py-1.5 text-xs text-neutral-400 hover:text-[#D4AF37] transition-colors"
+                  className="block py-1.5 text-xs text-neutral-600 hover:text-[#DC2626] transition-colors"
                 >
                   {sub.name}
                 </Link>
@@ -254,11 +254,11 @@ const MobileCatItem = ({ cat, onClose }) => {
 ───────────────────────────────────────────────────────────── */
 export const Navbar = () => {
   const { settings } = useSettings();
-  const [isScrolled, setIsScrolled]       = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [megaOpen, setMegaOpen]            = useState(false);
-  const [searchOpen, setSearchOpen]        = useState(false);
-  const [inquiryOpen, setInquiryOpen]      = useState(false);
+  const [megaOpen, setMegaOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [inquiryOpen, setInquiryOpen] = useState(false);
   const megaRef = useRef(null);
   const location = useLocation();
 
@@ -280,29 +280,20 @@ export const Navbar = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-[#090a0d]/96 backdrop-blur-2xl border-b border-white/10 shadow-2xl py-2'
-            : 'bg-gradient-to-b from-[#090a0d]/85 to-transparent py-3'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
+          ? 'bg-white/95 backdrop-blur-2xl border-b border-neutral-200 shadow-md py-2.5'
+          : 'bg-white/90 backdrop-blur-md border-b border-neutral-200/80 shadow-sm py-3'
+          }`}
       >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between gap-4">
 
-          {/* ── Logo ── */}
-          <Link to="/" className="flex items-center gap-3 group shrink-0">
-            {settings.logo ? (
-              <img src={settings.logo} alt={settings.companyName || 'NiceLamp'} className="h-12 w-auto object-contain" />
-            ) : (
-              <LHLogo className="h-12 w-auto" />
-            )}
-            <div className="leading-none hidden sm:block">
-              <span className="font-serif-luxury text-[15px] tracking-wider text-white font-bold block group-hover:text-[#D4AF37] transition-colors">
-                {settings.companyName || 'NiceLamp'}
-              </span>
-              <span className="text-[8.5px] uppercase tracking-[0.22em] text-[#D4AF37] font-semibold block mt-0.5">
-                Decorative Solutions
-              </span>
-            </div>
+          {/* ── Logo Image Only ── */}
+          <Link to="/" className="flex items-center gap-2 group shrink-0" aria-label="Home">
+            <img
+              src={settings.logo || '/categories/logo.png'}
+              alt="Lighting Studio"
+              className="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105"
+            />
           </Link>
 
           {/* ── Desktop Nav (Official Serial Order) ── */}
@@ -312,17 +303,16 @@ export const Navbar = () => {
               to="/"
               end
               className={({ isActive }) =>
-                `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
-                  isActive
-                    ? 'text-[#D4AF37] bg-white/5 font-bold'
-                    : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                `px-3.5 py-2 text-[11.5px] font-semibold uppercase tracking-[0.12em] rounded-xl transition-all ${isActive
+                  ? 'text-[#DC2626] bg-red-50 font-bold'
+                  : 'text-neutral-700 hover:text-[#DC2626] hover:bg-neutral-100/70'
                 }`
               }
             >
               Home
             </NavLink>
 
-            {/* 2. Categories Trigger — 3-tier luxury cascading dropdown */}
+            {/* 2. Categories Trigger — Simple Dropdown with Sub-Dropdown Flyout */}
             <div
               className="relative"
               onMouseEnter={() => setMegaOpen(true)}
@@ -331,23 +321,21 @@ export const Navbar = () => {
               <button
                 id="categories-mega-btn"
                 onClick={() => setMegaOpen(!megaOpen)}
-                className={`flex items-center gap-1 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
-                  megaOpen || location.pathname.startsWith('/category') || location.pathname === '/categories'
-                    ? 'text-[#D4AF37] bg-white/5 font-bold'
-                    : 'text-neutral-300 hover:text-white hover:bg-white/5'
-                }`}
+                className={`flex items-center gap-1 px-3.5 py-2 text-[11.5px] font-semibold uppercase tracking-[0.12em] rounded-xl transition-all ${megaOpen || location.pathname.startsWith('/category') || location.pathname === '/categories'
+                  ? 'text-[#DC2626] bg-red-50 font-bold'
+                  : 'text-neutral-700 hover:text-[#DC2626] hover:bg-neutral-100/70'
+                  }`}
               >
                 <span>Categories</span>
                 <ChevronDown
-                  className={`w-3 h-3 transition-transform duration-200 ${
-                    megaOpen ? 'rotate-180 text-[#D4AF37]' : 'text-neutral-400'
-                  }`}
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${megaOpen ? 'rotate-180 text-[#DC2626]' : 'text-neutral-500'
+                    }`}
                 />
               </button>
 
               <AnimatePresence>
                 {megaOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 z-50">
+                  <div className="absolute top-full left-0 pt-2 z-50">
                     <CascadingCategoryDropdown onClose={() => setMegaOpen(false)} />
                   </div>
                 )}
@@ -358,10 +346,9 @@ export const Navbar = () => {
             <NavLink
               to="/catalog"
               className={({ isActive }) =>
-                `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
-                  isActive
-                    ? 'text-[#D4AF37] bg-white/5 font-bold'
-                    : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                `px-3.5 py-2 text-[11.5px] font-semibold uppercase tracking-[0.12em] rounded-xl transition-all ${isActive
+                  ? 'text-[#DC2626] bg-red-50 font-bold'
+                  : 'text-neutral-700 hover:text-[#DC2626] hover:bg-neutral-100/70'
                 }`
               }
             >
@@ -372,10 +359,9 @@ export const Navbar = () => {
             <NavLink
               to="/projects"
               className={({ isActive }) =>
-                `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
-                  isActive
-                    ? 'text-[#D4AF37] bg-white/5 font-bold'
-                    : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                `px-3.5 py-2 text-[11.5px] font-semibold uppercase tracking-[0.12em] rounded-xl transition-all ${isActive
+                  ? 'text-[#DC2626] bg-red-50 font-bold'
+                  : 'text-neutral-700 hover:text-[#DC2626] hover:bg-neutral-100/70'
                 }`
               }
             >
@@ -386,10 +372,9 @@ export const Navbar = () => {
             <NavLink
               to="/about"
               className={({ isActive }) =>
-                `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
-                  isActive
-                    ? 'text-[#D4AF37] bg-white/5 font-bold'
-                    : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                `px-3.5 py-2 text-[11.5px] font-semibold uppercase tracking-[0.12em] rounded-xl transition-all ${isActive
+                  ? 'text-[#DC2626] bg-red-50 font-bold'
+                  : 'text-neutral-700 hover:text-[#DC2626] hover:bg-neutral-100/70'
                 }`
               }
             >
@@ -400,10 +385,9 @@ export const Navbar = () => {
             <NavLink
               to="/contact"
               className={({ isActive }) =>
-                `px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] rounded-lg transition-all ${
-                  isActive
-                    ? 'text-[#D4AF37] bg-white/5 font-bold'
-                    : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                `px-3.5 py-2 text-[11.5px] font-semibold uppercase tracking-[0.12em] rounded-xl transition-all ${isActive
+                  ? 'text-[#DC2626] bg-red-50 font-bold'
+                  : 'text-neutral-700 hover:text-[#DC2626] hover:bg-neutral-100/70'
                 }`
               }
             >
@@ -412,24 +396,24 @@ export const Navbar = () => {
           </nav>
 
           {/* ── Desktop Right Actions ── */}
-          <div className="hidden lg:flex items-center gap-2 shrink-0">
+          <div className="hidden lg:flex items-center gap-2.5 shrink-0">
             <button
               id="navbar-search-btn"
               onClick={() => setSearchOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-neutral-300 hover:text-white
-                         hover:bg-white/5 border border-transparent hover:border-white/10
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-neutral-700 hover:text-neutral-900
+                         bg-neutral-100 hover:bg-neutral-200/80 border border-neutral-200
                          transition-all text-[11px] uppercase tracking-wider font-semibold"
               aria-label="Search"
             >
-              <Search className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <Search className="w-3.5 h-3.5 text-[#DC2626]" />
               <span>Search</span>
             </button>
 
             <button
               id="navbar-inquiry-btn"
               onClick={() => setInquiryOpen(true)}
-              className="btn-gold flex items-center gap-1.5 px-4 py-2 rounded-lg text-[11px] font-bold
-                         uppercase tracking-wider shadow-lg shadow-[#D4AF37]/20"
+              className="btn-gold flex items-center gap-1.5 px-4 py-2 rounded-xl text-[11px] font-bold
+                         uppercase tracking-wider shadow-md shadow-[#DC2626]/20"
             >
               <Send className="w-3.5 h-3.5" />
               <span>Send Inquiry</span>
@@ -441,15 +425,15 @@ export const Navbar = () => {
             <button
               id="mobile-search-btn"
               onClick={() => setSearchOpen(true)}
-              className="p-2 rounded-lg text-neutral-300 hover:text-white hover:bg-white/5 transition-colors"
+              className="p-2 rounded-xl text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100 transition-colors"
               aria-label="Search"
             >
-              <Search className="w-5 h-5 text-[#D4AF37]" />
+              <Search className="w-5 h-5 text-[#DC2626]" />
             </button>
             <button
               id="mobile-menu-btn"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-neutral-300 hover:text-white hover:bg-white/5 transition-colors focus:outline-none"
+              className="p-2 rounded-xl text-neutral-800 hover:text-neutral-950 hover:bg-neutral-100 transition-colors focus:outline-none"
               aria-label="Toggle navigation"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -459,7 +443,7 @@ export const Navbar = () => {
         </div>
       </header>
 
-      {/* ── Mobile Full-Screen Drawer ── */}
+      {/* ── Mobile Full-Screen Drawer - Light Theme ── */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <div className="fixed inset-0 z-50 lg:hidden">
@@ -469,7 +453,7 @@ export const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeMobile}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md"
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm"
             />
 
             {/* Panel */}
@@ -478,31 +462,23 @@ export const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 220 }}
-              className="fixed top-0 right-0 bottom-0 w-80 max-w-[90vw] bg-[#0f1117]
-                         border-l border-white/10 flex flex-col shadow-2xl"
+              className="fixed top-0 right-0 bottom-0 w-80 max-w-[90vw] bg-white
+                         border-l border-neutral-200 flex flex-col shadow-2xl text-neutral-800"
             >
               {/* Drawer header */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
-                <Link to="/" onClick={closeMobile} className="flex items-center gap-2.5">
-                  <LHLogo className="h-9 w-auto" />
-                  <div className="leading-none">
-                    <span className="font-serif-luxury text-sm font-bold text-white block">
-                      {settings.companyName || 'NiceLamp'}
-                    </span>
-                    <span className="text-[8px] uppercase tracking-[0.2em] text-[#D4AF37] font-semibold block mt-0.5">
-                      Decorative Solutions
-                    </span>
-                  </div>
+              <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-200 shrink-0">
+                <Link to="/" onClick={closeMobile} className="flex items-center gap-2">
+                  <img src={settings.logo || '/categories/logo.png'} alt="Logo" className="h-9 w-auto object-contain" />
                 </Link>
                 <button
                   onClick={closeMobile}
-                  className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-white/5 transition-colors"
+                  className="p-2 rounded-lg text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              {/* Scrollable content (Official Serial Order) ── */}
+              {/* Scrollable content ── */}
               <div className="flex-1 overflow-y-auto">
 
                 {/* 1. Home Link */}
@@ -512,10 +488,9 @@ export const Navbar = () => {
                     end
                     onClick={closeMobile}
                     className={({ isActive }) =>
-                      `block px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.15em] rounded-xl transition-colors ${
-                        isActive
-                          ? 'text-[#D4AF37] bg-[#D4AF37]/10 font-bold'
-                          : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                      `block px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] rounded-xl transition-colors ${isActive
+                        ? 'text-[#DC2626] bg-red-50 font-bold'
+                        : 'text-neutral-700 hover:text-[#DC2626] hover:bg-neutral-100'
                       }`
                     }
                   >
@@ -526,18 +501,18 @@ export const Navbar = () => {
                 {/* 2. Product Categories Accordion */}
                 <div className="px-4 py-2">
                   <div className="flex items-center justify-between px-1 mb-2">
-                    <p className="text-[9px] uppercase tracking-[0.25em] text-[#D4AF37] font-bold">
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#DC2626] font-bold">
                       Categories
                     </p>
                     <Link
                       to="/categories"
                       onClick={closeMobile}
-                      className="text-[10px] uppercase tracking-wider text-neutral-400 hover:text-[#D4AF37] transition-colors"
+                      className="text-[10px] uppercase tracking-wider text-neutral-500 hover:text-[#DC2626] transition-colors"
                     >
                       All Categories →
                     </Link>
                   </div>
-                  <div className="space-y-0.5 rounded-xl overflow-hidden border border-white/8 bg-white/2">
+                  <div className="space-y-0.5 rounded-xl overflow-hidden border border-neutral-200 bg-neutral-50/50">
                     {PRODUCT_CATEGORIES.map((cat) => (
                       <MobileCatItem key={cat.slug} cat={cat} onClose={closeMobile} />
                     ))}
@@ -547,20 +522,19 @@ export const Navbar = () => {
                 {/* 3-6. Catalog, Projects, About, Contact Links */}
                 <div className="px-4 pt-1 pb-4 space-y-1">
                   {[
-                    { name: 'Catalog',  path: '/catalog' },
+                    { name: 'Catalog', path: '/catalog' },
                     { name: 'Projects', path: '/projects' },
-                    { name: 'About',    path: '/about' },
-                    { name: 'Contact',  path: '/contact' },
+                    { name: 'About', path: '/about' },
+                    { name: 'Contact', path: '/contact' },
                   ].map((link) => (
                     <NavLink
                       key={link.name}
                       to={link.path}
                       onClick={closeMobile}
                       className={({ isActive }) =>
-                        `block px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.15em] rounded-xl transition-colors ${
-                          isActive
-                            ? 'text-[#D4AF37] bg-[#D4AF37]/10 font-bold'
-                            : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                        `block px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] rounded-xl transition-colors ${isActive
+                          ? 'text-[#DC2626] bg-red-50 font-bold'
+                          : 'text-neutral-700 hover:text-[#DC2626] hover:bg-neutral-100'
                         }`
                       }
                     >
@@ -571,7 +545,7 @@ export const Navbar = () => {
               </div>
 
               {/* Drawer footer */}
-              <div className="px-4 pb-6 pt-3 border-t border-white/10 space-y-3 shrink-0">
+              <div className="px-4 pb-6 pt-3 border-t border-neutral-200 space-y-3 shrink-0">
                 <button
                   onClick={() => { closeMobile(); setInquiryOpen(true); }}
                   className="w-full btn-gold py-3 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
@@ -582,9 +556,9 @@ export const Navbar = () => {
                 {settings.phone && (
                   <a
                     href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`}
-                    className="flex items-center gap-2 text-xs text-neutral-400 hover:text-white transition-colors px-1"
+                    className="flex items-center gap-2 text-xs text-neutral-600 hover:text-neutral-900 transition-colors px-1"
                   >
-                    <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
+                    <Phone className="w-3.5 h-3.5 text-[#DC2626]" />
                     <span>Call: {settings.phone}</span>
                   </a>
                 )}

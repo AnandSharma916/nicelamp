@@ -347,7 +347,7 @@ export const InquiryList = () => {
               </div>
 
               <a
-                href={`mailto:${selectedInquiry.email}?subject=Regarding your NiceLamp Lighting Inquiry`}
+                href={`mailto:${selectedInquiry.email}?subject=Regarding your Lighting Inquiry`}
                 className="btn-gold px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-luxury"
               >
                 Reply via Email

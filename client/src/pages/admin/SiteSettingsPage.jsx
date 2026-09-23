@@ -162,7 +162,7 @@ export const SiteSettingsPage = () => {
                 name="companyName"
                 value={formData.companyName}
                 onChange={handleChange}
-                placeholder="NiceLamp Designer Lighting"
+                placeholder="Luxury Designer Lighting"
                 className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#D4AF37]"
               />
             </div>
@@ -288,7 +288,7 @@ export const SiteSettingsPage = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="info@nicelamp.com"
+                placeholder="info@lightingstudio.com"
                 className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs"
               />
             </div>
@@ -338,7 +338,7 @@ export const SiteSettingsPage = () => {
                 type="url"
                 value={formData.socialLinks.instagram}
                 onChange={(e) => handleNestedChange('socialLinks', 'instagram', e.target.value)}
-                placeholder="https://instagram.com/nicelamp"
+                placeholder="https://instagram.com/lightingstudio"
                 className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono"
               />
             </div>
@@ -374,7 +374,7 @@ export const SiteSettingsPage = () => {
               name="defaultSeoTitle"
               value={formData.defaultSeoTitle}
               onChange={handleChange}
-              placeholder="NiceLamp | Luxury Designer Lamps & Home Lighting"
+              placeholder="Luxury Designer Lamps & Home Lighting"
               className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs"
             />
           </div>

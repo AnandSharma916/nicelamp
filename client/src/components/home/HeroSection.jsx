@@ -8,96 +8,138 @@ import {
   Sparkles,
   ShieldCheck,
   Truck,
-  MessageCircle,
+  MessageSquare,
+  Phone,
+  Building2,
+  Compass,
+  Layers,
+  ArrowDown,
 } from 'lucide-react';
 import { useSettings } from '../../context/SettingsContext';
+
+const DEFAULT_SLIDES = [
+  {
+    id: 'chandeliers',
+    category: 'Chandeliers',
+    badge: 'Grand Statement Fixtures',
+    eyebrow: 'Architectural Grandeur & Living Atriums',
+    title: 'Experience Grand Architectural',
+    highlight: 'Sculptural Chandeliers',
+    description:
+      'Multi-tier cascading crystal rings, solid virgin brass armatures, and dim-to-warm illumination engineered for high-ceiling living halls, luxury duplex voids, and grand villas.',
+    bgImage: '/categories/chandelier.jpg',
+    productImage: '/categories/chandelier.jpg',
+    productName: 'Imperial Multi-Tier Ring Chandelier',
+    specs: 'K9 Crystal • Dim-to-Warm • Up to 4m Drops',
+    material: 'Solid Brushed Brass & Optical Crystal',
+    idealFor: 'Grand Living & Double-Height Atriums',
+    primaryLink: '/catalog?category=chandelier',
+    primaryText: 'Explore Chandeliers',
+  },
+  {
+    id: 'pendants',
+    category: 'Pendant Lamps',
+    badge: 'Sculptural Suspensions',
+    eyebrow: 'Dining Islands & Executive Suites',
+    title: 'Precision Handcrafted',
+    highlight: 'Designer Pendants',
+    description:
+      'Mouth-blown fluted glass, brushed antique gold accents, and circadian Ra > 95 illumination crafted for intimate dining tables, breakfast bars, and modern kitchen islands.',
+    bgImage: '/categories/pendant-lamp.jpg',
+    productImage: '/categories/pendant-lamp.jpg',
+    productName: 'Halo Minimalist Glass Pendant',
+    specs: 'Ra > 95 • 3000K Warm • Dim-to-Warm',
+    material: 'Fluted Borosilicate & Spun Brass',
+    idealFor: 'Kitchen Islands & Dining Suites',
+    primaryLink: '/catalog?category=pendant-lamp',
+    primaryText: 'Explore Pendants',
+  },
+  {
+    id: 'double-height',
+    category: 'Double Height',
+    badge: 'Vertical Grandeur',
+    eyebrow: 'Duplex Foyers & Helical Staircases',
+    title: 'Dramatic Suspensions for',
+    highlight: 'Double-Height Voids',
+    description:
+      'Custom-engineered vertical luminaire installations dropping up to 5 meters, delivering breathtaking architectural presence with precision optical dispersion.',
+    bgImage: '/categories/double-height.jpg',
+    productImage: '/categories/double-height.jpg',
+    productName: 'Cascading Starlight Void Chandelier',
+    specs: 'Custom 2m–5m Drops • 100% Insured',
+    material: 'Virgin Brass, Chrome & Crystal Drops',
+    idealFor: 'Duplex Stairwells & Grand Foyers',
+    primaryLink: '/catalog?category=double-height',
+    primaryText: 'Explore Double-Height',
+  },
+  {
+    id: 'wall-lamps',
+    category: 'Wall Lamps',
+    badge: 'Architectural Sconces',
+    eyebrow: 'Corridors, Bedside & Ambient Walls',
+    title: 'Subtle Warmth & Artisanal',
+    highlight: 'Bi-Directional Sconces',
+    description:
+      'Indirect perimeter grazing and fluted glass sconces designed with flicker-free warm circadian eye comfort for luxury bedrooms, lounges, and hospitality corridors.',
+    bgImage: '/categories/wall-lamp.jpg',
+    productImage: '/categories/wall-lamp.jpg',
+    productName: 'Linear Fluted Brass Wall Grazer',
+    specs: 'Ra > 95 • Circadian Glow • IP44 Rated',
+    material: 'Machined Brass & Frosted Acrylic',
+    idealFor: 'Bedside Alcoves & Gallery Corridors',
+    primaryLink: '/catalog?category=wall-lamp',
+    primaryText: 'Explore Wall Lamps',
+  },
+  {
+    id: 'showroom',
+    category: 'Experience Studio',
+    badge: 'Flagship Showroom',
+    eyebrow: 'In-Person Architectural Consultation',
+    title: 'Experience Architectural',
+    highlight: 'Illumination in Person',
+    description:
+      'Step inside our dedicated lighting experience center to inspect physical luminaires, evaluate chromatic precision (Ra > 95), or collaborate on bespoke fixtures tailored to your space.',
+    bgImage: '/contact-banner-new.jpg',
+    fallbackBg: '/contact-banner.jpg',
+    productImage: '/contact-banner-new.jpg',
+    productName: 'Flagship Lighting Experience Center',
+    specs: 'Physical Luminaires • Live CCT Displays',
+    material: 'Mon – Sat 10:00 AM – 7:30 PM',
+    idealFor: 'Architects, Interior Designers & Homeowners',
+    primaryLink: '/contact',
+    primaryText: 'Visit Showroom',
+  },
+];
 
 export const HeroSection = ({ section }) => {
   const { settings } = useSettings();
 
-  const cmsTitle = section?.title || 'Bring Warmth & Elegance to Your Home';
-  const cmsSubtitle = section?.subtitle || 'Designer Chandeliers, Pendants & Wall Lamps';
-  const cmsDesc =
-    section?.description ||
-    'Transform your living spaces with handcrafted lighting. From modern living room chandeliers to warm bedside pendants, discover lamps designed for everyday luxury.';
-  const primaryBtnText = section?.buttonText || 'Explore Collection';
-  const primaryBtnLink = section?.buttonLink || '/catalog';
-  const secondaryBtnText = section?.secondaryButtonText || 'WhatsApp Inquiry';
-
-  // Curated slides with clear, bright, high-resolution imagery
-  const slides = [
-    {
-      id: 'chandelier',
-      name: 'Aura Modern Ring Chandelier',
-      category: 'Chandelier',
-      badge: 'Bestseller',
-      description: 'Stunning warm golden glow with crystal accents, perfect for living and dining spaces.',
-      image: '/categories/chandelier.jpg',
-      bgImage: 'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=2000&q=90',
-      material: 'Brushed Brass & Crystal Glass',
-      idealFor: 'Living Room & Dining',
-      link: '/category/chandelier',
-    },
-    {
-      id: 'pendant-lamp',
-      name: 'Solstice Fluted Pendant Light',
-      category: 'Pendant Lamp',
-      badge: 'Modern Dining',
-      description: 'Artisan fluted glass diffusing a warm, inviting glow over kitchen islands and dining tables.',
-      image: '/categories/pendant-lamp.jpg',
-      bgImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=90',
-      material: 'Champagne Gold & Fluted Glass',
-      idealFor: 'Kitchen Island & Dining Table',
-      link: '/category/pendant-lamp',
-    },
-    {
-      id: 'wall-lamp',
-      name: 'Eclipse Halo Wall Lamp',
-      category: 'Wall Lamp',
-      badge: 'Bedside & Hallway',
-      description: 'Subtle ambient halo light designed for cozy bedroom corners, hallways, and living room accent walls.',
-      image: '/categories/wall-lamp.jpg',
-      bgImage: 'https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=2000&q=90',
-      material: 'Matte Gold Finish',
-      idealFor: 'Bedside & Living Room Wall',
-      link: '/category/wall-lamp',
-    },
-    {
-      id: 'double-height',
-      name: 'Cascade Grand Chandelier',
-      category: 'Double Height',
-      badge: 'Grand Statement',
-      description: 'Dramatic multi-tier cascading crystal lights crafted to illuminate grand staircases and high ceilings.',
-      image: '/categories/double-height.jpg',
-      bgImage: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=2000&q=90',
-      material: 'Multi-Tier K9 Crystal & Brass',
-      idealFor: 'High Ceiling Foyers & Staircases',
-      link: '/category/double-height',
-    },
-    {
-      id: 'outdoor-light',
-      name: 'Vanguard Weatherproof Gate Lamp',
-      category: 'Outdoor Light',
-      badge: 'Outdoor & Gate',
-      description: 'Durable, waterproof exterior light that adds welcoming elegance and security to porches and boundary gates.',
-      image: '/categories/outdoor-light.jpg',
-      bgImage: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=2000&q=90',
-      material: 'Weatherproof Aluminum & Glass',
-      idealFor: 'Main Gate, Balcony & Garden',
-      link: '/category/outdoor-light',
-    },
-  ];
+  // Allow optional CMS override for initial slide headline/copy if configured
+  const slides = React.useMemo(() => {
+    if (!section?.title && !section?.subtitle) return DEFAULT_SLIDES;
+    const customized = [...DEFAULT_SLIDES];
+    customized[0] = {
+      ...customized[0],
+      title: section?.title ? section.title.split('&')[0] : customized[0].title,
+      highlight: section?.title && section.title.includes('&') ? section.title.split('&')[1] : customized[0].highlight,
+      eyebrow: section?.subtitle || customized[0].eyebrow,
+      description: section?.description || customized[0].description,
+      primaryText: section?.buttonText || customized[0].primaryText,
+      primaryLink: section?.buttonLink || customized[0].primaryLink,
+    };
+    return customized;
+  }, [section]);
 
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-slide every 6 seconds
+  // Auto-advance slider every 6 seconds with pause on hover
   useEffect(() => {
     if (isPaused) return;
-    const timer = setInterval(() => {
+    const interval = setInterval(() => {
       setCurrentIdx((prev) => (prev + 1) % slides.length);
     }, 6000);
-    return () => clearInterval(timer);
+    return () => clearInterval(interval);
   }, [isPaused, slides.length]);
 
   const currentSlide = slides[currentIdx];
@@ -105,197 +147,277 @@ export const HeroSection = ({ section }) => {
   const handleNext = () => setCurrentIdx((prev) => (prev + 1) % slides.length);
   const handlePrev = () => setCurrentIdx((prev) => (prev - 1 + slides.length) % slides.length);
 
-  const whatsappNumber = (settings?.whatsapp || '+919999000000').replace(/[^\d]/g, '');
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    `Hello NiceLamp! I am interested in ${currentSlide.name} and would like to know the price and availability.`
-  )}`;
+  const cleanPhone = (settings?.phone || '+91 8045811438').replace(/[^\d+]/g, '');
+  const cleanWhatsapp = (settings?.whatsapp || '+91 9811000000').replace(/[^\d]/g, '');
+  const whatsappGreeting = encodeURIComponent(
+    `Hello ${settings?.companyName || 'NiceLamp'}, I am interested in ${currentSlide.productName} (${currentSlide.category}) and would like pricing, photometric specs, and availability details.`
+  );
 
   return (
     <section
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center overflow-hidden pt-24 sm:pt-28 pb-12 bg-[#0b0f17]"
+      className="relative min-h-[90vh] lg:min-h-[94vh] flex items-center overflow-hidden pt-28 pb-14 lg:pt-36 lg:pb-18 bg-neutral-950 border-b border-neutral-900"
     >
       {/* ════════════════════════════════════════════════════════
-          BACKGROUND HERO IMAGE - CLEAR, BRIGHT & UNOBSTRUCTED
+          CINEMATIC DARK LUXURY BACKGROUND SLIDER
       ════════════════════════════════════════════════════════ */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentSlide.bgImage}
-            initial={{ opacity: 0, scale: 1.03 }}
-            animate={{ opacity: 1, scale: 1 }}
+            key={currentSlide.id}
+            initial={{ opacity: 0, scale: 1.06 }}
+            animate={{ opacity: 1, scale: 1.01 }}
             exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            transition={{ duration: 0.9, ease: 'easeOut' }}
             className="absolute inset-0"
           >
             <img
               src={currentSlide.bgImage}
-              alt={currentSlide.name}
-              className="w-full h-full object-cover object-center"
+              onError={(e) => {
+                if (currentSlide.fallbackBg && e.target.src !== currentSlide.fallbackBg) {
+                  e.target.src = currentSlide.fallbackBg;
+                } else if (!e.target.src.includes('contact-banner.jpg')) {
+                  e.target.src = '/contact-banner.jpg';
+                }
+              }}
+              alt={currentSlide.productName}
+              className="w-full h-full object-cover object-center filter brightness-[0.78] contrast-[1.08] transform transition-transform duration-1000"
               loading="eager"
             />
           </motion.div>
         </AnimatePresence>
 
-        {/* Soft, subtle side gradient - ONLY on the left for text readability. Right side is OPEN and clear! */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0b0f17]/95 via-[#0b0f17]/70 to-[#0b0f17]/25 pointer-events-none" />
+        {/* Multi-layer Cinematic Gradient Overlays (Identical to Contact Page Banner) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/35 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-transparent to-black/50 pointer-events-none" />
 
-        {/* Delicate top and bottom fade for seamless section transition */}
-        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#0b0f17]/80 to-transparent pointer-events-none" />
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0b0f17] to-transparent pointer-events-none" />
+        {/* Warm Golden & Amber Ambient Orbs */}
+        <div className="absolute -top-28 -right-28 w-[34rem] h-[34rem] bg-[#D4AF37]/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 right-1/4 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
       </div>
 
       {/* ════════════════════════════════════════════════════════
-          HERO CONTENT CONTAINER
+          MAIN CONTENT CONTAINER
       ════════════════════════════════════════════════════════ */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 w-full py-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-4">
+
+        {/* Top Bar: Category Navigator Pills & Live Experience Center Status */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="flex flex-wrap items-center justify-between gap-4 mb-8 sm:mb-10"
+        >
+          {/* Category Tabs to Switch Slider Directly */}
+          <div className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none max-w-full">
+            {slides.map((s, idx) => (
+              <button
+                key={s.id}
+                onClick={() => setCurrentIdx(idx)}
+                className={`px-3 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider transition-all duration-300 shrink-0 ${
+                  idx === currentIdx
+                    ? 'bg-gradient-to-r from-[#D4AF37] to-[#F59E0B] text-neutral-950 font-bold shadow-lg shadow-[#D4AF37]/25 scale-105'
+                    : 'bg-white/10 hover:bg-white/20 text-neutral-300 hover:text-white border border-white/10 backdrop-blur-md'
+                }`}
+              >
+                {s.category}
+              </button>
+            ))}
+          </div>
+
+          {/* Live Showroom Status Indicator */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-medium shadow-lg backdrop-blur-md">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
+            <span>Experience Center Open • Mon – Sat 10:00 AM – 7:30 PM</span>
+          </div>
+        </motion.div>
+
+        {/* ── Main 2-Column Hero Grid ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
-          {/* ── Left Column: Clean & Simple Messaging ── */}
-          <div className="lg:col-span-7 space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-4"
-            >
-              {/* Simple Eyebrow Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#161e2c]/90 border border-[#D4AF37]/40 shadow-md">
-                <Sparkles className="w-3.5 h-3.5 text-[#F59E0B]" />
-                <span className="text-[11px] uppercase tracking-[0.18em] text-[#FDE68A] font-bold">
-                  {cmsSubtitle}
+          {/* ── Left Column: Headline, Copy, Action Buttons & Slide Controls ── */}
+          <div className="lg:col-span-7">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide.id}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.45 }}
+                className="space-y-5"
+              >
+                {/* Eyebrow Pill Badge with Sparkles */}
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-[#D4AF37] text-xs font-bold uppercase tracking-luxury backdrop-blur-sm shadow-sm">
+                  <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  <span>{currentSlide.eyebrow}</span>
+                </div>
+
+                {/* Main Headline with Contact Page Gold Gradient */}
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif-luxury font-bold text-white tracking-tight leading-[1.12]">
+                  {currentSlide.title}{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F59E0B] via-[#D4AF37] to-[#FDE68A]">
+                    {currentSlide.highlight}
+                  </span>
+                </h1>
+
+                {/* Rich Description */}
+                <p className="text-sm sm:text-base text-neutral-200 mt-4 leading-relaxed font-normal max-w-2xl">
+                  {currentSlide.description}
+                </p>
+
+                {/* Touchpoint Action Buttons */}
+                <div className="pt-3 flex flex-wrap items-center gap-3.5">
+                  <Link
+                    to={currentSlide.primaryLink}
+                    className="btn-gold px-7 py-3.5 rounded-xl text-xs font-bold uppercase tracking-luxury flex items-center gap-2 shadow-xl hover:shadow-2xl cursor-pointer transition-all transform hover:-translate-y-0.5"
+                  >
+                    <span>{currentSlide.primaryText}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+
+                  {cleanWhatsapp && (
+                    <a
+                      href={`https://wa.me/${cleanWhatsapp}?text=${whatsappGreeting}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-6 py-3.5 rounded-xl bg-emerald-950/70 hover:bg-emerald-900/90 border border-emerald-500/40 text-emerald-200 text-xs font-bold uppercase tracking-luxury flex items-center gap-2 transition-all backdrop-blur-sm shadow-md hover:shadow-emerald-950/40"
+                    >
+                      <MessageSquare className="w-4 h-4 text-emerald-400" />
+                      <span>WhatsApp Concierge</span>
+                    </a>
+                  )}
+
+                  {cleanPhone && (
+                    <a
+                      href={`tel:${cleanPhone}`}
+                      className="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold uppercase tracking-luxury flex items-center gap-2 transition-all backdrop-blur-sm shadow-md"
+                    >
+                      <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
+                      <span>Direct Line</span>
+                    </a>
+                  )}
+
+                  <Link
+                    to="/contact"
+                    className="px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-neutral-300 hover:text-white text-xs font-bold uppercase tracking-luxury flex items-center gap-2 transition-all backdrop-blur-sm"
+                  >
+                    <Building2 className="w-3.5 h-3.5 text-[#D4AF37]" />
+                    <span>Showroom Visit</span>
+                  </Link>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Slider Navigation Bar: Counter, Progress Bar & Prev/Next Arrows */}
+            <div className="mt-8 pt-5 border-t border-white/15 flex items-center justify-between">
+              {/* Slide Counter & Progress Bar */}
+              <div className="flex items-center gap-3 text-xs font-mono text-neutral-400">
+                <span className="text-[#D4AF37] font-bold text-sm">
+                  {String(currentIdx + 1).padStart(2, '0')}
+                </span>
+                <div className="w-24 h-1 bg-white/15 rounded-full overflow-hidden">
+                  <motion.div
+                    key={currentIdx}
+                    initial={{ width: '0%' }}
+                    animate={{ width: '100%' }}
+                    transition={{ duration: isPaused ? 0 : 6, ease: 'linear' }}
+                    className="h-full bg-gradient-to-r from-[#D4AF37] to-[#F59E0B]"
+                  />
+                </div>
+                <span>{String(slides.length).padStart(2, '0')}</span>
+                <span className="text-[11px] text-neutral-500 font-sans ml-2 hidden sm:inline">
+                  {isPaused ? '• Paused on hover' : '• Auto-advancing'}
                 </span>
               </div>
 
-              {/* Main Headline */}
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif-luxury font-bold text-white tracking-tight leading-[1.15] drop-shadow-md">
-                {cmsTitle}
-              </h1>
-
-              {/* Simple Description */}
-              <p className="text-sm sm:text-base text-neutral-200 leading-relaxed font-normal max-w-xl drop-shadow-sm">
-                {cmsDesc}
-              </p>
-            </motion.div>
-
-            {/* Simple Direct Action Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="flex flex-wrap items-center gap-4 pt-1"
-            >
-              <Link
-                to={primaryBtnLink}
-                className="btn-gold inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-xs uppercase tracking-luxury shadow-xl hover:brightness-110 transition-all duration-300 transform hover:-translate-y-0.5"
-              >
-                <span>{primaryBtnText}</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl border border-white/20 hover:border-[#D4AF37]/60 bg-[#161e2c]/80 hover:bg-[#161e2c] text-neutral-100 hover:text-white text-xs font-semibold uppercase tracking-luxury transition-all duration-300"
-              >
-                <MessageCircle className="w-4 h-4 text-[#F59E0B]" />
-                <span>{secondaryBtnText}</span>
-              </a>
-            </motion.div>
-
-            {/* Simple Customer Trust Points */}
-            <div className="pt-5 border-t border-white/10 grid grid-cols-3 gap-3 text-neutral-200 max-w-lg">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-[#161e2c]/80 border border-white/10 flex items-center justify-center shrink-0">
-                  <Sparkles className="w-4 h-4 text-[#D4AF37]" />
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-white block">Handcrafted</span>
-                  <span className="text-[10px] text-neutral-300">Premium Finish</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-[#161e2c]/80 border border-white/10 flex items-center justify-center shrink-0">
-                  <Truck className="w-4 h-4 text-[#D4AF37]" />
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-white block">Safe Delivery</span>
-                  <span className="text-[10px] text-neutral-300">All Over India</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-[#161e2c]/80 border border-white/10 flex items-center justify-center shrink-0">
-                  <ShieldCheck className="w-4 h-4 text-[#D4AF37]" />
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-white block">Quality Assured</span>
-                  <span className="text-[10px] text-neutral-300">Tested & Verified</span>
-                </div>
+              {/* Prev / Next Buttons */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handlePrev}
+                  className="p-2.5 rounded-xl bg-white/10 hover:bg-[#D4AF37] hover:text-neutral-950 text-white border border-white/20 backdrop-blur-md transition-all shadow-md active:scale-95"
+                  aria-label="Previous Slide"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="p-2.5 rounded-xl bg-white/10 hover:bg-[#D4AF37] hover:text-neutral-950 text-white border border-white/20 backdrop-blur-md transition-all shadow-md active:scale-95"
+                  aria-label="Next Slide"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
               </div>
             </div>
           </div>
 
-          {/* ── Right Column: Featured Lamp Showcase Card with 100% CLEAR IMAGE ── */}
+          {/* ── Right Column: Featured Luminaire Showcase Glass Card ── */}
           <div className="lg:col-span-5 flex flex-col items-end w-full max-w-md ml-auto">
-            <div className="w-full bg-[#161e2c]/90 border border-white/12 rounded-2xl p-4 sm:p-5 shadow-2xl backdrop-blur-xl transition-all duration-300 group">
+            <div className="w-full bg-black/60 border border-white/15 rounded-2xl p-5 sm:p-6 shadow-2xl backdrop-blur-xl hover:border-[#D4AF37]/50 transition-all duration-300">
 
-              {/* Card Header: Category & Badge */}
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-[#D4AF37]/15 text-[#FDE68A] border border-[#D4AF37]/30 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] inline-block animate-pulse" />
+              {/* Card Header: Category & Live Indicator */}
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-[11px] uppercase font-bold tracking-wider px-3 py-1 rounded-full bg-white/10 text-[#D4AF37] border border-white/15 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] inline-block animate-pulse" />
                   {currentSlide.badge}
                 </span>
-                <span className="text-xs text-neutral-300 font-medium">
+                <span className="text-xs text-neutral-400 font-medium">
                   {currentSlide.category}
                 </span>
               </div>
 
-              {/* ── CLEAR, CRISP PRODUCT IMAGE SHOWCASE ── */}
-              <div className="relative w-full h-56 sm:h-64 rounded-xl overflow-hidden bg-black/40 border border-white/10 mb-4 group/img">
+              {/* Product Image Frame */}
+              <div className="relative w-full h-56 sm:h-64 rounded-xl overflow-hidden bg-neutral-900 border border-white/10 mb-4 group/img">
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={currentSlide.image}
+                    key={currentSlide.id}
                     initial={{ opacity: 0, scale: 0.96 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.04 }}
+                    exit={{ opacity: 0, scale: 1.03 }}
                     transition={{ duration: 0.4 }}
                     className="w-full h-full"
                   >
                     <img
-                      src={currentSlide.image}
-                      alt={currentSlide.name}
+                      src={currentSlide.productImage}
+                      alt={currentSlide.productName}
                       className="w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-500"
                     />
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Clear room tag */}
+                {/* Room / Space Tag */}
                 <div className="absolute bottom-2.5 left-2.5 z-10">
-                  <span className="text-[10px] font-medium px-2.5 py-1 rounded-md bg-[#0b0f17]/85 border border-white/15 text-neutral-200 backdrop-blur-md">
+                  <span className="text-[10.5px] font-medium px-2.5 py-1 rounded-md bg-black/75 border border-white/20 text-neutral-200 shadow-md backdrop-blur-md">
                     📍 {currentSlide.idealFor}
                   </span>
                 </div>
               </div>
 
-              {/* Lamp Title & Friendly Details */}
-              <div className="space-y-2">
+              {/* Luminaire Details & Specs */}
+              <div className="space-y-2.5">
                 <h3 className="text-base sm:text-lg font-serif-luxury font-bold text-white">
-                  {currentSlide.name}
+                  {currentSlide.productName}
                 </h3>
                 <p className="text-xs text-neutral-300 line-clamp-2 leading-relaxed">
                   {currentSlide.description}
                 </p>
 
-                <div className="pt-3 border-t border-white/8 flex items-center justify-between">
-                  <span className="text-[11px] text-[#FDE68A] font-semibold">
+                {currentSlide.specs && (
+                  <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-[#D4AF37] bg-white/5 border border-white/10 px-2.5 py-1 rounded-md">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
+                    <span>{currentSlide.specs}</span>
+                  </div>
+                )}
+
+                <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                  <span className="text-[11px] text-neutral-400 font-medium">
                     {currentSlide.material}
                   </span>
                   <Link
-                    to={currentSlide.link}
+                    to={currentSlide.primaryLink}
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-[#D4AF37] hover:text-[#F59E0B] transition-colors"
                   >
                     <span>View Category</span>
@@ -305,46 +427,60 @@ export const HeroSection = ({ section }) => {
               </div>
 
             </div>
-
-            {/* Clean Slide Category Switcher Bar with Thumbnail Dots */}
-            <div className="w-full mt-3 flex items-center justify-between bg-[#161e2c]/80 px-3 py-2 rounded-xl border border-white/10">
-              <div className="flex items-center gap-1.5 overflow-x-auto py-0.5">
-                {slides.map((s, idx) => (
-                  <button
-                    key={s.id}
-                    onClick={() => setCurrentIdx(idx)}
-                    className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold transition-all shrink-0 ${
-                      idx === currentIdx
-                        ? 'bg-[#D4AF37] text-[#0b0f17] font-bold shadow-md'
-                        : 'text-neutral-400 hover:text-white hover:bg-white/5'
-                    }`}
-                  >
-                    {s.category}
-                  </button>
-                ))}
-              </div>
-
-              <div className="flex items-center gap-1 shrink-0 ml-2">
-                <button
-                  onClick={handlePrev}
-                  className="p-1.5 rounded-lg bg-white/5 hover:bg-white/15 text-neutral-300 hover:text-white transition-colors"
-                  aria-label="Previous Slide"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="p-1.5 rounded-lg bg-white/5 hover:bg-white/15 text-neutral-300 hover:text-white transition-colors"
-                  aria-label="Next Slide"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-
           </div>
 
         </div>
+
+        {/* ════════════════════════════════════════════════════════
+            4 ARCHITECTURAL FEATURE BADGES (From Contact Page Banner)
+        ════════════════════════════════════════════════════════ */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.25 }}
+          className="mt-12 lg:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-8 border-t border-white/15"
+        >
+          <div className="p-4 sm:p-5 rounded-xl bg-black/60 border border-white/15 backdrop-blur-md hover:border-[#D4AF37]/50 transition-colors group">
+            <div className="flex items-center gap-2.5 mb-1.5 text-white">
+              <Building2 className="w-4 h-4 text-[#D4AF37] shrink-0 group-hover:scale-110 transition-transform" />
+              <span className="font-serif-luxury font-bold text-xs sm:text-sm">Flagship Showroom</span>
+            </div>
+            <p className="text-[11px] sm:text-xs text-neutral-300 leading-relaxed">
+              Physical luminaires, material finishes & live 2700K–4000K CCT tuning displays.
+            </p>
+          </div>
+
+          <div className="p-4 sm:p-5 rounded-xl bg-black/60 border border-white/15 backdrop-blur-md hover:border-[#D4AF37]/50 transition-colors group">
+            <div className="flex items-center gap-2.5 mb-1.5 text-white">
+              <Compass className="w-4 h-4 text-[#D4AF37] shrink-0 group-hover:scale-110 transition-transform" />
+              <span className="font-serif-luxury font-bold text-xs sm:text-sm">Architectural Liaison</span>
+            </div>
+            <p className="text-[11px] sm:text-xs text-neutral-300 leading-relaxed">
+              Dedicated project review, photometric calculations & trade quotations in 1 business day.
+            </p>
+          </div>
+
+          <div className="p-4 sm:p-5 rounded-xl bg-black/60 border border-white/15 backdrop-blur-md hover:border-[#D4AF37]/50 transition-colors group">
+            <div className="flex items-center gap-2.5 mb-1.5 text-white">
+              <Layers className="w-4 h-4 text-[#D4AF37] shrink-0 group-hover:scale-110 transition-transform" />
+              <span className="font-serif-luxury font-bold text-xs sm:text-sm">Custom Engineering</span>
+            </div>
+            <p className="text-[11px] sm:text-xs text-neutral-300 leading-relaxed">
+              Solid brass, precision K9 optical glass & bespoke drop adjustments for double-height spaces.
+            </p>
+          </div>
+
+          <div className="p-4 sm:p-5 rounded-xl bg-black/60 border border-white/15 backdrop-blur-md hover:border-[#D4AF37]/50 transition-colors group">
+            <div className="flex items-center gap-2.5 mb-1.5 text-white">
+              <Truck className="w-4 h-4 text-[#D4AF37] shrink-0 group-hover:scale-110 transition-transform" />
+              <span className="font-serif-luxury font-bold text-xs sm:text-sm">Insured White-Glove Transit</span>
+            </div>
+            <p className="text-[11px] sm:text-xs text-neutral-300 leading-relaxed">
+              100% transit insurance with immediate free glass replacement guarantee & 5-year warranty.
+            </p>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

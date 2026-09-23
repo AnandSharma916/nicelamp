@@ -5,26 +5,26 @@ const SettingsContext = createContext(null);
 
 export const SettingsProvider = ({ children }) => {
   const [settings, setSettings] = useState({
-    companyName: 'NiceLamp',
+    companyName: '',
     tagline: 'Luxury Designer Lamps & Premium Home Lighting',
-    logo: '',
+    logo: '/categories/logo.png',
     favicon: '/favicon.svg',
-    email: 'info@nicelamp.com',
+    email: 'info@lightingcatalog.com',
     phone: '+91 8045811438',
     address: 'Industrial Area Phase II, Delhi, India',
     whatsapp: '+91 9811000000',
     socialLinks: {
-      instagram: 'https://instagram.com/nicelamp',
-      facebook: 'https://facebook.com/nicelamp',
-      linkedin: 'https://linkedin.com/company/nicelamp',
-      pinterest: 'https://pinterest.com/nicelamp',
+      instagram: 'https://instagram.com',
+      facebook: 'https://facebook.com',
+      linkedin: 'https://linkedin.com',
+      pinterest: 'https://pinterest.com',
     },
     footerContent: {
-      copyrightText: '© 2026 NiceLamp. All Rights Reserved.',
+      copyrightText: '© 2026 Lighting Studio. All Rights Reserved.',
       aboutText: 'Crafting luxury designer lamps, ambient pendants, chandeliers, and premium lighting fixtures to elevate modern homes across India.',
       gstNumber: '07BSYPK8425N1ZP',
     },
-    defaultSeoTitle: 'NiceLamp | Luxury Designer Lamps & Home Lighting',
+    defaultSeoTitle: 'Luxury Designer Lamps & Premium Home Lighting',
     defaultSeoDescription: 'Explore luxury designer lamps, ambient pendant lights, modern chandeliers, and artisanal fixtures for elegant living spaces.',
   });
   const [loading, setLoading] = useState(true);

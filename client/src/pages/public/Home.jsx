@@ -8,9 +8,7 @@ import { ProjectsSection } from '../../components/home/ProjectsSection';
 import { CTASection } from '../../components/home/CTASection';
 import { ContactSection } from '../../components/home/ContactSection';
 import { useSettings } from '../../context/SettingsContext';
-import { AmbientLightExperience } from '../../components/common/AmbientLightExperience';
 import { ExploreProductRangeSection } from '../../components/home/ExploreProductRangeSection';
-import { LightingMoodStudio } from '../../components/home/LightingMoodStudio';
 import { CuratedSpacesLookbook } from '../../components/home/CuratedSpacesLookbook';
 
 export const Home = () => {
@@ -20,7 +18,7 @@ export const Home = () => {
 
   // Set document title
   useEffect(() => {
-    document.title = settings.defaultSeoTitle || 'NiceLamp | Luxury Designer Lamps & Home Lighting';
+    document.title = settings.defaultSeoTitle || 'Luxury Designer Lamps & Architectural Lighting';
   }, [settings]);
 
   useEffect(() => {
@@ -41,15 +39,13 @@ export const Home = () => {
     fetchSections();
   }, []);
 
-  // Component mapping by sectionKey
+  // Component mapping by sectionKey (technical sections removed)
   const renderSection = (section) => {
     switch (section.sectionKey) {
       case 'hero':
         return <HeroSection key={section._id || 'hero'} section={section} />;
       case 'explore_range':
         return <ExploreProductRangeSection key={section._id || 'explore_range'} section={section} />;
-      case 'lighting_studio':
-        return <LightingMoodStudio key={section._id || 'lighting_studio'} section={section} />;
       case 'categories':
         return <CategoriesSection key={section._id || 'categories'} section={section} />;
       case 'spaces_lookbook':
@@ -71,10 +67,10 @@ export const Home = () => {
 
   if (loading && sections.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0b0f17]">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center space-y-4">
-          <div className="w-12 h-12 rounded-full border-2 border-[#D4AF37] border-t-transparent animate-spin mx-auto" />
-          <p className="text-xs uppercase tracking-luxury text-[#D4AF37] font-semibold">
+          <div className="w-12 h-12 rounded-full border-2 border-[#DC2626] border-t-transparent animate-spin mx-auto" />
+          <p className="text-xs uppercase tracking-luxury text-[#DC2626] font-semibold">
             Loading Catalog...
           </p>
         </div>
@@ -82,60 +78,31 @@ export const Home = () => {
     );
   }
 
-  // Fallback default sections if database is clean before seed
+  // Streamlined homepage sections: concise luxury flow without duplicates or redundant forms
   const fallbackSections = [
     { sectionKey: 'hero', name: 'Hero' },
     { sectionKey: 'explore_range', name: 'Explore Product Range' },
-    { sectionKey: 'lighting_studio', name: 'Lighting Mood Studio' },
-    { sectionKey: 'categories', name: 'Categories' },
+    { sectionKey: 'featured_products', name: 'Featured Products' },
     { sectionKey: 'spaces_lookbook', name: 'Curated Spaces Lookbook' },
     { sectionKey: 'about', name: 'About' },
-    { sectionKey: 'featured_products', name: 'Featured Products' },
     { sectionKey: 'projects', name: 'Projects' },
     { sectionKey: 'cta', name: 'CTA' },
-    { sectionKey: 'contact', name: 'Contact' },
   ];
 
   const baseSections = sections.length > 0 ? sections : fallbackSections;
 
-  // Assemble sections to ensure new interactive animation experiences are always included
-  const assembleSections = (inputSections) => {
-    const list = [...inputSections];
-
-    if (!list.some((s) => s.sectionKey === 'explore_range')) {
-      const heroIdx = list.findIndex((s) => s.sectionKey === 'hero');
-      list.splice(heroIdx !== -1 ? heroIdx + 1 : 1, 0, {
-        sectionKey: 'explore_range',
-        name: 'Explore Product Range',
-      });
-    }
-
-    if (!list.some((s) => s.sectionKey === 'lighting_studio')) {
-      const exploreIdx = list.findIndex((s) => s.sectionKey === 'explore_range');
-      list.splice(exploreIdx !== -1 ? exploreIdx + 1 : 2, 0, {
-        sectionKey: 'lighting_studio',
-        name: 'Lighting Mood Studio',
-      });
-    }
-
-    if (!list.some((s) => s.sectionKey === 'spaces_lookbook')) {
-      const catIdx = list.findIndex((s) => s.sectionKey === 'categories');
-      list.splice(catIdx !== -1 ? catIdx + 1 : list.length - 3, 0, {
-        sectionKey: 'spaces_lookbook',
-        name: 'Curated Spaces Lookbook',
-      });
-    }
-
-    return list;
-  };
-
-  const sectionsToRender = assembleSections(baseSections);
+  // Filter out heavy contact form (dedicated /contact page exists), technical sections, and duplicate categories
+  const hasExploreRange = baseSections.some((s) => s.sectionKey === 'explore_range');
+  const sectionsToRender = baseSections.filter(
+    (s) =>
+      s.sectionKey !== 'lighting_studio' &&
+      s.sectionKey !== 'contact' &&
+      (!hasExploreRange || s.sectionKey !== 'categories')
+  );
 
   return (
-    <AmbientLightExperience>
-      <div className="relative">
-        {sectionsToRender.map((section) => renderSection(section))}
-      </div>
-    </AmbientLightExperience>
+    <div className="relative bg-white text-neutral-900 min-h-screen">
+      {sectionsToRender.map((section) => renderSection(section))}
+    </div>
   );
 };
